@@ -2,10 +2,12 @@ package com.jahu.playground.chooseuser
 
 import com.jahu.playground.dao.User
 
-class GetUsersUseCase {
+class GetUsersUseCase(
+        val getUsersUseCase: GetUsersUseCase
+) {
 
     fun execute(): List<User> {
-        return emptyList()
+        return getUsersUseCase.execute()
     }
 
 }
