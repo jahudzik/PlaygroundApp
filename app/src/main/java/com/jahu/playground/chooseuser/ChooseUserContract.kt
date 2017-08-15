@@ -27,12 +27,13 @@ interface ChooseUserContract {
 
         fun onNewUserInputClicked()
 
-        fun onNewUserNameEntered()
+        fun onNewUserNameEntered(name: String)
 
     }
 
     enum class Error {
-
+        EMPTY_NAME,
+        EXISTING_NAME
     }
 
 }

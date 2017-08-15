@@ -1,6 +1,6 @@
 package com.jahu.playground.data
 
 data class User(
-        val id: Long,
+        val id: Int,
         val name: String
 )
