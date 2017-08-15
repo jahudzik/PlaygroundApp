@@ -1,4 +1,4 @@
-package com.jahu.playground.data
+package com.jahu.playground.dao
 
 data class User(
         val id: Int,

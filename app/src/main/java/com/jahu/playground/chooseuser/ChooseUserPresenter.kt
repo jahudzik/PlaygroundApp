@@ -1,6 +1,6 @@
 package com.jahu.playground.chooseuser
 
-import com.jahu.playground.data.User
+import com.jahu.playground.dao.User
 
 class ChooseUserPresenter(
         val view: ChooseUserContract.View,
