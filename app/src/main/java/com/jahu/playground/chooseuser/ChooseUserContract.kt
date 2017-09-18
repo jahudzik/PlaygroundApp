@@ -11,29 +11,18 @@ interface ChooseUserContract {
 
         fun showUsersList(users: List<User>)
 
-        fun showNewUserInput()
-
-        fun makeNewUserInputEditable()
+        fun navigateToAddUserScreen()
 
         fun navigateToApp()
-
-        fun showError(error: Error)
 
     }
 
     interface Presenter : BasePresenter {
 
-        fun onExistingUserChosen(user: User)
+        fun onUserChosen(user: User)
 
-        fun onNewUserInputClicked()
+        fun onAddUserButtonClicked()
 
-        fun onNewUserNameEntered(name: String)
-
-    }
-
-    enum class Error {
-        EMPTY_NAME,
-        EXISTING_NAME
     }
 
 }
