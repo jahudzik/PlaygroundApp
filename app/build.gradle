@@ -1,3 +1,7 @@
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC4-3"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -20,6 +24,15 @@ android {
     }
 }
 
+detekt {
+    version = "1.0.0.RC4-3"
+    profile("main") {
+        input = "$projectDir/src/main/java"
+        config = "$projectDir/config/detekt-config.yml"
+        output = "$projectDir/build/reports/detekt-report.xml"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
@@ -31,3 +44,5 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
 }
+
+task verify(dependsOn: ['check', 'detektCheck', 'detektFormat'])

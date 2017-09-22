@@ -17,4 +17,4 @@ android:
 
 before_install: chmod +x gradlew
 
-script:  ./gradlew clean assembleDebug check --stacktrace
+script:  ./gradlew clean assembleDebug verify --stacktrace
