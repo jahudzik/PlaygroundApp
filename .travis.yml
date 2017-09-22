@@ -8,4 +8,7 @@ android:
     - tools
     - platform-tools
 
+before_install:
+- chmod +x gradlew
+
 script: ./gradlew clean assembleDebug check --stacktrace
