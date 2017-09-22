@@ -3,6 +3,7 @@ package com.jahu.playground.repository.mock
 import com.jahu.playground.dao.User
 import com.jahu.playground.repository.LocalDataRepository
 
+@SuppressWarnings("MagicNumber")
 class MockedLocalDataRepository : LocalDataRepository {
 
     override fun getAllUsers(): List<User> {

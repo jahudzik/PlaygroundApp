@@ -20,7 +20,7 @@ class UsersAdapter(
 
     override fun getItemCount() = users.size
 
-    class ViewHolder constructor(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(user: User) {
             with(itemView) {
