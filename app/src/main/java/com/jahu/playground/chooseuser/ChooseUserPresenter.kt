@@ -12,7 +12,8 @@ class ChooseUserPresenter(
         if (users.isEmpty()) {
             view.showNoUsersMessage()
         } else {
-            view.showUsersList(users)
+            val sortedUsers = users.toList().sortedBy { it.nick }
+            view.showUsersList(sortedUsers)
         }
     }
 

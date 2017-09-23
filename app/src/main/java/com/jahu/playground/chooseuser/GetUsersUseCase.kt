@@ -7,7 +7,7 @@ class GetUsersUseCase(
         private val dataRepository: LocalDataRepository
 ) {
 
-    fun execute(): List<User> {
+    fun execute(): Set<User> {
         return dataRepository.getAllUsers()
     }
 

@@ -26,7 +26,7 @@ class ChooseUserPresenterTest {
 
     @Test
     fun initView_noUsers() {
-        whenever(getUsersUseCaseMock.execute()).thenReturn(emptyList())
+        whenever(getUsersUseCaseMock.execute()).thenReturn(emptySet())
 
         presenter.initView()
 
@@ -36,13 +36,17 @@ class ChooseUserPresenterTest {
 
     @Test
     fun initView_someUsers() {
-        val usersList = listOf(mock(), mock(), mock<User>())
-        whenever(getUsersUseCaseMock.execute()).thenReturn(usersList)
+        val user1 = User("user1", "Amy", "Dolores")
+        val user2 = User("user2", "Eva", "Black")
+        val user3 = User("user3", "Mike", "Smith")
+        val usersSet = setOf(user3, user1, user2)
+        val expectedUsersList = listOf(user1, user2, user3)
+        whenever(getUsersUseCaseMock.execute()).thenReturn(usersSet)
 
         presenter.initView()
 
         verify(getUsersUseCaseMock).execute()
-        verify(viewMock).showUsersList(eq(usersList))
+        verify(viewMock).showUsersList(eq(expectedUsersList))
     }
 
     @Test

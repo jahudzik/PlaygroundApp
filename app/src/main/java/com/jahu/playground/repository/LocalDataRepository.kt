@@ -4,7 +4,7 @@ import com.jahu.playground.dao.User
 
 interface LocalDataRepository {
 
-    fun getAllUsers(): List<User>
+    fun getAllUsers(): Set<User>
 
     fun getUserByNick(nick: String): User?
 
