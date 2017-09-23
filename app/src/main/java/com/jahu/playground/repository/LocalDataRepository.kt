@@ -6,6 +6,8 @@ interface LocalDataRepository {
 
     fun getAllUsers(): List<User>
 
-    fun addUser(name: String)
+    fun getUserByNick(nick: String): User?
+
+    fun addUser(user: User)
 
 }

@@ -3,17 +3,31 @@ package com.jahu.playground.repository.mock
 import com.jahu.playground.dao.User
 import com.jahu.playground.repository.LocalDataRepository
 
-@SuppressWarnings("MagicNumber")
 class MockedLocalDataRepository : LocalDataRepository {
 
-    override fun getAllUsers(): List<User> {
-        return listOf(
-                User(1, "Ania"),
-                User(2, "Tomek"),
-                User(3, "Marek"))
+    companion object {
+        val USER1 = User("mike66", "Mike", "Jones")
+        val USER2 = User("hippo", "Alice", "McMaster")
+        val USER3 = User("barb", "Barbara", "Summers")
     }
 
-    override fun addUser(name: String) {
-        TODO("not implemented")
+    private val usersMap: MutableMap<String, User> = mutableMapOf()
+
+    init {
+        addUser(USER1)
+        addUser(USER2)
+        addUser(USER3)
+    }
+
+    override fun getAllUsers(): Set<User> {
+        return usersMap.values.toSet()
+    }
+
+    override fun getUserByNick(nick: String): User? {
+        return usersMap[nick]
+    }
+
+    override fun addUser(user: User) {
+        usersMap.put(user.nick, user)
     }
 }
