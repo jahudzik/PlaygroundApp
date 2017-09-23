@@ -11,9 +11,9 @@ class MockedLocalDataRepositoryTest {
     @Test
     fun getAllUsers_expected() {
         val expectedItems = setOf(
-                MockedLocalDataRepository.USER1,
-                MockedLocalDataRepository.USER2,
-                MockedLocalDataRepository.USER3
+                MockedLocalDataRepository.user1,
+                MockedLocalDataRepository.user2,
+                MockedLocalDataRepository.user3
         )
 
         val users = repository.getAllUsers()
@@ -26,7 +26,7 @@ class MockedLocalDataRepositoryTest {
         val user = repository.getUserByNick("hippo")
 
         assertNotNull(user)
-        assertEquals(MockedLocalDataRepository.USER2, user)
+        assertEquals(MockedLocalDataRepository.user2, user)
     }
 
     @Test
@@ -40,9 +40,9 @@ class MockedLocalDataRepositoryTest {
     fun addUser_expected() {
         val newUser = User("newby", "Adam", "Smith")
         val expectedItems = setOf(
-                MockedLocalDataRepository.USER1,
-                MockedLocalDataRepository.USER2,
-                MockedLocalDataRepository.USER3,
+                MockedLocalDataRepository.user1,
+                MockedLocalDataRepository.user2,
+                MockedLocalDataRepository.user3,
                 newUser
         )
 
