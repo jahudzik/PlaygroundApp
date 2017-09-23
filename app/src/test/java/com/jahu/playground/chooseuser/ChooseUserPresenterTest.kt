@@ -1,6 +1,7 @@
 package com.jahu.playground.chooseuser
 
 import com.jahu.playground.dao.User
+import com.jahu.playground.usecases.GetUsersUseCase
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before

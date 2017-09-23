@@ -1,6 +1,7 @@
 package com.jahu.playground.chooseuser
 
 import com.jahu.playground.dao.User
+import com.jahu.playground.usecases.GetUsersUseCase
 
 class ChooseUserPresenter(
         private val view: ChooseUserContract.View,

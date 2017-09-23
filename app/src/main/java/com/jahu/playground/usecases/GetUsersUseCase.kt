@@ -1,4 +1,4 @@
-package com.jahu.playground.chooseuser
+package com.jahu.playground.usecases
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.repository.LocalDataRepository

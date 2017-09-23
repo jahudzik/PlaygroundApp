@@ -7,6 +7,7 @@ import android.view.View
 import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.repository.mock.MockedLocalDataRepository
+import com.jahu.playground.usecases.GetUsersUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
 
 class ChooseUserActivity : Activity(), ChooseUserContract.View {
