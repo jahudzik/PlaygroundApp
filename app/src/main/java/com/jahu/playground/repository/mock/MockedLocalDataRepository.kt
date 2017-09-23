@@ -6,9 +6,9 @@ import com.jahu.playground.repository.LocalDataRepository
 class MockedLocalDataRepository : LocalDataRepository {
 
     companion object {
-        val user1 = User("mike66", "Mike", "Jones")
-        val user2 = User("hippo", "Alice", "McMaster")
-        val user3 = User("barb", "Barbara", "Summers")
+        val user1 = User("Mike", "Jones", "mike66")
+        val user2 = User("Alice", "McMaster", "hippo")
+        val user3 = User("Barbara", "Summers", "barb")
     }
 
     private val usersMap: MutableMap<String, User> = mutableMapOf()

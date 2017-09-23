@@ -37,9 +37,9 @@ class ChooseUserPresenterTest {
 
     @Test
     fun initView_someUsers() {
-        val user1 = User("user1", "Amy", "Dolores")
+        val user1 = User("user1", "Amy", "Adam")
         val user2 = User("user2", "Eva", "Black")
-        val user3 = User("user3", "Mike", "Smith")
+        val user3 = User("user3", "Mike", "Close")
         val usersSet = setOf(user3, user1, user2)
         val expectedUsersList = listOf(user1, user2, user3)
         whenever(getUsersUseCaseMock.execute()).thenReturn(usersSet)
