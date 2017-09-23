@@ -24,7 +24,7 @@ class UsersAdapter(
 
         fun bind(user: User) {
             with(itemView) {
-                userNameTextView.text = user.name
+                userNameTextView.text = user.nick
             }
         }
 
