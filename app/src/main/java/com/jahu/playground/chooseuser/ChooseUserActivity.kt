@@ -18,6 +18,8 @@ class ChooseUserActivity : Activity(), ChooseUserContract.View {
         setContentView(R.layout.activity_choose_user)
         presenter = ChooseUserPresenter(this, GetUsersUseCase(MockedLocalDataRepository()))
         presenter.initView()
+
+        addUserButton.setOnClickListener { presenter.onAddUserButtonClicked() }
     }
 
     override fun showNoUsersMessage() {
