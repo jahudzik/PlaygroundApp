@@ -28,7 +28,7 @@ class AddUserActivity : Activity(), AddUserContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
-        presenter = AddUserPresenter(this, AddUserUseCase(MockedLocalDataRepository()))
+        presenter = AddUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
         presenter.initView()
 
         confirmNewUserButton.setOnClickListener {

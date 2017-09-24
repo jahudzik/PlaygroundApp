@@ -2,11 +2,15 @@ package com.jahu.playground.repository.mock
 
 import com.jahu.playground.dao.User
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 
 class MockedLocalDataRepositoryTest {
 
-    private val repository = MockedLocalDataRepository()
+    @Before
+    fun setUp() {
+        MockedLocalDataRepository.reset()
+    }
 
     @Test
     fun getAllUsers_expected() {
@@ -16,14 +20,14 @@ class MockedLocalDataRepositoryTest {
                 MockedLocalDataRepository.user3
         )
 
-        val users = repository.getAllUsers()
+        val users = MockedLocalDataRepository.getAllUsers()
 
         assertEquals(expectedItems, users)
     }
 
     @Test
     fun getUserByNick_existing() {
-        val user = repository.getUserByNick("hippo")
+        val user = MockedLocalDataRepository.getUserByNick("hippo")
 
         assertNotNull(user)
         assertEquals(MockedLocalDataRepository.user2, user)
@@ -31,7 +35,7 @@ class MockedLocalDataRepositoryTest {
 
     @Test
     fun getUserByNick_unknown() {
-        val user = repository.getUserByNick("unknown")
+        val user = MockedLocalDataRepository.getUserByNick("unknown")
 
         assertNull(user)
     }
@@ -46,8 +50,8 @@ class MockedLocalDataRepositoryTest {
                 newUser
         )
 
-        repository.addUser(newUser)
-        val users = repository.getAllUsers()
+        MockedLocalDataRepository.addUser(newUser)
+        val users = MockedLocalDataRepository.getAllUsers()
 
         assertEquals(expectedItems, users)
     }
