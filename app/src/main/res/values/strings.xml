@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Playground</string>
 
+  <string name="choose_user">Choose user</string>
   <string name="first_name">First name</string>
   <string name="last_name">Last name</string>
   <string name="nick">Nick</string>
