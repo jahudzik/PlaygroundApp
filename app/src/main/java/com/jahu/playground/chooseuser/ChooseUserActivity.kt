@@ -1,10 +1,12 @@
 package com.jahu.playground.chooseuser
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.jahu.playground.R
+import com.jahu.playground.adduser.AddUserActivity
 import com.jahu.playground.dao.User
 import com.jahu.playground.repository.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.GetUsersUseCase
@@ -34,7 +36,7 @@ class ChooseUserActivity : Activity(), ChooseUserContract.View {
     }
 
     override fun navigateToAddUserScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this, AddUserActivity::class.java))
     }
 
     override fun navigateToApp() {
