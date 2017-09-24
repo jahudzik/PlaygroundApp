@@ -1,6 +1,5 @@
 package com.jahu.playground.chooseuser
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -8,19 +7,17 @@ import android.view.View
 import com.jahu.playground.R
 import com.jahu.playground.adduser.AddUserActivity
 import com.jahu.playground.dao.User
+import com.jahu.playground.mvp.BaseActivity
 import com.jahu.playground.repository.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.GetUsersUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
 
-class ChooseUserActivity : Activity(), ChooseUserContract.View {
-
-    private lateinit var presenter: ChooseUserPresenter
+class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_user)
         presenter = ChooseUserPresenter(this, GetUsersUseCase(MockedLocalDataRepository))
-        presenter.initView()
 
         addUserButton.setOnClickListener { presenter.onAddUserButtonClicked() }
     }

@@ -1,18 +1,16 @@
 package com.jahu.playground.adduser
 
-import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.jahu.playground.R
+import com.jahu.playground.mvp.BaseActivity
 import com.jahu.playground.repository.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.AddUserUseCase
 import kotlinx.android.synthetic.main.activity_add_user.*
 
-class AddUserActivity : Activity(), AddUserContract.View {
-
-    private lateinit var presenter: AddUserPresenter
+class AddUserActivity : BaseActivity<AddUserPresenter>(), AddUserContract.View {
 
     private val fieldsValueWatcher: TextWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}
@@ -29,7 +27,6 @@ class AddUserActivity : Activity(), AddUserContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
         presenter = AddUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
-        presenter.initView()
 
         confirmNewUserButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
