@@ -8,6 +8,6 @@ abstract class BaseActivity<P : BasePresenter> : Activity() {
 
     override fun onResume() {
         super.onResume()
-        presenter.initView()
+        presenter.resumeView()
     }
 }

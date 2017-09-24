@@ -8,7 +8,7 @@ class ChooseUserPresenter(
         private val getUsersUseCase: GetUsersUseCase
 ) : ChooseUserContract.Presenter {
 
-    override fun initView() {
+    override fun resumeView() {
         val users = getUsersUseCase.execute()
         if (users.isEmpty()) {
             view.showNoUsersMessage()

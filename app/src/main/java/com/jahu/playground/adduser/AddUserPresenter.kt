@@ -9,7 +9,7 @@ class AddUserPresenter(
         private val addUserUseCase: AddUserUseCase
 ) : AddUserContract.Presenter, AddUserUseCase.ResultListener {
 
-    override fun initView() {
+    override fun resumeView() {
         view.setAddButtonEnabled(false)
     }
 

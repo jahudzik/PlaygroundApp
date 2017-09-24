@@ -29,8 +29,8 @@ class AddUserPresenterTest {
     }
 
     @Test
-    fun initView_expected() {
-        presenter.initView()
+    fun resumeView_expected() {
+        presenter.resumeView()
 
         verify(viewMock).setAddButtonEnabled(false)
     }
