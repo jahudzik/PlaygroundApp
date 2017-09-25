@@ -2,7 +2,11 @@ package com.jahu.playground.chooseuser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.usecases.GetUsersUseCase
-import com.nhaarman.mockito_kotlin.*
+import com.jahu.playground.usecases.SetActualUserUseCase
+import com.nhaarman.mockito_kotlin.eq
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -19,10 +23,13 @@ class ChooseUserPresenterTest {
     @Mock
     private lateinit var getUsersUseCaseMock: GetUsersUseCase
 
+    @Mock
+    private lateinit var setActualUserUseCase: SetActualUserUseCase
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = ChooseUserPresenter(viewMock, getUsersUseCaseMock)
+        presenter = ChooseUserPresenter(viewMock, getUsersUseCaseMock, setActualUserUseCase)
     }
 
     @Test
@@ -52,8 +59,10 @@ class ChooseUserPresenterTest {
 
     @Test
     fun onUserChosen_expected() {
-        presenter.onUserChosen(mock())
+        val nick = "test"
+        presenter.onUserChosen(User("First", "Last", nick))
 
+        verify(setActualUserUseCase).execute(eq(nick))
         verify(viewMock).navigateToApp()
     }
 
@@ -68,6 +77,7 @@ class ChooseUserPresenterTest {
     fun tearDown() {
         verifyNoMoreInteractions(viewMock)
         verifyNoMoreInteractions(getUsersUseCaseMock)
+        verifyNoMoreInteractions(setActualUserUseCase)
     }
 
 }
