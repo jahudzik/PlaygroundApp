@@ -8,8 +8,10 @@ import com.jahu.playground.R
 import com.jahu.playground.adduser.AddUserActivity
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.BaseActivity
+import com.jahu.playground.repository.SharedPreferencesManager
 import com.jahu.playground.repository.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.GetUsersUseCase
+import com.jahu.playground.usecases.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
 
 class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContract.View {
@@ -17,7 +19,8 @@ class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContra
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_user)
-        presenter = ChooseUserPresenter(this, GetUsersUseCase(MockedLocalDataRepository))
+        val preferencesManager = SharedPreferencesManager(this)
+        presenter = ChooseUserPresenter(this, GetUsersUseCase(MockedLocalDataRepository), SetActualUserUseCase(preferencesManager))
 
         addUserButton.setOnClickListener { presenter.onAddUserButtonClicked() }
     }
