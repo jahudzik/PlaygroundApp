@@ -64,6 +64,7 @@
       android:layout_height="100dp"
       android:layout_below="@id/nickLayout"
       android:layout_margin="10dp"
+      android:filterTouchesWhenObscured="true"
       android:text="@string/add_user"
       />
 
