@@ -41,6 +41,9 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
 }
