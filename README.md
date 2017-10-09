@@ -16,15 +16,17 @@ Side project for playing around with different Android libraries, approaches and
 ### Continuous integration
  
 * [Travis](https://travis-ci.org/)
-    * [Configuration 1](https://github.com/jahudzik/playground-app/commit/6427b738ee8ab3c379be6d0e96b3f6f332906c11)
-    * [Configuration 2](https://github.com/jahudzik/playground-app/commit/30016905e0f613d652efe96119d3cda54cd904ec)
-    * [Configuration 3](https://github.com/jahudzik/playground-app/commit/ec40fb9959ca6bdc02da10b0d524a4334e257335)
-    * [Configuration 4](https://github.com/jahudzik/playground-app/commit/c418f26c6f480ef4a302a6b8a82ba3ccfd72d150)
+    * [Configuration (1)](https://github.com/jahudzik/playground-app/commit/6427b738ee8ab3c379be6d0e96b3f6f332906c11)
+    * [Configuration (2)](https://github.com/jahudzik/playground-app/commit/30016905e0f613d652efe96119d3cda54cd904ec)
+    * [Configuration (3)](https://github.com/jahudzik/playground-app/commit/ec40fb9959ca6bdc02da10b0d524a4334e257335)
+    * [Configuration (4)](https://github.com/jahudzik/playground-app/commit/c418f26c6f480ef4a302a6b8a82ba3ccfd72d150)
 
 ### Static code analysis
 
 * [Detekt](https://github.com/arturbosch/detekt)
     * [Configuration](https://github.com/jahudzik/playground-app/commit/04ba665d3e46667f92e50296ee62e456410f011c)
+* [Lint](https://developer.android.com/studio/write/lint.html)
+    * [Configuration](https://github.com/jahudzik/playground-app/commit/c677e2cc06d0bc2ceb5b311bb04cea5e257c8299)
 
 ### Others
 
