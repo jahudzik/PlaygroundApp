@@ -34,7 +34,7 @@ class AddUserActivity : BaseActivity<AddUserPresenter>(), AddUserContract.View {
         }
 
         firstNameEditText.addTextChangedListener(fieldsValueWatcher)
-        lasttNameEditText.addTextChangedListener(fieldsValueWatcher)
+        lastNameEditText.addTextChangedListener(fieldsValueWatcher)
         nickEditText.addTextChangedListener(fieldsValueWatcher)
     }
 
@@ -52,7 +52,7 @@ class AddUserActivity : BaseActivity<AddUserPresenter>(), AddUserContract.View {
 
     private fun getFieldValues(): Triple<String, String, String> {
         val firstName = firstNameEditText.text.toString()
-        val lastName = lasttNameEditText.text.toString()
+        val lastName = lastNameEditText.text.toString()
         val nick = nickEditText.text.toString()
         return Triple(firstName, lastName, nick)
     }
