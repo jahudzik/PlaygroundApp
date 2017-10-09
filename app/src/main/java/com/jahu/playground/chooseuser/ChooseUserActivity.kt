@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.jahu.playground.R
 import com.jahu.playground.adduser.AddUserActivity
 import com.jahu.playground.dao.User
@@ -14,7 +15,7 @@ import com.jahu.playground.usecases.GetUsersUseCase
 import com.jahu.playground.usecases.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
 
-class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContract.View {
+class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContract.View, UsersAdapter.OnUserChosenListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +33,19 @@ class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContra
     override fun showUsersList(users: List<User>) {
         usersRecyclerView.visibility = View.VISIBLE
         usersRecyclerView.layoutManager = LinearLayoutManager(this)
-        usersRecyclerView.adapter = UsersAdapter(users)
+        usersRecyclerView.adapter = UsersAdapter(users, this)
     }
 
     override fun navigateToAddUserScreen() {
         startActivity(Intent(this, AddUserActivity::class.java))
     }
 
+    override fun onUserChosen(user: User) {
+        presenter.onUserChosen(user)
+    }
+
     override fun navigateToApp() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(this, "navigate to app", Toast.LENGTH_LONG).show()
     }
 
 }
