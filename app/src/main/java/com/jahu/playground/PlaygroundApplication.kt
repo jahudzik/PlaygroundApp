@@ -2,6 +2,7 @@ package com.jahu.playground
 
 import android.app.Application
 import android.os.StrictMode
+import com.facebook.stetho.Stetho
 import com.squareup.leakcanary.LeakCanary
 
 class PlaygroundApplication : Application() {
@@ -14,7 +15,14 @@ class PlaygroundApplication : Application() {
             return
         }
         LeakCanary.install(this)
+        setupStetho()
         setupStrictMode()
+    }
+
+    private fun setupStetho() {
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 
     private fun setupStrictMode() {
