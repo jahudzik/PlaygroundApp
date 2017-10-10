@@ -34,3 +34,5 @@ Side project for playing around with different Android libraries, approaches and
     * [Setup](https://github.com/jahudzik/playground-app/commit/53d79cc6e12ea6a1bbcf65022915b1416e11bf68)
 * [LeakCanary](https://github.com/square/leakcanary)
     * [Setup](https://github.com/jahudzik/playground-app/commit/85480900bc857023627a91a305e5a14a3dc1bf12)
+* [Stetho](http://facebook.github.io/stetho/)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/aa166640670e80b8937cef9512c7ed25e197e130)
