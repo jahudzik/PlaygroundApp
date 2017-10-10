@@ -1,4 +1,4 @@
-package com.jahu.playground.repository.mock
+package com.jahu.playground.repositories.mock
 
 import com.jahu.playground.dao.User
 import org.junit.Assert.*

@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases
 
-import com.jahu.playground.repository.LocalDataRepository
+import com.jahu.playground.repositories.LocalDataRepository
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import org.junit.After

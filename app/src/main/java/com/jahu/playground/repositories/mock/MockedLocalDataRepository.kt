@@ -1,7 +1,7 @@
-package com.jahu.playground.repository.mock
+package com.jahu.playground.repositories.mock
 
 import com.jahu.playground.dao.User
-import com.jahu.playground.repository.LocalDataRepository
+import com.jahu.playground.repositories.LocalDataRepository
 
 object MockedLocalDataRepository : LocalDataRepository {
 

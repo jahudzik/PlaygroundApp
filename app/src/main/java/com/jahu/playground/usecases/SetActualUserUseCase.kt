@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases
 
-import com.jahu.playground.repository.SharedPreferencesManager
+import com.jahu.playground.repositories.SharedPreferencesManager
 
 class SetActualUserUseCase(
         private val preferencesManager: SharedPreferencesManager

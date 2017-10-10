@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import com.jahu.playground.R
 import com.jahu.playground.mvp.BaseActivity
-import com.jahu.playground.repository.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.AddUserUseCase
 import kotlinx.android.synthetic.main.activity_add_user.*
 

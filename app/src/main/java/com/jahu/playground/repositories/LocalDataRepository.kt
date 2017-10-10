@@ -1,4 +1,4 @@
-package com.jahu.playground.repository
+package com.jahu.playground.repositories
 
 import com.jahu.playground.dao.User
 

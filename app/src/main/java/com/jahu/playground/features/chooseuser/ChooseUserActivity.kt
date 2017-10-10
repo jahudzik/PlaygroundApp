@@ -9,8 +9,8 @@ import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.adduser.AddUserActivity
 import com.jahu.playground.mvp.BaseActivity
-import com.jahu.playground.repository.SharedPreferencesManager
-import com.jahu.playground.repository.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.SharedPreferencesManager
+import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.GetUsersUseCase
 import com.jahu.playground.usecases.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*

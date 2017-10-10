@@ -2,7 +2,7 @@ package com.jahu.playground.usecases
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.adduser.AddUserContract
-import com.jahu.playground.repository.LocalDataRepository
+import com.jahu.playground.repositories.LocalDataRepository
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
