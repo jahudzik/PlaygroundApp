@@ -1,4 +1,4 @@
-package com.jahu.playground.adduser
+package com.jahu.playground.features.adduser
 
 import android.os.Bundle
 import android.text.Editable

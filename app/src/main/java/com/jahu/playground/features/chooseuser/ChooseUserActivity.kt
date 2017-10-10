@@ -1,4 +1,4 @@
-package com.jahu.playground.chooseuser
+package com.jahu.playground.features.chooseuser
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.jahu.playground.R
-import com.jahu.playground.adduser.AddUserActivity
 import com.jahu.playground.dao.User
+import com.jahu.playground.features.adduser.AddUserActivity
 import com.jahu.playground.mvp.BaseActivity
 import com.jahu.playground.repository.SharedPreferencesManager
 import com.jahu.playground.repository.mock.MockedLocalDataRepository

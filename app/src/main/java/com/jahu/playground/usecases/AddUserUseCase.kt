@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases
 
-import com.jahu.playground.adduser.AddUserContract.ErrorCode
 import com.jahu.playground.dao.User
+import com.jahu.playground.features.adduser.AddUserContract.ErrorCode
 import com.jahu.playground.repository.LocalDataRepository
 
 class AddUserUseCase(

@@ -1,4 +1,4 @@
-package com.jahu.playground.chooseuser
+package com.jahu.playground.features.chooseuser
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

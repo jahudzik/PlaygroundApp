@@ -1,4 +1,4 @@
-package com.jahu.playground.adduser
+package com.jahu.playground.features.adduser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.usecases.AddUserUseCase

@@ -1,4 +1,4 @@
-package com.jahu.playground.chooseuser
+package com.jahu.playground.features.chooseuser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.BasePresenter
