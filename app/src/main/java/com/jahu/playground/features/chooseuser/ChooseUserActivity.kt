@@ -11,6 +11,7 @@ import com.jahu.playground.features.dashboard.DashboardActivity
 import com.jahu.playground.mvp.BaseActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.usecases.GetActualUserUseCase
 import com.jahu.playground.usecases.GetUsersUseCase
 import com.jahu.playground.usecases.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
@@ -21,7 +22,10 @@ class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContra
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_user)
         val preferencesManager = SharedPreferencesManager(this)
-        presenter = ChooseUserPresenter(this, GetUsersUseCase(MockedLocalDataRepository), SetActualUserUseCase(preferencesManager))
+        presenter = ChooseUserPresenter(this,
+                GetActualUserUseCase(preferencesManager, MockedLocalDataRepository),
+                GetUsersUseCase(MockedLocalDataRepository),
+                SetActualUserUseCase(preferencesManager))
 
         addUserButton.setOnClickListener { presenter.onAddUserButtonClicked() }
     }
