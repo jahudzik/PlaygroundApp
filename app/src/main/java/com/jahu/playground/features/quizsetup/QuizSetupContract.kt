@@ -1,12 +1,12 @@
-package com.jahu.playground.features.dashboard
+package com.jahu.playground.features.quizsetup
 
 import com.jahu.playground.mvp.BasePresenter
 
-interface DashboardContract {
+interface QuizSetupContract {
 
     interface View {
 
-        fun showQuizSetupScreen()
+        fun showUserName(userName: String)
 
     }
 
