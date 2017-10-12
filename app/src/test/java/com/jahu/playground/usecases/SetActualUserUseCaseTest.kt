@@ -13,13 +13,12 @@ class SetActualUserUseCaseTest {
 
     private lateinit var useCase: SetActualUserUseCase
 
-    @Mock
-    private lateinit var preferencesManagerMock: SharedPreferencesManager
+    @Mock private lateinit var preferencesManager: SharedPreferencesManager
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = SetActualUserUseCase(preferencesManagerMock)
+        useCase = SetActualUserUseCase(preferencesManager)
     }
 
     @Test
@@ -27,11 +26,11 @@ class SetActualUserUseCaseTest {
         val nick = "jahu"
         useCase.execute(nick)
 
-        verify(preferencesManagerMock).setActualUserNick(nick)
+        verify(preferencesManager).setActualUserNick(nick)
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(preferencesManagerMock)
+        verifyNoMoreInteractions(preferencesManager)
     }
 }

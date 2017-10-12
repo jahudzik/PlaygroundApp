@@ -15,44 +15,40 @@ class ChooseUserPresenterTest {
 
     private lateinit var presenter: ChooseUserPresenter
 
-    @Mock
-    private lateinit var viewMock: ChooseUserContract.View
+    @Mock private lateinit var view: ChooseUserContract.View
 
-    @Mock
-    private lateinit var getActualUserUseCaseMock: GetActualUserUseCase
+    @Mock private lateinit var getActualUserUseCase: GetActualUserUseCase
 
-    @Mock
-    private lateinit var getUsersUseCaseMock: GetUsersUseCase
+    @Mock private lateinit var getUsersUseCase: GetUsersUseCase
 
-    @Mock
-    private lateinit var setActualUserUseCase: SetActualUserUseCase
+    @Mock private lateinit var setActualUserUseCase: SetActualUserUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = ChooseUserPresenter(viewMock, getActualUserUseCaseMock, getUsersUseCaseMock, setActualUserUseCase)
+        presenter = ChooseUserPresenter(view, getActualUserUseCase, getUsersUseCase, setActualUserUseCase)
     }
 
     @Test
     fun resumeView_userAlreadyChosen() {
-        whenever(getActualUserUseCaseMock.execute()).thenReturn(mock())
+        whenever(getActualUserUseCase.execute()).thenReturn(mock())
 
         presenter.resumeView()
 
-        verify(getActualUserUseCaseMock).execute()
-        verify(viewMock).navigateToApp()
+        verify(getActualUserUseCase).execute()
+        verify(view).navigateToApp()
     }
 
     @Test
     fun resumeView_noUsers() {
-        whenever(getActualUserUseCaseMock.execute()).thenReturn(null)
-        whenever(getUsersUseCaseMock.execute()).thenReturn(emptySet())
+        whenever(getActualUserUseCase.execute()).thenReturn(null)
+        whenever(getUsersUseCase.execute()).thenReturn(emptySet())
 
         presenter.resumeView()
 
-        verify(getActualUserUseCaseMock).execute()
-        verify(getUsersUseCaseMock).execute()
-        verify(viewMock).showNoUsersMessage()
+        verify(getActualUserUseCase).execute()
+        verify(getUsersUseCase).execute()
+        verify(view).showNoUsersMessage()
     }
 
     @Test
@@ -62,14 +58,14 @@ class ChooseUserPresenterTest {
         val user3 = User("user3", "Mike", "Close")
         val usersSet = setOf(user3, user1, user2)
         val expectedUsersList = listOf(user1, user2, user3)
-        whenever(getActualUserUseCaseMock.execute()).thenReturn(null)
-        whenever(getUsersUseCaseMock.execute()).thenReturn(usersSet)
+        whenever(getActualUserUseCase.execute()).thenReturn(null)
+        whenever(getUsersUseCase.execute()).thenReturn(usersSet)
 
         presenter.resumeView()
 
-        verify(getActualUserUseCaseMock).execute()
-        verify(getUsersUseCaseMock).execute()
-        verify(viewMock).showUsersList(eq(expectedUsersList))
+        verify(getActualUserUseCase).execute()
+        verify(getUsersUseCase).execute()
+        verify(view).showUsersList(eq(expectedUsersList))
     }
 
     @Test
@@ -79,21 +75,21 @@ class ChooseUserPresenterTest {
         presenter.onUserChosen(User("First", "Last", nick))
 
         verify(setActualUserUseCase).execute(eq(nick))
-        verify(viewMock).navigateToApp()
+        verify(view).navigateToApp()
     }
 
     @Test
     fun onAddUserButtonClicked_expected() {
         presenter.onAddUserButtonClicked()
 
-        verify(viewMock).navigateToAddUserScreen()
+        verify(view).navigateToAddUserScreen()
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(viewMock)
-        verifyNoMoreInteractions(getActualUserUseCaseMock)
-        verifyNoMoreInteractions(getUsersUseCaseMock)
+        verifyNoMoreInteractions(view)
+        verifyNoMoreInteractions(getActualUserUseCase)
+        verifyNoMoreInteractions(getUsersUseCase)
         verifyNoMoreInteractions(setActualUserUseCase)
     }
 

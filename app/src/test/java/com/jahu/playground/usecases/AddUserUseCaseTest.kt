@@ -14,11 +14,9 @@ class AddUserUseCaseTest {
 
     private lateinit var useCase: AddUserUseCase
 
-    @Mock
-    private lateinit var dataRepositoryMock: LocalDataRepository
+    @Mock private lateinit var dataRepository: LocalDataRepository
 
-    @Mock
-    private lateinit var resultListenerMock: AddUserUseCase.ResultListener
+    @Mock private lateinit var resultListener: AddUserUseCase.ResultListener
 
     private val nick = "josh"
     private val user = User("Josh", "Bosh", nick)
@@ -26,34 +24,34 @@ class AddUserUseCaseTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = AddUserUseCase(dataRepositoryMock)
+        useCase = AddUserUseCase(dataRepository)
     }
 
     @Test
     fun execute_noUser() {
-        whenever(dataRepositoryMock.getUserByNick(any())).thenReturn(null)
+        whenever(dataRepository.getUserByNick(any())).thenReturn(null)
 
-        useCase.execute(user, resultListenerMock)
+        useCase.execute(user, resultListener)
 
-        verify(dataRepositoryMock).getUserByNick(eq(nick))
-        verify(dataRepositoryMock).addUser(eq(user))
-        verify(resultListenerMock).onSuccess()
+        verify(dataRepository).getUserByNick(eq(nick))
+        verify(dataRepository).addUser(eq(user))
+        verify(resultListener).onSuccess()
     }
 
     @Test
     fun execute_userExists() {
-        whenever(dataRepositoryMock.getUserByNick(any())).thenReturn(mock())
+        whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
 
-        useCase.execute(user, resultListenerMock)
+        useCase.execute(user, resultListener)
 
-        verify(dataRepositoryMock).getUserByNick(eq(nick))
-        verify(resultListenerMock).onError(AddUserContract.ErrorCode.USER_EXISTS)
+        verify(dataRepository).getUserByNick(eq(nick))
+        verify(resultListener).onError(AddUserContract.ErrorCode.USER_EXISTS)
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(dataRepositoryMock)
-        verifyNoMoreInteractions(resultListenerMock)
+        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(resultListener)
     }
 
 }

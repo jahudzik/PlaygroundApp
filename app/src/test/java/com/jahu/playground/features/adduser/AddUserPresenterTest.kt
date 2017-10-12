@@ -16,58 +16,56 @@ class AddUserPresenterTest {
 
     private lateinit var presenter: AddUserPresenter
 
-    @Mock
-    private lateinit var viewMock: AddUserContract.View
+    @Mock private lateinit var view: AddUserContract.View
 
-    @Mock
-    private lateinit var addUserUseCaseMock: AddUserUseCase
+    @Mock private lateinit var addUserUseCase: AddUserUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = AddUserPresenter(viewMock, addUserUseCaseMock)
+        presenter = AddUserPresenter(view, addUserUseCase)
     }
 
     @Test
     fun resumeView_expected() {
         presenter.resumeView()
 
-        verify(viewMock).setAddButtonEnabled(false)
+        verify(view).setAddButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_noEmptyValues() {
         presenter.onFieldValueChanged("John", "Smith", "j")
 
-        verify(viewMock).setAddButtonEnabled(true)
+        verify(view).setAddButtonEnabled(true)
     }
 
     @Test
     fun onFieldValueChanged_firstNameEmpty() {
         presenter.onFieldValueChanged("", "Smith", "johnny")
 
-        verify(viewMock).setAddButtonEnabled(false)
+        verify(view).setAddButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_lastNameEmpty() {
         presenter.onFieldValueChanged("John", "", "johnny")
 
-        verify(viewMock).setAddButtonEnabled(false)
+        verify(view).setAddButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_nickEmpty() {
         presenter.onFieldValueChanged("John", "Smith", "")
 
-        verify(viewMock).setAddButtonEnabled(false)
+        verify(view).setAddButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_allValuesEmpty() {
         presenter.onFieldValueChanged("", "", "")
 
-        verify(viewMock).setAddButtonEnabled(false)
+        verify(view).setAddButtonEnabled(false)
     }
 
     @Test
@@ -78,14 +76,14 @@ class AddUserPresenterTest {
 
         presenter.onAddButtonClicked(firstName, lastName, nick)
 
-        verify(addUserUseCaseMock).execute(eq(User(firstName, lastName, nick)), any())
+        verify(addUserUseCase).execute(eq(User(firstName, lastName, nick)), any())
     }
 
     @Test
     fun onSuccess_expected() {
         presenter.onSuccess()
 
-        verify(viewMock).close()
+        verify(view).close()
     }
 
     @Test
@@ -94,12 +92,12 @@ class AddUserPresenterTest {
 
         presenter.onError(errorCode)
 
-        verify(viewMock).showErrorMessage(errorCode)
+        verify(view).showErrorMessage(errorCode)
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(viewMock)
-        verifyNoMoreInteractions(addUserUseCaseMock)
+        verifyNoMoreInteractions(view)
+        verifyNoMoreInteractions(addUserUseCase)
     }
 }

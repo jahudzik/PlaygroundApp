@@ -18,31 +18,28 @@ class DashboardPresenterTest {
 
     private lateinit var presenter: DashboardPresenter
 
-    @Mock
-    private lateinit var viewMock: DashboardContract.View
+    @Mock private lateinit var view: DashboardContract.View
 
-    @Mock
-    private lateinit var sharedPreferencesManagerMock: SharedPreferencesManager
+    @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    @Mock
-    private lateinit var dataRepositoryMock: LocalDataRepository
+    @Mock private lateinit var dataRepository: LocalDataRepository
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = DashboardPresenter(viewMock, sharedPreferencesManagerMock, dataRepositoryMock)
+        presenter = DashboardPresenter(view, sharedPreferencesManager, dataRepository)
     }
 
     @Test
     fun resumeView_noUserNick() {
-        whenever(sharedPreferencesManagerMock.getActualUserNick()).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(null)
 
         var exceptionThrown = false
         try {
             presenter.resumeView()
         } catch (e: IllegalStateException) {
             exceptionThrown = true
-            verify(sharedPreferencesManagerMock).getActualUserNick()
+            verify(sharedPreferencesManager).getActualUserNick()
         }
         assertTrue(exceptionThrown)
     }
@@ -50,16 +47,16 @@ class DashboardPresenterTest {
     @Test
     fun resumeView_noUserData() {
         val nick = "someNick"
-        whenever(sharedPreferencesManagerMock.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepositoryMock.getUserByNick(nick)).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
+        whenever(dataRepository.getUserByNick(nick)).thenReturn(null)
 
         var exceptionThrown = false
         try {
             presenter.resumeView()
         } catch (e: IllegalStateException) {
             exceptionThrown = true
-            verify(sharedPreferencesManagerMock).getActualUserNick()
-            verify(dataRepositoryMock).getUserByNick(eq(nick))
+            verify(sharedPreferencesManager).getActualUserNick()
+            verify(dataRepository).getUserByNick(eq(nick))
         }
         assertTrue(exceptionThrown)
     }
@@ -68,20 +65,20 @@ class DashboardPresenterTest {
     fun resumeView_expected() {
         val nick = "someNick"
         val user = User("John", "Smith", nick)
-        whenever(sharedPreferencesManagerMock.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepositoryMock.getUserByNick(nick)).thenReturn(user)
+        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
+        whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
 
         presenter.resumeView()
 
-        verify(sharedPreferencesManagerMock).getActualUserNick()
-        verify(dataRepositoryMock).getUserByNick(eq(nick))
-        verify(viewMock).showUserName(eq(user.firstName))
+        verify(sharedPreferencesManager).getActualUserNick()
+        verify(dataRepository).getUserByNick(eq(nick))
+        verify(view).showUserName(eq(user.firstName))
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(sharedPreferencesManagerMock)
-        verifyNoMoreInteractions(dataRepositoryMock)
-        verifyNoMoreInteractions(viewMock)
+        verifyNoMoreInteractions(sharedPreferencesManager)
+        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(view)
     }
 }

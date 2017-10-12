@@ -13,24 +13,23 @@ class GetUsersUseCaseTest {
 
     private lateinit var useCase: GetUsersUseCase
 
-    @Mock
-    private lateinit var dataRepositoryMock: LocalDataRepository
+    @Mock private lateinit var dataRepository: LocalDataRepository
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = GetUsersUseCase(dataRepositoryMock)
+        useCase = GetUsersUseCase(dataRepository)
     }
 
     @Test
     fun execute_expected() {
         useCase.execute()
 
-        verify(dataRepositoryMock).getAllUsers()
+        verify(dataRepository).getAllUsers()
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(dataRepositoryMock)
+        verifyNoMoreInteractions(dataRepository)
     }
 }

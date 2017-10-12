@@ -19,46 +19,44 @@ class GetActualUserUseCaseTest {
 
     private lateinit var useCase: GetActualUserUseCase
 
-    @Mock
-    private lateinit var sharedPreferencesManagerMock: SharedPreferencesManager
+    @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    @Mock
-    private lateinit var dataRepositoryMock: LocalDataRepository
+    @Mock private lateinit var dataRepository: LocalDataRepository
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = GetActualUserUseCase(sharedPreferencesManagerMock, dataRepositoryMock)
+        useCase = GetActualUserUseCase(sharedPreferencesManager, dataRepository)
     }
 
     @Test
     fun execute_noActualUser() {
-        whenever(sharedPreferencesManagerMock.getActualUserNick()).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(null)
 
         val result = useCase.execute()
 
         assertNull(result)
-        verify(sharedPreferencesManagerMock).getActualUserNick()
+        verify(sharedPreferencesManager).getActualUserNick()
     }
 
     @Test
     fun execute_actualUserFound() {
         val nick = "someNick"
         val user = User("Some", "User", nick)
-        whenever(sharedPreferencesManagerMock.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepositoryMock.getUserByNick(nick)).thenReturn(user)
+        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
+        whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
 
         val result = useCase.execute()
 
         assertEquals(user, result)
-        verify(sharedPreferencesManagerMock).getActualUserNick()
-        verify(dataRepositoryMock).getUserByNick(eq(nick))
+        verify(sharedPreferencesManager).getActualUserNick()
+        verify(dataRepository).getUserByNick(eq(nick))
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(sharedPreferencesManagerMock)
-        verifyNoMoreInteractions(dataRepositoryMock)
+        verifyNoMoreInteractions(sharedPreferencesManager)
+        verifyNoMoreInteractions(dataRepository)
     }
 
 }
