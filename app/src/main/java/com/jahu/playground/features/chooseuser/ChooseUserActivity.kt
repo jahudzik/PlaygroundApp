@@ -49,6 +49,7 @@ class ChooseUserActivity : BaseActivity<ChooseUserPresenter>(), ChooseUserContra
     }
 
     override fun navigateToApp() {
+        finish()
         startActivity(Intent(this, DashboardActivity::class.java))
     }
 
