@@ -33,7 +33,28 @@ class DashboardPresenterTest {
         presenter.resumeView()
 
         verify(view).showBottomNavigationBar(eq(expectedItems))
-        verify(view).showQuizSetupScreen()
+        verify(view).showQuizSetup()
+    }
+
+    @Test
+    fun onNavigationItemSelected_quizSetup() {
+        presenter.onNavigationItemSelected(BottomNavigationItem.QUIZ_SETUP)
+
+        verify(view).showQuizSetup()
+    }
+
+    @Test
+    fun onNavigationItemSelected_leaderboard() {
+        presenter.onNavigationItemSelected(BottomNavigationItem.LEADERBOARD)
+
+        verify(view).showLeaderboard()
+    }
+
+    @Test
+    fun onNavigationItemSelected_settings() {
+        presenter.onNavigationItemSelected(BottomNavigationItem.SETTINGS)
+
+        verify(view).showSettings()
     }
 
     @After

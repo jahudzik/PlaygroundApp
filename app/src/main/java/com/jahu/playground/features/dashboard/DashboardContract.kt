@@ -8,10 +8,18 @@ interface DashboardContract {
 
         fun showBottomNavigationBar(items: List<BottomNavigationItem>)
 
-        fun showQuizSetupScreen()
+        fun showQuizSetup()
+
+        fun showLeaderboard()
+
+        fun showSettings()
 
     }
 
-    interface Presenter : BasePresenter
+    interface Presenter : BasePresenter {
+
+        fun onNavigationItemSelected(itemId: Int): Boolean
+
+    }
 
 }

@@ -10,7 +10,16 @@ class DashboardPresenter(
                 BottomNavigationItem.LeaderboardItem(),
                 BottomNavigationItem.SettingsItem()
         ))
-        view.showQuizSetupScreen()
+        view.showQuizSetup()
+    }
+
+    override fun onNavigationItemSelected(itemId: Int): Boolean {
+        when (itemId) {
+            BottomNavigationItem.QUIZ_SETUP -> view.showQuizSetup()
+            BottomNavigationItem.LEADERBOARD -> view.showLeaderboard()
+            BottomNavigationItem.SETTINGS -> view.showSettings()
+        }
+        return true
     }
 
 }
