@@ -5,6 +5,11 @@ class DashboardPresenter(
 ) : DashboardContract.Presenter {
 
     override fun resumeView() {
+        view.showBottomNavigationBar(listOf(
+                BottomNavigationItem.QuizSetupItem(),
+                BottomNavigationItem.LeaderboardItem(),
+                BottomNavigationItem.SettingsItem()
+        ))
         view.showQuizSetupScreen()
     }
 

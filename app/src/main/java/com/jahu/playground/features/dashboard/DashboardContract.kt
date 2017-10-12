@@ -6,6 +6,8 @@ interface DashboardContract {
 
     interface View {
 
+        fun showBottomNavigationBar(items: List<BottomNavigationItem>)
+
         fun showQuizSetupScreen()
 
     }

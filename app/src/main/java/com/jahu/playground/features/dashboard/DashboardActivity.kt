@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.jahu.playground.R
 import com.jahu.playground.features.quizsetup.QuizSetupFragment
 import com.jahu.playground.mvp.BaseActivity
+import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : BaseActivity<DashboardContract.Presenter>(), DashboardContract.View {
 
@@ -14,14 +15,23 @@ class DashboardActivity : BaseActivity<DashboardContract.Presenter>(), Dashboard
         presenter = DashboardPresenter(this)
     }
 
-    override fun showQuizSetupScreen() {
-        replaceFragment(QuizSetupFragment.newInstance())
+    override fun showBottomNavigationBar(items: List<BottomNavigationItem>) {
+        for (item in items) {
+            bottomNavigationBar.menu
+                    .add(0, item.id, item.id, item.title)
+                    .icon = getDrawable(item.icon)
+        }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    override fun showQuizSetupScreen() {
+        switchFragment(QuizSetupFragment.newInstance(), BottomNavigationItem.QUIZ_SETUP)
+    }
+
+    private fun switchFragment(fragment: Fragment, itemId: Int) {
         fragmentManager.beginTransaction()
-                .add(R.id.dashboardContainer, fragment)
+                .replace(R.id.dashboardContainer, fragment)
                 .commit()
+        bottomNavigationBar.selectedItemId = itemId
     }
 
 }

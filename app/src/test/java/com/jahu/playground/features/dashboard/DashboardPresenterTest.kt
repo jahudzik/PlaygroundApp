@@ -1,5 +1,6 @@
 package com.jahu.playground.features.dashboard
 
+import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import org.junit.After
@@ -23,8 +24,15 @@ class DashboardPresenterTest {
 
     @Test
     fun resumeView_expected() {
+        val expectedItems = listOf(
+                BottomNavigationItem.QuizSetupItem(),
+                BottomNavigationItem.LeaderboardItem(),
+                BottomNavigationItem.SettingsItem()
+        )
+
         presenter.resumeView()
 
+        verify(view).showBottomNavigationBar(eq(expectedItems))
         verify(view).showQuizSetupScreen()
     }
 
@@ -32,4 +40,5 @@ class DashboardPresenterTest {
     fun tearDown() {
         verifyNoMoreInteractions(view)
     }
+
 }
