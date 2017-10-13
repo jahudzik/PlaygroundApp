@@ -15,6 +15,10 @@ class QuizSetupPresenter(
         view.showUserName(user.firstName)
     }
 
+    override fun onStartQuizButtonClicked() {
+        view.showNewQuizScreen()
+    }
+
     private fun getActualUser(): User {
         val nick = sharedPreferencesManager.getActualUserNick() ?:
                 throw IllegalStateException("No information about current user (nick)")

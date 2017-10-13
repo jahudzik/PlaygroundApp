@@ -8,8 +8,14 @@ interface QuizSetupContract {
 
         fun showUserName(userName: String)
 
+        fun showNewQuizScreen()
+
     }
 
-    interface Presenter : BasePresenter
+    interface Presenter : BasePresenter {
+
+        fun onStartQuizButtonClicked()
+
+    }
 
 }

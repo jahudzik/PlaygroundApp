@@ -75,6 +75,13 @@ class QuizSetupPresenterTest {
         verify(view).showUserName(eq(user.firstName))
     }
 
+    @Test
+    fun onStartQuizButtonClicked_expected() {
+        presenter.onStartQuizButtonClicked()
+
+        verify(view).showNewQuizScreen()
+    }
+
     @After
     fun tearDown() {
         verifyNoMoreInteractions(sharedPreferencesManager)
