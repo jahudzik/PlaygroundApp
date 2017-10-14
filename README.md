@@ -4,7 +4,18 @@
 
 Side project for playing around with different Android libraries, approaches and patterns.
 
-## Stuff
+## Libraries
+
+### Network
+
+* [Retrofit](http://square.github.io/retrofit/)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/9fab27130c0beda4ae7f6fbc639b718fc965a602)
+
+## Architecture
+* Model-View-Presenter
+    * [BasePresenter](https://github.com/jahudzik/playground-app/commit/9e19f351c60843ef017eccf85fb436ce2714d0ec)
+    * [BaseActivity](https://github.com/jahudzik/playground-app/commit/460df953704898aee4d42b41b178330ee6a022ea)
+    * [BaseFragment](https://github.com/jahudzik/playground-app/commit/5a6b8bcc42b6107f9034182baa1f8891a9f38922)
 
 ### Testing 
 
@@ -28,11 +39,40 @@ Side project for playing around with different Android libraries, approaches and
 * [Lint](https://developer.android.com/studio/write/lint.html)
     * [Configuration](https://github.com/jahudzik/playground-app/commit/c677e2cc06d0bc2ceb5b311bb04cea5e257c8299)
 
-### Others
+### Logging and analysis
 
 * [StrictMode](https://developer.android.com/reference/android/os/StrictMode.html)
     * [Setup](https://github.com/jahudzik/playground-app/commit/53d79cc6e12ea6a1bbcf65022915b1416e11bf68)
-* [LeakCanary](https://github.com/square/leakcanary)
-    * [Setup](https://github.com/jahudzik/playground-app/commit/85480900bc857023627a91a305e5a14a3dc1bf12)
+* [Timber](https://github.com/JakeWharton/timber)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/1235934fc8dc6d5218af83c120405c1cc8dafb42)
 * [Stetho](http://facebook.github.io/stetho/)
     * [Setup](https://github.com/jahudzik/playground-app/commit/aa166640670e80b8937cef9512c7ed25e197e130)
+* [LeakCanary](https://github.com/square/leakcanary)
+     * [Setup](https://github.com/jahudzik/playground-app/commit/85480900bc857023627a91a305e5a14a3dc1bf12)
+
+## UI Stuff
+
+* [FloatingActionButton](https://developer.android.com/reference/android/support/design/widget/FloatingActionButton.html)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/1135142571efdc2edb672124894f877557bc5ac6)
+* [BottomNavigationView](https://developer.android.com/reference/android/support/design/widget/BottomNavigationView.html)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/484c22b1d450b53170622aa58d34664564ee627e)
+
+## Security
+
+* [Tapjacking](https://blog.devknox.io/tapjacking-android-prevent/)
+    * [Preventing it by setting filterTouchesWhenObscured attribute](https://github.com/jahudzik/playground-app/commit/cd5bfb43369044311bb222357f400c45875e9e22)
+* [AllowBackup](https://blog.devknox.io/what-is-android-allowbackup-how-it-affects-your-app/)
+    * [Disabling it](https://github.com/jahudzik/playground-app/commit/8a4fb57c910981c325d42e8a24231e70abec1ca2)
+
+## Kotlin stuff
+
+* [Use objects to define singletons](https://kotlinlang.org/docs/reference/object-declarations.html#object-declarations)
+    * [Example](https://github.com/jahudzik/playground-app/commit/c37c31936115a0837badbbc2a8e20e62a9b8c2ea)
+* [Use package-level functions for static stuff](https://kotlinlang.org/docs/reference/classes.html#companion-objects)
+    * [Getting rid of companion objects](https://github.com/jahudzik/playground-app/commit/afcc74664ce97a8984b7ae867fdc211f39451144)
+
+## IntelliJ stuff
+
+* [Share settings in VCS](https://tips.seebrock3r.me/share-settings-with-the-team-a-year-later-e28c24fc07aa#.lr4d1itga)
+    * [gitignore configuration](https://github.com/jahudzik/playground-app/commit/31c69d569e3d8d198fb29896faac446859d5b44d#diff-a084b794bc0759e7a6b77810e01874f2)
+* [Allowing underscores in methods names (unit tests)](https://github.com/jahudzik/playground-app/commit/a0dba3aeac1aee3c599d8e0ae6aba9699cb9a866)
