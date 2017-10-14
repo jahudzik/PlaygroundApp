@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.jahu.playground.PlaygroundApplication
 import com.jahu.playground.R
 import com.jahu.playground.mvp.BaseFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
@@ -20,7 +21,8 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val preferencesManager = SharedPreferencesManager(activity)
-        presenter = QuizSetupPresenter(this, preferencesManager, MockedLocalDataRepository)
+        val triviaService = (activity.application as PlaygroundApplication).getTriviaService()
+        presenter = QuizSetupPresenter(this, preferencesManager, MockedLocalDataRepository, triviaService)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

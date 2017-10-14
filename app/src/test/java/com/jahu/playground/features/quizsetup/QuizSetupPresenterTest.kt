@@ -3,10 +3,8 @@ package com.jahu.playground.features.quizsetup
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.nhaarman.mockito_kotlin.eq
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
-import com.nhaarman.mockito_kotlin.whenever
+import com.jahu.playground.trivia.TriviaService
+import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -24,10 +22,12 @@ class QuizSetupPresenterTest {
 
     @Mock private lateinit var dataRepository: LocalDataRepository
 
+    @Mock private lateinit var triviaService: TriviaService
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = QuizSetupPresenter(view, sharedPreferencesManager, dataRepository)
+        presenter = QuizSetupPresenter(view, sharedPreferencesManager, dataRepository, triviaService)
     }
 
     @Test
@@ -77,9 +77,11 @@ class QuizSetupPresenterTest {
 
     @Test
     fun onStartQuizButtonClicked_expected() {
+        whenever(triviaService.getGeneralQuestions()).thenReturn(mock())
+
         presenter.onStartQuizButtonClicked()
 
-        verify(view).showNewQuizScreen()
+        verify(triviaService).getGeneralQuestions()
     }
 
     @After
@@ -87,6 +89,7 @@ class QuizSetupPresenterTest {
         verifyNoMoreInteractions(sharedPreferencesManager)
         verifyNoMoreInteractions(dataRepository)
         verifyNoMoreInteractions(view)
+        verifyNoMoreInteractions(triviaService)
     }
 
 }

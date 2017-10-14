@@ -3,9 +3,16 @@ package com.jahu.playground
 import android.app.Application
 import android.os.StrictMode
 import com.facebook.stetho.Stetho
+import com.jahu.playground.trivia.TriviaService
 import com.squareup.leakcanary.LeakCanary
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+private const val TRIVIA_API_BASE_URL = "https://opentdb.com"
 
 class PlaygroundApplication : Application() {
+
+    private lateinit var triviaService: TriviaService
 
     override fun onCreate() {
         super.onCreate()
@@ -17,6 +24,7 @@ class PlaygroundApplication : Application() {
         LeakCanary.install(this)
         setupStetho()
         setupStrictMode()
+        setupTriviaService()
     }
 
     private fun setupStetho() {
@@ -38,4 +46,15 @@ class PlaygroundApplication : Application() {
                     .build())
         }
     }
+
+    private fun setupTriviaService() {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(TRIVIA_API_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        triviaService = retrofit.create(TriviaService::class.java)
+    }
+
+    fun getTriviaService(): TriviaService = triviaService
+
 }

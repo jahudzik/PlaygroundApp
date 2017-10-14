@@ -4,6 +4,8 @@
     package="com.jahu.playground"
     >
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:name=".PlaygroundApplication"
       android:allowBackup="false"

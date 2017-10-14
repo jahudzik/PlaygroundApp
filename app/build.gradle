@@ -44,6 +44,9 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     implementation "com.facebook.stetho:stetho:$stethoVersion"
