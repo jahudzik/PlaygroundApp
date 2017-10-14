@@ -7,6 +7,7 @@ import com.jahu.playground.trivia.TriviaService
 import com.squareup.leakcanary.LeakCanary
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 
 private const val TRIVIA_API_BASE_URL = "https://opentdb.com"
 
@@ -22,9 +23,16 @@ class PlaygroundApplication : Application() {
             return
         }
         LeakCanary.install(this)
+        setupTimber()
         setupStetho()
         setupStrictMode()
         setupTriviaService()
+    }
+
+    private fun setupTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
     private fun setupStetho() {

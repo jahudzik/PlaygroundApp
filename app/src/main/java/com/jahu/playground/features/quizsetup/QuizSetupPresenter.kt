@@ -8,6 +8,7 @@ import com.jahu.playground.trivia.TriviaService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class QuizSetupPresenter(
         private val view: QuizSetupContract.View,
@@ -23,7 +24,8 @@ class QuizSetupPresenter(
 
     override fun onStartQuizButtonClicked() {
         triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
-            override fun onFailure(call: Call<TriviaResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
+                Timber.e(throwable, "Failed to fetch the questions")
                 // TODO handle failure
             }
 
