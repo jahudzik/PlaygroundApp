@@ -14,6 +14,10 @@ interface QuizSetupContract {
 
         fun hideLoading()
 
+        fun enablePlayButton()
+
+        fun disablePlayButton()
+
         fun showNewQuizScreen()
 
     }

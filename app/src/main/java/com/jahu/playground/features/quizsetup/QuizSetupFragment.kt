@@ -39,7 +39,7 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
     }
 
     override fun showQuestionsRequestError() {
-        Toast.makeText(activity, "Failed to fetch the questions", Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, "Failed to fetch the questions", Toast.LENGTH_SHORT).show()
     }
 
     override fun showLoading() {
@@ -50,8 +50,16 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         questionsLoader.visibility = View.GONE
     }
 
+    override fun enablePlayButton() {
+        startQuizButton.isEnabled = true
+    }
+
+    override fun disablePlayButton() {
+        startQuizButton.isEnabled = false
+    }
+
     override fun showNewQuizScreen() {
-        Toast.makeText(activity, "New quiz screen", Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, "New quiz screen", Toast.LENGTH_SHORT).show()
     }
 
 }

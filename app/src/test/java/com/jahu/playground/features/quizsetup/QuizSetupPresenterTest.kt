@@ -88,9 +88,11 @@ class QuizSetupPresenterTest {
         presenter.onStartQuizButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
+        verify(view).disablePlayButton()
         verify(view).showLoading()
         verify(view).hideLoading()
         verify(view).showQuestionsRequestError()
+        verify(view).enablePlayButton()
     }
 
     @Test
@@ -101,9 +103,11 @@ class QuizSetupPresenterTest {
         presenter.onStartQuizButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
+        verify(view).disablePlayButton()
         verify(view).showLoading()
         verify(view).hideLoading()
         verify(view).showQuestionsRequestError()
+        verify(view).enablePlayButton()
     }
 
     @Test
@@ -114,9 +118,11 @@ class QuizSetupPresenterTest {
         presenter.onStartQuizButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
+        verify(view).disablePlayButton()
         verify(view).showLoading()
         verify(view).hideLoading()
         verify(view).showNewQuizScreen()
+        verify(view).enablePlayButton()
     }
 
     @After
