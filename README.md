@@ -23,6 +23,9 @@ Side project for playing around with different Android libraries, approaches and
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
 * [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
+* [Using Mockito.doAnswer() to unit-test Retrofit callbacks](https://stackoverflow.com/questions/45160055/unit-testing-in-retrofit-for-callback)
+    * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
+    * [Example 2](https://github.com/jahudzik/playground-app/commit/6b932752f322bb8a73f7f579a6409fe828899734)
 
 ### Continuous integration
  
