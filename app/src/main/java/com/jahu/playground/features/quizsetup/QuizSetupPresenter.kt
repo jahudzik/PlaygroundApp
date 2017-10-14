@@ -25,8 +25,8 @@ class QuizSetupPresenter(
     override fun onStartQuizButtonClicked() {
         triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
             override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
+                view.showQuestionsRequestError()
                 Timber.e(throwable, "Failed to fetch the questions")
-                // TODO handle failure
             }
 
             override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {

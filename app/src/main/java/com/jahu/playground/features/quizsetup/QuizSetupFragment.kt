@@ -38,6 +38,10 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         welcomeMessageTextView.text = getString(R.string.welcome_message, userName)
     }
 
+    override fun showQuestionsRequestError() {
+        Toast.makeText(activity, "Failed to fetch the questions", Toast.LENGTH_LONG).show()
+    }
+
     override fun showNewQuizScreen() {
         Toast.makeText(activity, "New quiz screen", Toast.LENGTH_LONG).show()
     }

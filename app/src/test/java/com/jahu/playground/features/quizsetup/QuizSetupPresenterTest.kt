@@ -3,6 +3,7 @@ package com.jahu.playground.features.quizsetup
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
+import com.jahu.playground.trivia.TriviaResponse
 import com.jahu.playground.trivia.TriviaService
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
@@ -11,6 +12,9 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import retrofit2.Call
+import retrofit2.Callback
+import java.io.IOException
 
 class QuizSetupPresenterTest {
 
@@ -76,12 +80,14 @@ class QuizSetupPresenterTest {
     }
 
     @Test
-    fun onStartQuizButtonClicked_expected() {
-        whenever(triviaService.getGeneralQuestions()).thenReturn(mock())
+    fun onStartQuizButtonClicked_failure() {
+        val call = buildFailureCall()
+        whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
         presenter.onStartQuizButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
+        verify(view).showQuestionsRequestError()
     }
 
     @After
@@ -90,6 +96,15 @@ class QuizSetupPresenterTest {
         verifyNoMoreInteractions(dataRepository)
         verifyNoMoreInteractions(view)
         verifyNoMoreInteractions(triviaService)
+    }
+
+    private fun buildFailureCall(): Call<TriviaResponse> {
+        val call = mock<Call<TriviaResponse>>()
+        whenever(call.enqueue(any())).thenAnswer { invocation ->
+            val callback = invocation.getArgument<Callback<TriviaResponse>>(0)
+            callback.onFailure(call, IOException())
+        }
+        return call
     }
 
 }

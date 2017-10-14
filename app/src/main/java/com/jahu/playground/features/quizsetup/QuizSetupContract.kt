@@ -8,6 +8,8 @@ interface QuizSetupContract {
 
         fun showUserName(userName: String)
 
+        fun showQuestionsRequestError()
+
         fun showNewQuizScreen()
 
     }
