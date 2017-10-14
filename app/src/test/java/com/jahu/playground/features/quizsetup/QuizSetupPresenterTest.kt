@@ -14,6 +14,7 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 import java.io.IOException
 
 class QuizSetupPresenterTest {
@@ -80,14 +81,42 @@ class QuizSetupPresenterTest {
     }
 
     @Test
-    fun onStartQuizButtonClicked_failure() {
+    fun onStartQuizButtonClicked_failedResponse() {
         val call = buildFailureCall()
         whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
         presenter.onStartQuizButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
+        verify(view).showLoading()
+        verify(view).hideLoading()
         verify(view).showQuestionsRequestError()
+    }
+
+    @Test
+    fun onStartQuizButtonClicked_unsuccessfulResponse() {
+        val call = buildSuccessfulCall(buildResponse(false, null))
+        whenever(triviaService.getGeneralQuestions()).thenReturn(call)
+
+        presenter.onStartQuizButtonClicked()
+
+        verify(triviaService).getGeneralQuestions()
+        verify(view).showLoading()
+        verify(view).hideLoading()
+        verify(view).showQuestionsRequestError()
+    }
+
+    @Test
+    fun onStartQuizButtonClicked_successfulResponse() {
+        val call = buildSuccessfulCall(buildResponse(true, mock()))
+        whenever(triviaService.getGeneralQuestions()).thenReturn(call)
+
+        presenter.onStartQuizButtonClicked()
+
+        verify(triviaService).getGeneralQuestions()
+        verify(view).showLoading()
+        verify(view).hideLoading()
+        verify(view).showNewQuizScreen()
     }
 
     @After
@@ -105,6 +134,22 @@ class QuizSetupPresenterTest {
             callback.onFailure(call, IOException())
         }
         return call
+    }
+
+    private fun buildSuccessfulCall(response: Response<TriviaResponse>): Call<TriviaResponse> {
+        val call = mock<Call<TriviaResponse>>()
+        whenever(call.enqueue(any())).thenAnswer { invocation ->
+            val callback = invocation.getArgument<Callback<TriviaResponse>>(0)
+            callback.onResponse(call, response)
+        }
+        return call
+    }
+
+    private fun buildResponse(successful: Boolean, triviaResponse: TriviaResponse?): Response<TriviaResponse> {
+        val response = mock<Response<TriviaResponse>>()
+        whenever(response.isSuccessful).thenReturn(successful)
+        whenever(response.body()).thenReturn(triviaResponse)
+        return response
     }
 
 }

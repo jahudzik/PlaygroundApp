@@ -10,6 +10,10 @@ interface QuizSetupContract {
 
         fun showQuestionsRequestError()
 
+        fun showLoading()
+
+        fun hideLoading()
+
         fun showNewQuizScreen()
 
     }

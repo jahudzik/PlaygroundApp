@@ -42,6 +42,14 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         Toast.makeText(activity, "Failed to fetch the questions", Toast.LENGTH_LONG).show()
     }
 
+    override fun showLoading() {
+        questionsLoader.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        questionsLoader.visibility = View.GONE
+    }
+
     override fun showNewQuizScreen() {
         Toast.makeText(activity, "New quiz screen", Toast.LENGTH_LONG).show()
     }

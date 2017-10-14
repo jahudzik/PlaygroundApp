@@ -23,14 +23,23 @@ class QuizSetupPresenter(
     }
 
     override fun onStartQuizButtonClicked() {
+        view.showLoading()
         triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
             override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
+                view.hideLoading()
                 view.showQuestionsRequestError()
                 Timber.e(throwable, "Failed to fetch the questions")
             }
 
             override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {
-                // TODO handle response
+                view.hideLoading()
+                if (response != null && response.isSuccessful) {
+                    // TODO handle received questions
+                    view.showNewQuizScreen()
+                } else {
+                    view.showQuestionsRequestError()
+                    Timber.e("Failed to fetch the questions - unsuccessful response")
+                }
             }
 
         })
