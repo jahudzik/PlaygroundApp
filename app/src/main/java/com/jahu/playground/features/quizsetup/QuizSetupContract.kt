@@ -24,7 +24,7 @@ interface QuizSetupContract {
 
     interface Presenter : BasePresenter {
 
-        fun onStartQuizButtonClicked()
+        fun onPlayButtonClicked()
 
     }
 

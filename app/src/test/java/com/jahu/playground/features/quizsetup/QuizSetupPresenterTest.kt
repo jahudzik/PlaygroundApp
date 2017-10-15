@@ -81,11 +81,11 @@ class QuizSetupPresenterTest {
     }
 
     @Test
-    fun onStartQuizButtonClicked_failedResponse() {
+    fun onPlayButtonClicked_failedResponse() {
         val call = buildFailureCall()
         whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
-        presenter.onStartQuizButtonClicked()
+        presenter.onPlayButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
         verify(view).disablePlayButton()
@@ -96,11 +96,11 @@ class QuizSetupPresenterTest {
     }
 
     @Test
-    fun onStartQuizButtonClicked_unsuccessfulResponse() {
+    fun onPlayButtonClicked_unsuccessfulResponse() {
         val call = buildSuccessfulCall(buildResponse(false, null))
         whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
-        presenter.onStartQuizButtonClicked()
+        presenter.onPlayButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
         verify(view).disablePlayButton()
@@ -111,11 +111,11 @@ class QuizSetupPresenterTest {
     }
 
     @Test
-    fun onStartQuizButtonClicked_successfulResponse() {
+    fun onPlayButtonClicked_successfulResponse() {
         val call = buildSuccessfulCall(buildResponse(true, mock()))
         whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
-        presenter.onStartQuizButtonClicked()
+        presenter.onPlayButtonClicked()
 
         verify(triviaService).getGeneralQuestions()
         verify(view).disablePlayButton()

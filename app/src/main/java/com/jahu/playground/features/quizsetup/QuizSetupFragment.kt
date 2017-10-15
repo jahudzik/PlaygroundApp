@@ -31,7 +31,7 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
 
     override fun onResume() {
         super.onResume()
-        startQuizButton.setOnClickListener { presenter.onStartQuizButtonClicked() }
+        playButton.setOnClickListener { presenter.onPlayButtonClicked() }
     }
 
     override fun showUserName(userName: String) {
@@ -51,11 +51,11 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
     }
 
     override fun enablePlayButton() {
-        startQuizButton.isEnabled = true
+        playButton.isEnabled = true
     }
 
     override fun disablePlayButton() {
-        startQuizButton.isEnabled = false
+        playButton.isEnabled = false
     }
 
     override fun showNewQuizScreen() {

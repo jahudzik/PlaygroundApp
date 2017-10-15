@@ -22,7 +22,7 @@ class QuizSetupPresenter(
         view.showUserName(user.firstName)
     }
 
-    override fun onStartQuizButtonClicked() {
+    override fun onPlayButtonClicked() {
         view.disablePlayButton()
         view.showLoading()
         triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
