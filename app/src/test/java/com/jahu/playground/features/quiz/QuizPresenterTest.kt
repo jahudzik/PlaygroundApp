@@ -62,46 +62,85 @@ class QuizPresenterTest {
 
     @Test
     fun onAnswerChosen_allAnswersIncorrect() {
-        val questionsCount = 3
-        initQuestionsWithCorrectAnswersFirst(questionsCount)
+        initQuestions(
+                listOf(1, 2, 0, 3),
+                listOf(2, 3, 0, 1),
+                listOf(0, 2, 1, 3)
+        )
 
         presenter.resumeView()
         presenter.onAnswerChosen(3)     // incorrect
         presenter.onAnswerChosen(3)     // incorrect
         presenter.onAnswerChosen(3)     // incorrect
 
-        verifyCorrectAnswersCount(0, questionsCount)
+        verifyCorrectAnswersCount(0, 3)
     }
 
 
     @Test
-    fun onAnswerChosen_someAnswersCorrect() {
-        val questionsCount = 6
-        initQuestionsWithCorrectAnswersFirst(questionsCount)
+    fun onAnswerChosen_someAnswersCorrect1() {
+        initQuestions(
+                listOf(2, 1, 0, 3),
+                listOf(1, 0, 3, 2),
+                listOf(1, 2, 3, 0),
+                listOf(0, 1, 2, 3),
+                listOf(1, 3, 0, 2),
+                listOf(2, 3, 0, 1)
+        )
 
         presenter.resumeView()
         presenter.onAnswerChosen(1)     // incorrect
-        presenter.onAnswerChosen(0)     // correct
+        presenter.onAnswerChosen(1)     // correct
         presenter.onAnswerChosen(2)     // incorrect
         presenter.onAnswerChosen(0)     // correct
         presenter.onAnswerChosen(3)     // incorrect
         presenter.onAnswerChosen(3)     // incorrect
 
-        verifyCorrectAnswersCount(2, questionsCount)
+        verifyCorrectAnswersCount(2, 6)
+    }
+
+    @Test
+    fun onAnswerChosen_someAnswersCorrect2() {
+        initQuestions(
+                listOf(2, 1, 0, 3),
+                listOf(2, 1, 0, 3),
+                listOf(1, 0, 3, 2),
+                listOf(1, 2, 3, 0),
+                listOf(0, 1, 2, 3),
+                listOf(1, 3, 0, 2),
+                listOf(2, 3, 0, 1),
+                listOf(2, 3, 0, 1)
+        )
+
+        presenter.resumeView()
+        presenter.onAnswerChosen(2)     // correct
+        presenter.onAnswerChosen(2)     // correct
+        presenter.onAnswerChosen(1)     // correct
+        presenter.onAnswerChosen(3)     // correct
+        presenter.onAnswerChosen(1)     // incorrect
+        presenter.onAnswerChosen(2)     // correct
+        presenter.onAnswerChosen(3)     // incorrect
+        presenter.onAnswerChosen(0)     // incorrect
+
+        verifyCorrectAnswersCount(5, 8)
     }
 
     @Test
     fun onAnswerChosen_allAnswersCorrect() {
-        val questionsCount = 4
-        initQuestionsWithCorrectAnswersFirst(questionsCount)
+        initQuestions(
+                listOf(1, 2, 0, 3),
+                listOf(3, 1, 2, 0),
+                listOf(3, 0, 1, 2),
+                listOf(2, 1, 3, 0)
+        )
 
         presenter.resumeView()
-        presenter.onAnswerChosen(0)     // correct
-        presenter.onAnswerChosen(0)     // correct
-        presenter.onAnswerChosen(0)     // correct
-        presenter.onAnswerChosen(0)     // correct
+        presenter.onAnswerChosen(2)     // correct
+        presenter.onAnswerChosen(3)     // correct
+        presenter.onAnswerChosen(1)     // correct
+        presenter.onAnswerChosen(3)     // correct
 
-        verifyCorrectAnswersCount(4, questionsCount)
+        verifyCorrectAnswersCount(4, 4)
     }
 
     @After
@@ -116,9 +155,9 @@ class QuizPresenterTest {
         presenter = QuizPresenter(view, listOf(triviaQuestion), sequenceGenerator)
     }
 
-    private fun initQuestionsWithCorrectAnswersFirst(questionsCount: Int) {
-        val questions = buildTriviaQuestionMocksList(questionsCount)
-        whenever(sequenceGenerator.generate(any())).thenReturn(listOf(0, 1, 2, 3))
+    private fun initQuestions(firstAnswers: List<Int>, vararg followingAnswers: List<Int>) {
+        val questions = buildTriviaQuestionMocksList(followingAnswers.size + 1)
+        whenever(sequenceGenerator.generate(any())).thenReturn(firstAnswers, *followingAnswers)
         presenter = QuizPresenter(view, questions, sequenceGenerator)
     }
 

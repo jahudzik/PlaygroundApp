@@ -40,11 +40,13 @@ class QuizPresenter(
     private fun prepareQuestion(): Pair<String, List<String>> {
         val triviaQuestion = questions[currentQuestionIndex]
         val answers = mutableListOf<String>()
-        for (answerIndex in sequenceGenerator.generate(ANSWERS_COUNT)) {
-            if (answerIndex == 0) {
+        val sequence = sequenceGenerator.generate(ANSWERS_COUNT)
+        for (i in 0 until sequence.size) {
+            if (sequence[i] == 0) {
                 answers.add(triviaQuestion.correctAnswer)
+                correctAnswerIndex = i
             } else {
-                answers.add(triviaQuestion.incorrectAnswers[answerIndex - 1])
+                answers.add(triviaQuestion.incorrectAnswers[sequence[i] - 1])
             }
         }
         return Pair(triviaQuestion.question, answers)
