@@ -3,6 +3,7 @@ package com.jahu.playground.features.quizsetup
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
+import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.trivia.TriviaResponse
 import com.jahu.playground.trivia.TriviaService
 import com.nhaarman.mockito_kotlin.*
@@ -112,7 +113,10 @@ class QuizSetupPresenterTest {
 
     @Test
     fun onPlayButtonClicked_successfulResponse() {
-        val call = buildSuccessfulCall(buildResponse(true, mock()))
+        val results = arrayOf(mock(), mock(), mock<TriviaQuestion>())
+        val triviaResponse = mock<TriviaResponse>()
+        whenever(triviaResponse.results).thenReturn(results)
+        val call = buildSuccessfulCall(buildResponse(true, triviaResponse))
         whenever(triviaService.getGeneralQuestions()).thenReturn(call)
 
         presenter.onPlayButtonClicked()
@@ -121,7 +125,7 @@ class QuizSetupPresenterTest {
         verify(view).disablePlayButton()
         verify(view).showLoading()
         verify(view).hideLoading()
-        verify(view).showNewQuizScreen()
+        verify(view).showNewQuizScreen(results)
         verify(view).enablePlayButton()
     }
 

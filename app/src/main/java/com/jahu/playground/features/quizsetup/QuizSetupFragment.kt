@@ -10,6 +10,7 @@ import com.jahu.playground.R
 import com.jahu.playground.mvp.BaseFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.trivia.TriviaQuestion
 import kotlinx.android.synthetic.main.fragment_quiz_setup.*
 
 class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetupContract.View {
@@ -58,7 +59,7 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         playButton.isEnabled = false
     }
 
-    override fun showNewQuizScreen() {
+    override fun showNewQuizScreen(results: Array<TriviaQuestion>) {
         Toast.makeText(activity, "New quiz screen", Toast.LENGTH_SHORT).show()
     }
 

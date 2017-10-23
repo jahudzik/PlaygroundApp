@@ -36,8 +36,8 @@ class QuizSetupPresenter(
             override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {
                 view.hideLoading()
                 if (response != null && response.isSuccessful) {
-                    // TODO handle received questions
-                    view.showNewQuizScreen()
+                    val triviaResponse = response.body() as TriviaResponse
+                    view.showNewQuizScreen(triviaResponse.results)
                 } else {
                     view.showQuestionsRequestError()
                     Timber.e("Failed to fetch the questions - unsuccessful response")

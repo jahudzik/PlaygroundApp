@@ -1,6 +1,7 @@
 package com.jahu.playground.features.quizsetup
 
 import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.trivia.TriviaQuestion
 
 interface QuizSetupContract {
 
@@ -18,7 +19,7 @@ interface QuizSetupContract {
 
         fun disablePlayButton()
 
-        fun showNewQuizScreen()
+        fun showNewQuizScreen(results: Array<TriviaQuestion>)
 
     }
 
