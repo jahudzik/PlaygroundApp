@@ -112,6 +112,23 @@ class QuizSetupPresenterTest {
     }
 
     @Test
+    fun onPlayButtonClicked_unexpectedResponseCode() {
+        val triviaResponse = mock<TriviaResponse>()
+        whenever(triviaResponse.responseCode).thenReturn(1)
+        val call = buildSuccessfulCall(buildResponse(true, triviaResponse))
+        whenever(triviaService.getGeneralQuestions()).thenReturn(call)
+
+        presenter.onPlayButtonClicked()
+
+        verify(triviaService).getGeneralQuestions()
+        verify(view).disablePlayButton()
+        verify(view).showLoading()
+        verify(view).hideLoading()
+        verify(view).showQuestionsRequestError()
+        verify(view).enablePlayButton()
+    }
+
+    @Test
     fun onPlayButtonClicked_successfulResponse() {
         val results = arrayOf(mock(), mock(), mock<TriviaQuestion>())
         val triviaResponse = mock<TriviaResponse>()

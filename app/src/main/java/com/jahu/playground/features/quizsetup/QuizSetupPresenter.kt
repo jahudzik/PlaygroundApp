@@ -10,6 +10,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
+private const val RESPONSE_CODE_SUCCESS = 0
+
 class QuizSetupPresenter(
         private val view: QuizSetupContract.View,
         private val sharedPreferencesManager: SharedPreferencesManager,
@@ -37,7 +39,12 @@ class QuizSetupPresenter(
                 view.hideLoading()
                 if (response != null && response.isSuccessful) {
                     val triviaResponse = response.body() as TriviaResponse
-                    view.showNewQuizScreen(triviaResponse.results)
+                    if (triviaResponse.responseCode == RESPONSE_CODE_SUCCESS) {
+                        view.showNewQuizScreen(triviaResponse.results)
+                    } else {
+                        view.showQuestionsRequestError()
+                        Timber.e("Failed to fetch the questions - unexpected response code [${triviaResponse.responseCode}]")
+                    }
                 } else {
                     view.showQuestionsRequestError()
                     Timber.e("Failed to fetch the questions - unsuccessful response")
