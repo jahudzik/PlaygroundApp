@@ -28,31 +28,39 @@ class QuizSetupPresenter(
         view.disablePlayButton()
         view.showLoading()
         triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
-            override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
-                view.hideLoading()
-                view.showQuestionsRequestError()
-                view.enablePlayButton()
-                Timber.e(throwable, "Failed to fetch the questions")
+            override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {
+                handleQuestionsResponse(response)
             }
 
-            override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {
-                view.hideLoading()
-                if (response != null && response.isSuccessful) {
-                    val triviaResponse = response.body() as TriviaResponse
-                    if (triviaResponse.responseCode == RESPONSE_CODE_SUCCESS) {
-                        view.showNewQuizScreen(triviaResponse.results)
-                    } else {
-                        view.showQuestionsRequestError()
-                        Timber.e("Failed to fetch the questions - unexpected response code [${triviaResponse.responseCode}]")
-                    }
-                } else {
-                    view.showQuestionsRequestError()
-                    Timber.e("Failed to fetch the questions - unsuccessful response")
-                }
-                view.enablePlayButton()
+            override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
+                handleQuestionsRequestFailure(throwable)
             }
 
         })
+    }
+
+    private fun handleQuestionsResponse(response: Response<TriviaResponse>?) {
+        view.hideLoading()
+        if (response != null && response.isSuccessful) {
+            val triviaResponse = response.body() as TriviaResponse
+            if (triviaResponse.responseCode == RESPONSE_CODE_SUCCESS) {
+                view.showNewQuizScreen(triviaResponse.results)
+            } else {
+                view.showQuestionsRequestError()
+                Timber.e("Failed to fetch the questions - unexpected response code [${triviaResponse.responseCode}]")
+            }
+        } else {
+            view.showQuestionsRequestError()
+            Timber.e("Failed to fetch the questions - unsuccessful response")
+        }
+        view.enablePlayButton()
+    }
+
+    private fun handleQuestionsRequestFailure(throwable: Throwable?) {
+        view.hideLoading()
+        view.showQuestionsRequestError()
+        view.enablePlayButton()
+        Timber.e(throwable, "Failed to fetch the questions")
     }
 
     private fun getActualUser(): User {
