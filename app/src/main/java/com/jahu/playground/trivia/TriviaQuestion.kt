@@ -1,6 +1,7 @@
 package com.jahu.playground.trivia
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class TriviaQuestion(
         val category: String,
@@ -11,7 +12,7 @@ data class TriviaQuestion(
         val correctAnswer: String,
         @SerializedName("incorrect_answers")
         val incorrectAnswers: Array<String>
-) {
+) : Serializable {
 
     @SuppressWarnings("ReturnCount")
     override fun equals(other: Any?): Boolean {

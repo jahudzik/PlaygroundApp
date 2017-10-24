@@ -1,5 +1,6 @@
 package com.jahu.playground.features.quizsetup
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.jahu.playground.PlaygroundApplication
 import com.jahu.playground.R
+import com.jahu.playground.features.quiz.QuizActivity
 import com.jahu.playground.mvp.BaseFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
@@ -59,8 +61,10 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         playButton.isEnabled = false
     }
 
-    override fun showNewQuizScreen(results: Array<TriviaQuestion>) {
-        Toast.makeText(activity, "New quiz screen", Toast.LENGTH_SHORT).show()
+    override fun showNewQuizScreen(questions: Array<TriviaQuestion>) {
+        val intent = Intent(activity, QuizActivity::class.java)
+        intent.putExtra(QuizActivity.BUNDLE_QUESTIONS_KEY, questions)
+        startActivity(intent)
     }
 
 }
