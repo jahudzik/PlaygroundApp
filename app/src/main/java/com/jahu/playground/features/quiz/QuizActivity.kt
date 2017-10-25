@@ -1,13 +1,14 @@
 package com.jahu.playground.features.quiz
 
 import android.os.Bundle
+import android.widget.Toast
 import com.jahu.playground.R
 import com.jahu.playground.features.quiz.random.RandomNumberGenerator
 import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
 import com.jahu.playground.mvp.BaseActivity
 import com.jahu.playground.trivia.TriviaQuestion
 
-class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View {
+class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View, QuestionFragment.EventListener {
 
     companion object {
         const val BUNDLE_QUESTIONS_KEY = "questions"
@@ -29,11 +30,18 @@ class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View {
     }
 
     override fun showQuestion(question: String, answers: List<String>) {
-        TODO("not implemented")
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.quizContainer, QuestionFragment.newInstance(question, answers))
+                .commit()
+    }
+
+    override fun onAnswerChosen(index: Int) {
+        presenter.onAnswerChosen(index)
     }
 
     override fun showSummary(correctAnswersCount: Int, questionsCount: Int) {
-        TODO("not implemented")
+        Toast.makeText(this, "show summary", Toast.LENGTH_LONG).show()
     }
 
 }

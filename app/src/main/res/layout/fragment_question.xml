@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/questionTextView"
+      style="@style/QuestionTextView"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="4"
+      tools:text="Some question"
+      />
+
+  <Button
+      android:id="@+id/answer1Button"
+      style="@style/AnswerButton"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:gravity="start|center"
+      tools:text="Answer 1"
+      />
+
+  <Button
+      android:id="@+id/answer2Button"
+      style="@style/AnswerButton"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      tools:text="Answer 2"
+      />
+
+  <Button
+      android:id="@+id/answer3Button"
+      style="@style/AnswerButton"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      tools:text="Answer 3"
+      />
+
+  <Button
+      android:id="@+id/answer4Button"
+      style="@style/AnswerButton"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      tools:text="Answer 4"
+      />
+
+</LinearLayout>
