@@ -90,7 +90,7 @@ class AddUserPresenterTest {
     fun onError_expected() {
         val errorCode = AddUserContract.ErrorCode.USER_EXISTS
 
-        presenter.onError(errorCode)
+        presenter.onFailure(errorCode)
 
         verify(view).showErrorMessage(errorCode)
     }

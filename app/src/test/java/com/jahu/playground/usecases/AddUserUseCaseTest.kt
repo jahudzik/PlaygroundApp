@@ -45,7 +45,7 @@ class AddUserUseCaseTest {
         useCase.execute(user, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
-        verify(resultListener).onError(AddUserContract.ErrorCode.USER_EXISTS)
+        verify(resultListener).onFailure(AddUserContract.ErrorCode.USER_EXISTS)
     }
 
     @After

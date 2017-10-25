@@ -14,7 +14,7 @@ class AddUserUseCase(
             dataRepository.addUser(user)
             resultListener.onSuccess()
         } else {
-            resultListener.onError(ErrorCode.USER_EXISTS)
+            resultListener.onFailure(ErrorCode.USER_EXISTS)
         }
     }
 
@@ -22,7 +22,7 @@ class AddUserUseCase(
 
         fun onSuccess()
 
-        fun onError(errorCode: ErrorCode)
+        fun onFailure(errorCode: ErrorCode)
     }
 
 }

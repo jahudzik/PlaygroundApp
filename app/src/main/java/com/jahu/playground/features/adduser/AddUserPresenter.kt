@@ -29,7 +29,7 @@ class AddUserPresenter(
         view.close()
     }
 
-    override fun onError(errorCode: ErrorCode) {
+    override fun onFailure(errorCode: ErrorCode) {
         view.showErrorMessage(errorCode)
     }
 }
