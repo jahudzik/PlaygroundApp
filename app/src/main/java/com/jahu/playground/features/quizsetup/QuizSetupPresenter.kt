@@ -3,20 +3,14 @@ package com.jahu.playground.features.quizsetup
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.trivia.TriviaResponse
-import com.jahu.playground.trivia.TriviaService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
-
-private const val RESPONSE_CODE_SUCCESS = 0
+import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.usecases.GetNewQuestionsUseCase
 
 class QuizSetupPresenter(
         private val view: QuizSetupContract.View,
         private val sharedPreferencesManager: SharedPreferencesManager,
         private val dataRepository: LocalDataRepository,
-        private val triviaService: TriviaService
+        private val getNewQuestionsUseCase: GetNewQuestionsUseCase
 ) : QuizSetupContract.Presenter {
 
     override fun resumeView() {
@@ -27,40 +21,18 @@ class QuizSetupPresenter(
     override fun onPlayButtonClicked() {
         view.disablePlayButton()
         view.showLoading()
-        triviaService.getGeneralQuestions().enqueue(object : Callback<TriviaResponse> {
-            override fun onResponse(call: Call<TriviaResponse>?, response: Response<TriviaResponse>?) {
-                handleQuestionsResponse(response)
+        getNewQuestionsUseCase.execute(object : GetNewQuestionsUseCase.ResultListener {
+            override fun onSuccess(questions: Array<TriviaQuestion>) {
+                view.hideLoading()
+                view.showNewQuizScreen(questions)
             }
 
-            override fun onFailure(call: Call<TriviaResponse>?, throwable: Throwable?) {
-                handleQuestionsRequestFailure(throwable)
-            }
-
-        })
-    }
-
-    private fun handleQuestionsResponse(response: Response<TriviaResponse>?) {
-        view.hideLoading()
-        if (response != null && response.isSuccessful) {
-            val triviaResponse = response.body() as TriviaResponse
-            if (triviaResponse.responseCode == RESPONSE_CODE_SUCCESS) {
-                view.showNewQuizScreen(triviaResponse.results)
-            } else {
+            override fun onFailure() {
+                view.hideLoading()
                 view.showQuestionsRequestError()
-                Timber.e("Failed to fetch the questions - unexpected response code [${triviaResponse.responseCode}]")
+                view.enablePlayButton()
             }
-        } else {
-            view.showQuestionsRequestError()
-            Timber.e("Failed to fetch the questions - unsuccessful response")
-        }
-        view.enablePlayButton()
-    }
-
-    private fun handleQuestionsRequestFailure(throwable: Throwable?) {
-        view.hideLoading()
-        view.showQuestionsRequestError()
-        view.enablePlayButton()
-        Timber.e(throwable, "Failed to fetch the questions")
+        })
     }
 
     private fun getActualUser(): User {

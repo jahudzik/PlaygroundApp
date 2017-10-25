@@ -13,6 +13,7 @@ import com.jahu.playground.mvp.BaseFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.usecases.GetNewQuestionsUseCase
 import kotlinx.android.synthetic.main.fragment_quiz_setup.*
 
 class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetupContract.View {
@@ -25,7 +26,8 @@ class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetup
         super.onCreate(savedInstanceState)
         val preferencesManager = SharedPreferencesManager(activity)
         val triviaService = (activity.application as PlaygroundApplication).getTriviaService()
-        presenter = QuizSetupPresenter(this, preferencesManager, MockedLocalDataRepository, triviaService)
+        val getNewQuestionsUseCase = GetNewQuestionsUseCase(triviaService)
+        presenter = QuizSetupPresenter(this, preferencesManager, MockedLocalDataRepository, getNewQuestionsUseCase)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
