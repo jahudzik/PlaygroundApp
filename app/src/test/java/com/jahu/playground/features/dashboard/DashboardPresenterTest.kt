@@ -23,14 +23,14 @@ class DashboardPresenterTest {
 
 
     @Test
-    fun resumeView_expected() {
+    fun createView_expected() {
         val expectedItems = listOf(
                 BottomNavigationItem.QuizSetupItem(),
                 BottomNavigationItem.LeaderboardItem(),
                 BottomNavigationItem.SettingsItem()
         )
 
-        presenter.resumeView()
+        presenter.createView()
 
         verify(view).showBottomNavigationBar(eq(expectedItems))
         verify(view).showQuizSetup()

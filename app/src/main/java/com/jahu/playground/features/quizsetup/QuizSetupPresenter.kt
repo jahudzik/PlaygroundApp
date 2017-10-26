@@ -13,6 +13,8 @@ class QuizSetupPresenter(
         private val getNewQuestionsUseCase: GetNewQuestionsUseCase
 ) : QuizSetupContract.Presenter {
 
+    override fun createView() {}
+
     override fun resumeView() {
         val user = getActualUser()
         view.showUserName(user.firstName)

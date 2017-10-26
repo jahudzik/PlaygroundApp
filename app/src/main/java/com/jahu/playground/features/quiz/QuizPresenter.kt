@@ -17,6 +17,8 @@ class QuizPresenter(
     private var correctAnswerIndex = 0
     private var correctAnswersCount = 0
 
+    override fun createView() {}
+
     override fun resumeView() {
         showNextQuestion()
     }

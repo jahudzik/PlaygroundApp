@@ -12,6 +12,8 @@ class ChooseUserPresenter(
         private val setActualUserUseCase: SetActualUserUseCase
 ) : ChooseUserContract.Presenter {
 
+    override fun createView() {}
+
     override fun resumeView() {
         val user = getActualUserUseCase.execute()
         if (user != null) {

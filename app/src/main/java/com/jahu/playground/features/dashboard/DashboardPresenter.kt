@@ -4,7 +4,7 @@ class DashboardPresenter(
         private val view: DashboardContract.View
 ) : DashboardContract.Presenter {
 
-    override fun resumeView() {
+    override fun createView() {
         view.showBottomNavigationBar(listOf(
                 BottomNavigationItem.QuizSetupItem(),
                 BottomNavigationItem.LeaderboardItem(),
@@ -12,6 +12,8 @@ class DashboardPresenter(
         ))
         view.showQuizSetup()
     }
+
+    override fun resumeView() {}
 
     override fun onNavigationItemSelected(itemId: Int): Boolean {
         when (itemId) {
