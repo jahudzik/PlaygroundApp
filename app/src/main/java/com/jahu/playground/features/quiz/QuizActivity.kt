@@ -1,5 +1,6 @@
 package com.jahu.playground.features.quiz
 
+import android.app.Fragment
 import android.os.Bundle
 import com.jahu.playground.R
 import com.jahu.playground.features.quiz.random.RandomNumberGenerator
@@ -30,10 +31,7 @@ class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View,
     }
 
     override fun showQuestion(question: String, answers: List<String>) {
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.quizContainer, QuestionFragment.newInstance(question, answers))
-                .commit()
+        switchFragment(QuestionFragment.newInstance(question, answers))
     }
 
     override fun onAnswerChosen(index: Int) {
@@ -41,10 +39,7 @@ class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View,
     }
 
     override fun showSummary(correctAnswersCount: Int, questionsCount: Int) {
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.quizContainer, SummaryFragment.newInstance(correctAnswersCount, questionsCount))
-                .commit()
+        switchFragment(SummaryFragment.newInstance(correctAnswersCount, questionsCount))
     }
 
     override fun onReturnClicked() {
@@ -53,6 +48,13 @@ class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View,
 
     override fun navigateToDashboard() {
         finish()
+    }
+
+    private fun switchFragment(fragment: Fragment) {
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.quizContainer, fragment)
+                .commit()
     }
 
 }
