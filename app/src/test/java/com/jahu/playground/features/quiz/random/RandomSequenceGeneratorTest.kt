@@ -1,11 +1,14 @@
 package com.jahu.playground.features.quiz.random
 
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 class RandomSequenceGeneratorTest {
@@ -79,7 +82,11 @@ class RandomSequenceGeneratorTest {
     }
 
     private fun verifyExpectedList(expectedList: List<Int>, result: List<Int>) {
-        verify(numberGenerator, times(4)).nextNumber(any())
+        val inOrder = Mockito.inOrder(numberGenerator)
+        inOrder.verify(numberGenerator).nextNumber(4)
+        inOrder.verify(numberGenerator).nextNumber(3)
+        inOrder.verify(numberGenerator).nextNumber(2)
+        inOrder.verify(numberGenerator).nextNumber(1)
         assertEquals(expectedList, result)
     }
 
