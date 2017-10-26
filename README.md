@@ -23,9 +23,10 @@ Side project for playing around with different Android libraries, approaches and
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
 * [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
-* [Using Mockito.doAnswer() to unit-test Retrofit callbacks](https://stackoverflow.com/questions/45160055/unit-testing-in-retrofit-for-callback)
-    * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
-    * [Example 2](https://github.com/jahudzik/playground-app/commit/6b932752f322bb8a73f7f579a6409fe828899734)
+    * Testing asynchronous callbacks with Mockito.doAnswer()
+        * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
+        * [Example 2](https://github.com/jahudzik/playground-app/commit/94114633db2432b2ad2e4b8db1a919b8a585474a#diff-3ffc222822565a8f64d7a4f732a977e5)
+    * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)        
 
 ### Continuous integration
  
@@ -73,6 +74,8 @@ Side project for playing around with different Android libraries, approaches and
     * [Example](https://github.com/jahudzik/playground-app/commit/c37c31936115a0837badbbc2a8e20e62a9b8c2ea)
 * [Use package-level functions for static stuff](https://kotlinlang.org/docs/reference/classes.html#companion-objects)
     * [Getting rid of companion objects](https://github.com/jahudzik/playground-app/commit/afcc74664ce97a8984b7ae867fdc211f39451144)
+* [Extension functions](https://kotlinlang.org/docs/reference/extensions.html)
+    * [Example](https://github.com/jahudzik/playground-app/commit/afa7155085c08844e5618282d1326283c24cc398)
 
 ## IntelliJ stuff
 
