@@ -54,4 +54,8 @@ class QuizPresenter(
         return Pair(triviaQuestion.question, answers)
     }
 
+    override fun onReturnClicked() {
+        view.navigateToDashboard()
+    }
+
 }

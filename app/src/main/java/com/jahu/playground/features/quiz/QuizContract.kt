@@ -10,11 +10,15 @@ interface QuizContract {
 
         fun showSummary(correctAnswersCount: Int, questionsCount: Int)
 
+        fun navigateToDashboard()
+
     }
 
     interface Presenter : BasePresenter {
 
         fun onAnswerChosen(answerIndex: Int)
+
+        fun onReturnClicked()
 
     }
 

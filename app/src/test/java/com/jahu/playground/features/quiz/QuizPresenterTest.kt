@@ -143,6 +143,15 @@ class QuizPresenterTest {
         verifyCorrectAnswersCount(4, 4)
     }
 
+    @Test
+    fun onReturnClicked_expected() {
+        presenter = QuizPresenter(view, emptyList(), sequenceGenerator)
+
+        presenter.onReturnClicked()
+
+        verify(view).navigateToDashboard()
+    }
+
     @After
     fun tearDown() {
         verifyNoMoreInteractions(view)
