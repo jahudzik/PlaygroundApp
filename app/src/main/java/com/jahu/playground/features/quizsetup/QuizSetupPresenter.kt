@@ -27,6 +27,7 @@ class QuizSetupPresenter(
             override fun onSuccess(questions: Array<TriviaQuestion>) {
                 view.hideLoading()
                 view.showNewQuizScreen(questions)
+                view.enablePlayButton()
             }
 
             override fun onFailure() {

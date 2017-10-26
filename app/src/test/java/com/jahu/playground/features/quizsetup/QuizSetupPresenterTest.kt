@@ -91,6 +91,7 @@ class QuizSetupPresenterTest {
         verify(getNewQuestionsUseCase).execute(any())
         verify(view).hideLoading()
         verify(view).showNewQuizScreen(questions)
+        verify(view).enablePlayButton()
     }
 
     @Test
