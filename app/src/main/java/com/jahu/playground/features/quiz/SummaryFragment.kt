@@ -41,7 +41,7 @@ class SummaryFragment : Fragment() {
         val correctAnswersCount = arguments.getInt(CORRECT_ANSWERS_COUNT_BUNDLE)
         val questionsCount = arguments.getInt(QUESTIONS_COUNT_BUNDLE)
         scoreTextView.text = activity.getString(R.string.score, correctAnswersCount, questionsCount)
-        returnButton.setOnClickListener{ eventListener?.onReturnClicked() }
+        returnButton.setOnClickListener { eventListener?.onReturnClicked() }
     }
 
     override fun onDetach() {
