@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.jahu.playground.R
+import com.jahu.playground.extensions.setHtmlText
 import kotlinx.android.synthetic.main.fragment_question.*
 
 class QuestionFragment : Fragment() {
@@ -40,7 +41,7 @@ class QuestionFragment : Fragment() {
     @SuppressWarnings("MagicNumber")
     override fun onResume() {
         super.onResume()
-        questionTextView.text = arguments.getString(QUESTION_BUNDLE)
+        questionTextView.setHtmlText(arguments.getString(QUESTION_BUNDLE))
         val answers = arguments.getStringArray(ANSWERS_BUNDLE)
         initAnswerButton(answer1Button, 0, answers)
         initAnswerButton(answer2Button, 1, answers)
@@ -49,7 +50,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun initAnswerButton(button: Button, index: Int, answers: Array<String>) {
-        button.text = answers[index]
+        button.setHtmlText(answers[index])
         button.setOnClickListener { eventListener?.onAnswerChosen(index) }
     }
 
