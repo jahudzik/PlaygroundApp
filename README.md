@@ -16,6 +16,7 @@ Side project for playing around with different Android libraries, approaches and
     * [BasePresenter](https://github.com/jahudzik/playground-app/commit/9e19f351c60843ef017eccf85fb436ce2714d0ec)
     * [BaseActivity](https://github.com/jahudzik/playground-app/commit/460df953704898aee4d42b41b178330ee6a022ea)
     * [BaseFragment](https://github.com/jahudzik/playground-app/commit/5a6b8bcc42b6107f9034182baa1f8891a9f38922)
+    * [Renamed BaseActivity and BaseFragment](https://github.com/jahudzik/playground-app/commit/a6fdff8a72efa32a69a61e332e4f377422a3f9e0)
 
 ### Testing 
 
@@ -53,6 +54,7 @@ Side project for playing around with different Android libraries, approaches and
     * [Setup](https://github.com/jahudzik/playground-app/commit/aa166640670e80b8937cef9512c7ed25e197e130)
 * [LeakCanary](https://github.com/square/leakcanary)
      * [Setup](https://github.com/jahudzik/playground-app/commit/85480900bc857023627a91a305e5a14a3dc1bf12)
+     * [Watching for fragment leaks](https://github.com/jahudzik/playground-app/commit/38d7d45242d15cfad3855996886794753907f0ef)
 
 ## UI Stuff
 
