@@ -6,11 +6,6 @@ Side project for playing around with different Android libraries, approaches and
 
 ## Libraries
 
-### Network
-
-* [Retrofit](http://square.github.io/retrofit/)
-    * [Setup](https://github.com/jahudzik/playground-app/commit/9fab27130c0beda4ae7f6fbc639b718fc965a602)
-
 ## Architecture
 * Model-View-Presenter
     * [BasePresenter](https://github.com/jahudzik/playground-app/commit/9e19f351c60843ef017eccf85fb436ce2714d0ec)
@@ -18,24 +13,10 @@ Side project for playing around with different Android libraries, approaches and
     * [BaseFragment](https://github.com/jahudzik/playground-app/commit/5a6b8bcc42b6107f9034182baa1f8891a9f38922)
     * [Renamed BaseActivity and BaseFragment](https://github.com/jahudzik/playground-app/commit/a6fdff8a72efa32a69a61e332e4f377422a3f9e0)
 
-### Testing 
+### Network
 
-* [JUnit 4](http://junit.org/junit4)
-    * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
-* [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
-    * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
-    * Testing asynchronous callbacks with Mockito.doAnswer()
-        * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
-        * [Example 2](https://github.com/jahudzik/playground-app/commit/94114633db2432b2ad2e4b8db1a919b8a585474a#diff-3ffc222822565a8f64d7a4f732a977e5)
-    * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)        
-
-### Continuous integration
- 
-* [Travis](https://travis-ci.org/)
-    * [Configuration (1)](https://github.com/jahudzik/playground-app/commit/6427b738ee8ab3c379be6d0e96b3f6f332906c11)
-    * [Configuration (2)](https://github.com/jahudzik/playground-app/commit/30016905e0f613d652efe96119d3cda54cd904ec)
-    * [Configuration (3)](https://github.com/jahudzik/playground-app/commit/ec40fb9959ca6bdc02da10b0d524a4334e257335)
-    * [Configuration (4)](https://github.com/jahudzik/playground-app/commit/c418f26c6f480ef4a302a6b8a82ba3ccfd72d150)
+* [Retrofit](http://square.github.io/retrofit/)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/9fab27130c0beda4ae7f6fbc639b718fc965a602)
 
 ### Static code analysis
 
@@ -69,6 +50,25 @@ Side project for playing around with different Android libraries, approaches and
     * [Preventing it by setting filterTouchesWhenObscured attribute](https://github.com/jahudzik/playground-app/commit/cd5bfb43369044311bb222357f400c45875e9e22)
 * [AllowBackup](https://blog.devknox.io/what-is-android-allowbackup-how-it-affects-your-app/)
     * [Disabling it](https://github.com/jahudzik/playground-app/commit/8a4fb57c910981c325d42e8a24231e70abec1ca2)
+
+### Testing 
+
+* [JUnit 4](http://junit.org/junit4)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
+* [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
+    * Testing asynchronous callbacks with Mockito.doAnswer()
+        * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
+        * [Example 2](https://github.com/jahudzik/playground-app/commit/94114633db2432b2ad2e4b8db1a919b8a585474a#diff-3ffc222822565a8f64d7a4f732a977e5)
+    * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)        
+
+### Continuous integration
+ 
+* [Travis](https://travis-ci.org/)
+    * [Configuration (1)](https://github.com/jahudzik/playground-app/commit/6427b738ee8ab3c379be6d0e96b3f6f332906c11)
+    * [Configuration (2)](https://github.com/jahudzik/playground-app/commit/30016905e0f613d652efe96119d3cda54cd904ec)
+    * [Configuration (3)](https://github.com/jahudzik/playground-app/commit/ec40fb9959ca6bdc02da10b0d524a4334e257335)
+    * [Configuration (4)](https://github.com/jahudzik/playground-app/commit/c418f26c6f480ef4a302a6b8a82ba3ccfd72d150)
 
 ## Kotlin stuff
 
