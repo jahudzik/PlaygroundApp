@@ -5,12 +5,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.jahu.playground.R
-import com.jahu.playground.mvp.BaseActivity
+import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.AddUserUseCase
 import kotlinx.android.synthetic.main.activity_add_user.*
 
-class AddUserActivity : BaseActivity<AddUserPresenter>(), AddUserContract.View {
+class AddUserActivity : MvpActivity<AddUserPresenter>(), AddUserContract.View {
 
     private val fieldsValueWatcher: TextWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}

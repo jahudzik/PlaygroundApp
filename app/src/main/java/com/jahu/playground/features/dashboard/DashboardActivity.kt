@@ -6,10 +6,10 @@ import com.jahu.playground.R
 import com.jahu.playground.features.leaderboard.LeaderboardFragment
 import com.jahu.playground.features.quizsetup.QuizSetupFragment
 import com.jahu.playground.features.settings.SettingsFragment
-import com.jahu.playground.mvp.BaseActivity
+import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
-class DashboardActivity : BaseActivity<DashboardContract.Presenter>(), DashboardContract.View {
+class DashboardActivity : MvpActivity<DashboardContract.Presenter>(), DashboardContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

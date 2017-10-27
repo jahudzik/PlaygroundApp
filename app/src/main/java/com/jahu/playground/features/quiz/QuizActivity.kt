@@ -5,10 +5,10 @@ import android.os.Bundle
 import com.jahu.playground.R
 import com.jahu.playground.features.quiz.random.RandomNumberGenerator
 import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
-import com.jahu.playground.mvp.BaseActivity
+import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.trivia.TriviaQuestion
 
-class QuizActivity : BaseActivity<QuizPresenter>(), QuizContract.View,
+class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
 
     companion object {

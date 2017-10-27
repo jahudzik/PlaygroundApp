@@ -9,14 +9,14 @@ import android.widget.Toast
 import com.jahu.playground.PlaygroundApplication
 import com.jahu.playground.R
 import com.jahu.playground.features.quiz.QuizActivity
-import com.jahu.playground.mvp.BaseFragment
+import com.jahu.playground.mvp.MvpFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.GetNewQuestionsUseCase
 import kotlinx.android.synthetic.main.fragment_quiz_setup.*
 
-class QuizSetupFragment : BaseFragment<QuizSetupContract.Presenter>(), QuizSetupContract.View {
+class QuizSetupFragment : MvpFragment<QuizSetupContract.Presenter>(), QuizSetupContract.View {
 
     companion object {
         fun newInstance() = QuizSetupFragment()
