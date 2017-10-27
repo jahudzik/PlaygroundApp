@@ -1,15 +1,15 @@
 package com.jahu.playground.features.quiz
 
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jahu.playground.R
+import com.jahu.playground.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_summary.*
 
-class SummaryFragment : Fragment() {
+class SummaryFragment : BaseFragment() {
 
     companion object {
         private const val CORRECT_ANSWERS_COUNT_BUNDLE = "correct-answers"

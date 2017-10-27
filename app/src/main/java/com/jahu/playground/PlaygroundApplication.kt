@@ -1,10 +1,12 @@
 package com.jahu.playground
 
 import android.app.Application
+import android.content.Context
 import android.os.StrictMode
 import com.facebook.stetho.Stetho
 import com.jahu.playground.trivia.TriviaService
 import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -13,7 +15,12 @@ private const val TRIVIA_API_BASE_URL = "https://opentdb.com"
 
 class PlaygroundApplication : Application() {
 
+    companion object {
+        fun getRefWatcher(context: Context) = (context.applicationContext as PlaygroundApplication).refWatcher
+    }
+
     private lateinit var triviaService: TriviaService
+    private lateinit var refWatcher: RefWatcher
 
     override fun onCreate() {
         super.onCreate()
@@ -22,7 +29,7 @@ class PlaygroundApplication : Application() {
             // You should not init your app in this process.
             return
         }
-        LeakCanary.install(this)
+        refWatcher = LeakCanary.install(this)
         setupTimber()
         setupStetho()
         setupStrictMode()

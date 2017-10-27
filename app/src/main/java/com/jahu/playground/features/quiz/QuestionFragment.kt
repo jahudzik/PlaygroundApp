@@ -1,6 +1,5 @@
 package com.jahu.playground.features.quiz
 
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.jahu.playground.R
 import com.jahu.playground.extensions.setHtmlText
+import com.jahu.playground.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_question.*
 
-class QuestionFragment : Fragment() {
+class QuestionFragment : BaseFragment() {
 
     companion object {
         private const val QUESTION_BUNDLE = "question"

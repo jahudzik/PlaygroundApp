@@ -1,9 +1,7 @@
 package com.jahu.playground.mvp
 
-import android.app.Fragment
-
 @SuppressWarnings("UnnecessaryAbstractClass")
-abstract class MvpFragment<P : BasePresenter> : Fragment() {
+abstract class MvpFragment<P : BasePresenter> : BaseFragment() {
 
     protected lateinit var presenter: P
 
