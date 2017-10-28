@@ -1,8 +1,8 @@
-package com.jahu.playground.features.quiz
+package com.jahu.playground.features.game
 
 import com.jahu.playground.mvp.BasePresenter
 
-interface QuizContract {
+interface GameContract {
 
     interface View {
 

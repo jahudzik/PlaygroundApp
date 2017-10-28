@@ -37,7 +37,7 @@
         />
 
     <activity
-        android:name=".features.quiz.QuizActivity"
+        android:name=".features.game.GameActivity"
         android:screenOrientation="portrait"
         />
 

@@ -1,6 +1,6 @@
-package com.jahu.playground.features.quiz
+package com.jahu.playground.features.game
 
-import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
+import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.AddGameResultUseCase
 import com.nhaarman.mockito_kotlin.*
@@ -12,11 +12,11 @@ import org.mockito.MockitoAnnotations
 
 private const val QUESTION = "Question"
 
-class QuizPresenterTest {
+class GamePresenterTest {
 
-    private lateinit var presenter: QuizPresenter
+    private lateinit var presenter: GamePresenter
 
-    @Mock private lateinit var view: QuizContract.View
+    @Mock private lateinit var view: GameContract.View
 
     @Mock private lateinit var sequenceGenerator: RandomSequenceGenerator
 
@@ -148,7 +148,7 @@ class QuizPresenterTest {
 
     @Test
     fun onReturnClicked_expected() {
-        presenter = QuizPresenter(view, emptyList(), sequenceGenerator, addGameResultUseCase)
+        presenter = GamePresenter(view, emptyList(), sequenceGenerator, addGameResultUseCase)
 
         presenter.onReturnClicked()
 
@@ -158,13 +158,13 @@ class QuizPresenterTest {
     private fun initWithSingleQuestion(vararg answersSequence: Int) {
         val triviaQuestion = buildTriviaQuestion(QUESTION, "yes", arrayOf("no_1", "no_2", "no_3"))
         whenever(sequenceGenerator.generate(any())).thenReturn(answersSequence.asList())
-        presenter = QuizPresenter(view, listOf(triviaQuestion), sequenceGenerator, addGameResultUseCase)
+        presenter = GamePresenter(view, listOf(triviaQuestion), sequenceGenerator, addGameResultUseCase)
     }
 
     private fun initQuestions(firstAnswers: List<Int>, vararg followingAnswers: List<Int>) {
         val questions = buildTriviaQuestionMocksList(followingAnswers.size + 1)
         whenever(sequenceGenerator.generate(any())).thenReturn(firstAnswers, *followingAnswers)
-        presenter = QuizPresenter(view, questions, sequenceGenerator, addGameResultUseCase)
+        presenter = GamePresenter(view, questions, sequenceGenerator, addGameResultUseCase)
     }
 
     private fun buildTriviaQuestion(question: String,

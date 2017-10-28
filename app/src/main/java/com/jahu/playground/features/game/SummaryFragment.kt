@@ -1,4 +1,4 @@
-package com.jahu.playground.features.quiz
+package com.jahu.playground.features.game
 
 import android.content.Context
 import android.os.Bundle

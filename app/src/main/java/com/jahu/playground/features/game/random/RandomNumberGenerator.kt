@@ -1,4 +1,4 @@
-package com.jahu.playground.features.quiz.random
+package com.jahu.playground.features.game.random
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.jahu.playground.features.quiz.time
+package com.jahu.playground.features.game.time
 
 class TimeProvider {
 

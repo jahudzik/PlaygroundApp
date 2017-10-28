@@ -19,7 +19,7 @@ interface QuizSetupContract {
 
         fun disablePlayButton()
 
-        fun showNewQuizScreen(questions: Array<TriviaQuestion>)
+        fun showNewGameScreen(questions: Array<TriviaQuestion>)
 
     }
 

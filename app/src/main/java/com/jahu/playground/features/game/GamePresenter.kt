@@ -1,17 +1,17 @@
-package com.jahu.playground.features.quiz
+package com.jahu.playground.features.game
 
-import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
+import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.AddGameResultUseCase
 
 private const val ANSWERS_COUNT = 4
 
-class QuizPresenter(
-        private val view: QuizContract.View,
+class GamePresenter(
+        private val view: GameContract.View,
         private val questions: List<TriviaQuestion>,
         private val sequenceGenerator: RandomSequenceGenerator,
         private val addGameResultUseCase: AddGameResultUseCase
-) : QuizContract.Presenter {
+) : GameContract.Presenter {
 
     private val questionsCount = questions.size
 

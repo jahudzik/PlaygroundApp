@@ -1,18 +1,18 @@
-package com.jahu.playground.features.quiz
+package com.jahu.playground.features.game
 
 import android.app.Fragment
 import android.os.Bundle
 import com.jahu.playground.R
-import com.jahu.playground.features.quiz.random.RandomNumberGenerator
-import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
-import com.jahu.playground.features.quiz.time.TimeProvider
+import com.jahu.playground.features.game.random.RandomNumberGenerator
+import com.jahu.playground.features.game.random.RandomSequenceGenerator
+import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.AddGameResultUseCase
 
-class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
+class GameActivity : MvpActivity<GamePresenter>(), GameContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
 
     companion object {
@@ -21,10 +21,10 @@ class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quiz)
+        setContentView(R.layout.activity_game)
         val sharedPreferencesManager = SharedPreferencesManager(this)
         val addGameResultUseCase = AddGameResultUseCase(sharedPreferencesManager, MockedLocalDataRepository, TimeProvider())
-        presenter = QuizPresenter(this, getQuestionsList(), RandomSequenceGenerator(RandomNumberGenerator()), addGameResultUseCase)
+        presenter = GamePresenter(this, getQuestionsList(), RandomSequenceGenerator(RandomNumberGenerator()), addGameResultUseCase)
     }
 
     private fun getQuestionsList(): List<TriviaQuestion> {
@@ -59,7 +59,7 @@ class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
     private fun switchFragment(fragment: Fragment) {
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.quizContainer, fragment)
+                .replace(R.id.gameContainer, fragment)
                 .commit()
     }
 

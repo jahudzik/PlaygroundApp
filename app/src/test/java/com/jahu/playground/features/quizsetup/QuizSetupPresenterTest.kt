@@ -90,7 +90,7 @@ class QuizSetupPresenterTest {
         verify(view).showLoading()
         verify(getNewQuestionsUseCase).execute(any())
         verify(view).hideLoading()
-        verify(view).showNewQuizScreen(questions)
+        verify(view).showNewGameScreen(questions)
         verify(view).enablePlayButton()
     }
 

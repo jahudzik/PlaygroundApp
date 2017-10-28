@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases
 
 import com.jahu.playground.dao.GameResult
-import com.jahu.playground.features.quiz.time.TimeProvider
+import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
 import timber.log.Timber

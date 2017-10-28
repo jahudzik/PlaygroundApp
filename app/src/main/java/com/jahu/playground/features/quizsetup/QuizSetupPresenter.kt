@@ -26,7 +26,7 @@ class QuizSetupPresenter(
         getNewQuestionsUseCase.execute(object : GetNewQuestionsUseCase.ResultListener {
             override fun onSuccess(questions: Array<TriviaQuestion>) {
                 view.hideLoading()
-                view.showNewQuizScreen(questions)
+                view.showNewGameScreen(questions)
                 view.enablePlayButton()
             }
 
