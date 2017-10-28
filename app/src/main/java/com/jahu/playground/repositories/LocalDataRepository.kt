@@ -1,5 +1,6 @@
 package com.jahu.playground.repositories
 
+import com.jahu.playground.dao.GameResult
 import com.jahu.playground.dao.User
 
 interface LocalDataRepository {
@@ -9,5 +10,9 @@ interface LocalDataRepository {
     fun getUserByNick(nick: String): User?
 
     fun addUser(user: User)
+
+    fun addGameResult(gameResult: GameResult)
+
+    fun getGameResultsByNick(nick: String): List<GameResult>
 
 }

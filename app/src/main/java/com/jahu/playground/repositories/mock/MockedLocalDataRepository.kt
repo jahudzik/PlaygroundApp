@@ -1,11 +1,13 @@
 package com.jahu.playground.repositories.mock
 
+import com.jahu.playground.dao.GameResult
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 
 object MockedLocalDataRepository : LocalDataRepository {
 
     private val usersMap: MutableMap<String, User> = mutableMapOf()
+    private val resultsList: MutableList<GameResult> = mutableListOf()
 
     val user1 = User("Mike", "Jones", "mike66")
     val user2 = User("Alice", "McMaster", "hippo")
@@ -36,5 +38,13 @@ object MockedLocalDataRepository : LocalDataRepository {
 
     override fun addUser(user: User) {
         usersMap.put(user.nick, user)
+    }
+
+    override fun addGameResult(gameResult: GameResult) {
+        resultsList.add(gameResult)
+    }
+
+    override fun getGameResultsByNick(nick: String): List<GameResult> {
+        return resultsList.filter { it.nick == nick }
     }
 }
