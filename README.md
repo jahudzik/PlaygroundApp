@@ -57,10 +57,14 @@ Side project for playing around with different Android libraries, approaches and
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
 * [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
+    * Argument Matchers ([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#argument-matchers))
+        * [Verifying invocation arguments with the Argument Matchers](https://github.com/jahudzik/playground-app/commit/84ac249a362450233ad686be94697e95335940de#diff-658aa0166cdde11c0d58825acdbb55e4)([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#argument-matchers))
+    * InOrder ([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#inorder))
+        * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)
+        * [Using Mockito.inOrder() with higher-order function parameter](https://github.com/jahudzik/playground-app/commit/7a2c55efbd485d233fc171f8c3aca87278ecbe91)
     * Testing asynchronous callbacks with Mockito.doAnswer()
         * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
         * [Example 2](https://github.com/jahudzik/playground-app/commit/94114633db2432b2ad2e4b8db1a919b8a585474a#diff-3ffc222822565a8f64d7a4f732a977e5)
-    * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)        
 
 ### Continuous integration
  
