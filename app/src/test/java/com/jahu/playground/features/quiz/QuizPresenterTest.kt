@@ -2,6 +2,7 @@ package com.jahu.playground.features.quiz
 
 import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
 import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.usecases.AddGameResultUseCase
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
@@ -18,6 +19,8 @@ class QuizPresenterTest {
     @Mock private lateinit var view: QuizContract.View
 
     @Mock private lateinit var sequenceGenerator: RandomSequenceGenerator
+
+    @Mock private lateinit var addGameResultUseCase: AddGameResultUseCase
 
     @Before
     fun setUp() {
@@ -145,29 +148,23 @@ class QuizPresenterTest {
 
     @Test
     fun onReturnClicked_expected() {
-        presenter = QuizPresenter(view, emptyList(), sequenceGenerator)
+        presenter = QuizPresenter(view, emptyList(), sequenceGenerator, addGameResultUseCase)
 
         presenter.onReturnClicked()
 
         verify(view).navigateToDashboard()
     }
 
-    @After
-    fun tearDown() {
-        verifyNoMoreInteractions(view)
-        verifyNoMoreInteractions(sequenceGenerator)
-    }
-
     private fun initWithSingleQuestion(vararg answersSequence: Int) {
         val triviaQuestion = buildTriviaQuestion(QUESTION, "yes", arrayOf("no_1", "no_2", "no_3"))
         whenever(sequenceGenerator.generate(any())).thenReturn(answersSequence.asList())
-        presenter = QuizPresenter(view, listOf(triviaQuestion), sequenceGenerator)
+        presenter = QuizPresenter(view, listOf(triviaQuestion), sequenceGenerator, addGameResultUseCase)
     }
 
     private fun initQuestions(firstAnswers: List<Int>, vararg followingAnswers: List<Int>) {
         val questions = buildTriviaQuestionMocksList(followingAnswers.size + 1)
         whenever(sequenceGenerator.generate(any())).thenReturn(firstAnswers, *followingAnswers)
-        presenter = QuizPresenter(view, questions, sequenceGenerator)
+        presenter = QuizPresenter(view, questions, sequenceGenerator, addGameResultUseCase)
     }
 
     private fun buildTriviaQuestion(question: String,
@@ -208,6 +205,14 @@ class QuizPresenterTest {
         verify(sequenceGenerator, times(expectedQuestionsCount)).generate(4)
         verify(view, times(expectedQuestionsCount)).showQuestion(any(), any())
         verify(view).showSummary(expectedCorrectAnswersCount, expectedQuestionsCount)
+        verify(addGameResultUseCase).execute(expectedCorrectAnswersCount)
+    }
+
+    @After
+    fun tearDown() {
+        verifyNoMoreInteractions(view)
+        verifyNoMoreInteractions(sequenceGenerator)
+        verifyNoMoreInteractions(addGameResultUseCase)
     }
 
 }

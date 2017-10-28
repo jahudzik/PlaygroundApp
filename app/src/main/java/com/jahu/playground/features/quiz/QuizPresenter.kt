@@ -2,13 +2,15 @@ package com.jahu.playground.features.quiz
 
 import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
 import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.usecases.AddGameResultUseCase
 
 private const val ANSWERS_COUNT = 4
 
 class QuizPresenter(
         private val view: QuizContract.View,
         private val questions: List<TriviaQuestion>,
-        private val sequenceGenerator: RandomSequenceGenerator
+        private val sequenceGenerator: RandomSequenceGenerator,
+        private val addGameResultUseCase: AddGameResultUseCase
 ) : QuizContract.Presenter {
 
     private val questionsCount = questions.size
@@ -30,6 +32,7 @@ class QuizPresenter(
         if (++currentQuestionIndex < questionsCount) {
             showNextQuestion()
         } else {
+            addGameResultUseCase.execute(correctAnswersCount)
             view.showSummary(correctAnswersCount, questionsCount)
         }
     }

@@ -5,8 +5,12 @@ import android.os.Bundle
 import com.jahu.playground.R
 import com.jahu.playground.features.quiz.random.RandomNumberGenerator
 import com.jahu.playground.features.quiz.random.RandomSequenceGenerator
+import com.jahu.playground.features.quiz.time.TimeProvider
 import com.jahu.playground.mvp.MvpActivity
+import com.jahu.playground.repositories.SharedPreferencesManager
+import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.usecases.AddGameResultUseCase
 
 class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
@@ -18,7 +22,9 @@ class QuizActivity : MvpActivity<QuizPresenter>(), QuizContract.View,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-        presenter = QuizPresenter(this, getQuestionsList(), RandomSequenceGenerator(RandomNumberGenerator()))
+        val sharedPreferencesManager = SharedPreferencesManager(this)
+        val addGameResultUseCase = AddGameResultUseCase(sharedPreferencesManager, MockedLocalDataRepository, TimeProvider())
+        presenter = QuizPresenter(this, getQuestionsList(), RandomSequenceGenerator(RandomNumberGenerator()), addGameResultUseCase)
     }
 
     private fun getQuestionsList(): List<TriviaQuestion> {
