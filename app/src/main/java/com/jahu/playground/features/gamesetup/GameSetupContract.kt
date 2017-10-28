@@ -1,9 +1,9 @@
-package com.jahu.playground.features.quizsetup
+package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.trivia.TriviaQuestion
 
-interface QuizSetupContract {
+interface GameSetupContract {
 
     interface View {
 

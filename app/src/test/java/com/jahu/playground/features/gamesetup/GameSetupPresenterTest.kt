@@ -1,4 +1,4 @@
-package com.jahu.playground.features.quizsetup
+package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
@@ -13,11 +13,11 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class QuizSetupPresenterTest {
+class GameSetupPresenterTest {
 
-    private lateinit var presenter: QuizSetupPresenter
+    private lateinit var presenter: GameSetupPresenter
 
-    @Mock private lateinit var view: QuizSetupContract.View
+    @Mock private lateinit var view: GameSetupContract.View
 
     @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
@@ -28,7 +28,7 @@ class QuizSetupPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = QuizSetupPresenter(view, sharedPreferencesManager, dataRepository, getNewQuestionsUseCase)
+        presenter = GameSetupPresenter(view, sharedPreferencesManager, dataRepository, getNewQuestionsUseCase)
     }
 
     @Test

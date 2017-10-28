@@ -1,4 +1,4 @@
-package com.jahu.playground.features.quizsetup
+package com.jahu.playground.features.gamesetup
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,12 +14,12 @@ import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.GetNewQuestionsUseCase
-import kotlinx.android.synthetic.main.fragment_quiz_setup.*
+import kotlinx.android.synthetic.main.fragment_game_setup.*
 
-class QuizSetupFragment : MvpFragment<QuizSetupContract.Presenter>(), QuizSetupContract.View {
+class GameSetupFragment : MvpFragment<GameSetupContract.Presenter>(), GameSetupContract.View {
 
     companion object {
-        fun newInstance() = QuizSetupFragment()
+        fun newInstance() = GameSetupFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +27,11 @@ class QuizSetupFragment : MvpFragment<QuizSetupContract.Presenter>(), QuizSetupC
         val preferencesManager = SharedPreferencesManager(activity)
         val triviaService = (activity.application as PlaygroundApplication).getTriviaService()
         val getNewQuestionsUseCase = GetNewQuestionsUseCase(triviaService)
-        presenter = QuizSetupPresenter(this, preferencesManager, MockedLocalDataRepository, getNewQuestionsUseCase)
+        presenter = GameSetupPresenter(this, preferencesManager, MockedLocalDataRepository, getNewQuestionsUseCase)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_quiz_setup, container, false)
+        return inflater.inflate(R.layout.fragment_game_setup, container, false)
     }
 
     override fun onResume() {

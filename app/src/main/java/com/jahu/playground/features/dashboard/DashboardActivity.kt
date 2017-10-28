@@ -3,8 +3,8 @@ package com.jahu.playground.features.dashboard
 import android.app.Fragment
 import android.os.Bundle
 import com.jahu.playground.R
+import com.jahu.playground.features.gamesetup.GameSetupFragment
 import com.jahu.playground.features.leaderboard.LeaderboardFragment
-import com.jahu.playground.features.quizsetup.QuizSetupFragment
 import com.jahu.playground.features.settings.SettingsFragment
 import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -29,7 +29,7 @@ class DashboardActivity : MvpActivity<DashboardContract.Presenter>(), DashboardC
     }
 
     override fun showQuizSetup() {
-        switchFragment(QuizSetupFragment.newInstance(), BottomNavigationItem.QUIZ_SETUP)
+        switchFragment(GameSetupFragment.newInstance(), BottomNavigationItem.QUIZ_SETUP)
     }
 
     override fun showLeaderboard() {
