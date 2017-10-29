@@ -27,11 +27,11 @@ class LeaderboardPresenterTest {
     }
 
     @Test
-    fun createView_expected() {
+    fun resumeView_expected() {
         val entries = mock<List<LeaderboardEntry>>()
         whenever(getLeaderboardEntriesUseCase.execute()).thenReturn(entries)
 
-        presenter.createView()
+        presenter.resumeView()
 
         verify(getLeaderboardEntriesUseCase).execute()
         verify(view).showLeaderboardEntries(entries)

@@ -7,11 +7,11 @@ class LeaderboardPresenter(
         private val getLeaderboardEntriesUseCase: GetLeaderboardEntriesUseCase
 ) : LeaderboardContract.Presenter {
 
-    override fun createView() {
+    override fun createView() {}
+
+    override fun resumeView() {
         val entries = getLeaderboardEntriesUseCase.execute()
         view.showLeaderboardEntries(entries)
     }
-
-    override fun resumeView() {}
 
 }
