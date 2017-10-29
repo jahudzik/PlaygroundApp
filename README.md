@@ -58,7 +58,7 @@ Side project for playing around with different Android libraries, approaches and
 * [Mockito Kotlin](https://github.com/nhaarman/mockito-kotlin)
     * [Setup](https://github.com/jahudzik/playground-app/commit/2ae79209f13a80ccb9ad02b0a8e71e0339d83cc3)
     * Argument Matchers ([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#argument-matchers))
-        * [Verifying invocation arguments with the Argument Matchers](https://github.com/jahudzik/playground-app/commit/84ac249a362450233ad686be94697e95335940de#diff-658aa0166cdde11c0d58825acdbb55e4)([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#argument-matchers))
+        * [Verifying invocation arguments with the Argument Matchers](https://github.com/jahudzik/playground-app/commit/84ac249a362450233ad686be94697e95335940de#diff-658aa0166cdde11c0d58825acdbb55e4)
     * InOrder ([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#inorder))
         * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)
         * [Using Mockito.inOrder() with higher-order function parameter](https://github.com/jahudzik/playground-app/commit/7a2c55efbd485d233fc171f8c3aca87278ecbe91)
