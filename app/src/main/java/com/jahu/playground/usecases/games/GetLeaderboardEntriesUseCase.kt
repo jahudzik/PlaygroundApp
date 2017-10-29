@@ -1,6 +1,7 @@
 package com.jahu.playground.usecases.games
 
 import com.jahu.playground.dao.LeaderboardEntry
+import com.jahu.playground.extensions.roundTo2DecimalPlaces
 import com.jahu.playground.repositories.LocalDataRepository
 
 class GetLeaderboardEntriesUseCase(
@@ -16,7 +17,7 @@ class GetLeaderboardEntriesUseCase(
                     val averageScore = if (gamesCount > 0) userGames.sumBy { it.correctAnswersCount }.toDouble() / gamesCount else 0.0
                     LeaderboardEntry(
                             user.nick,
-                            averageScore,
+                            averageScore.roundTo2DecimalPlaces(),
                             gamesCount
                     )
                 }

@@ -48,6 +48,20 @@ class GetLeaderboardEntriesUseCaseTest {
     }
 
     @Test
+    fun execute_roundAverageScore() {
+        val userGames = buildGameResultsList(testUsers[0].nick, 2, 2, 2, 2, 2, 3)
+        whenever(localDataRepository.getAllUsers()).thenReturn(setOf(testUsers[0]))
+        whenever(localDataRepository.getGameResults()).thenReturn(userGames)
+
+        val resultList = useCase.execute()
+
+        verify(localDataRepository).getGameResults()
+        verify(localDataRepository).getAllUsers()
+        val expectedResult = listOf(LeaderboardEntry(testUsers[0].nick, 2.17, 6))
+        assertEquals(expectedResult, resultList)
+    }
+
+    @Test
     fun execute_singleUser_noGamesPlayed() {
         whenever(localDataRepository.getAllUsers()).thenReturn(setOf(testUsers[0]))
         whenever(localDataRepository.getGameResults()).thenReturn(emptyList())
