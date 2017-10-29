@@ -1,4 +1,4 @@
-package com.jahu.playground.usecases
+package com.jahu.playground.usecases.games
 
 import com.jahu.playground.dao.LeaderboardEntry
 import com.jahu.playground.repositories.LocalDataRepository

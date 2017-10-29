@@ -2,7 +2,7 @@ package com.jahu.playground.features.game
 
 import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.trivia.TriviaQuestion
-import com.jahu.playground.usecases.AddGameResultUseCase
+import com.jahu.playground.usecases.games.AddGameResultUseCase
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before

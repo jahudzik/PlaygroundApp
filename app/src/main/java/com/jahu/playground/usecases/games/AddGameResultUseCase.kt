@@ -1,4 +1,4 @@
-package com.jahu.playground.usecases
+package com.jahu.playground.usecases.games
 
 import com.jahu.playground.dao.GameResult
 import com.jahu.playground.features.game.time.TimeProvider

@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.jahu.playground.R
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
-import com.jahu.playground.usecases.AddUserUseCase
+import com.jahu.playground.usecases.users.AddUserUseCase
 import kotlinx.android.synthetic.main.activity_add_user.*
 
 class AddUserActivity : MvpActivity<AddUserPresenter>(), AddUserContract.View {

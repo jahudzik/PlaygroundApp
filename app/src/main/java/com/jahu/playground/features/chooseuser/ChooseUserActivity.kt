@@ -11,9 +11,9 @@ import com.jahu.playground.features.dashboard.DashboardActivity
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
-import com.jahu.playground.usecases.GetActualUserUseCase
-import com.jahu.playground.usecases.GetUsersUseCase
-import com.jahu.playground.usecases.SetActualUserUseCase
+import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.jahu.playground.usecases.users.GetUsersUseCase
+import com.jahu.playground.usecases.users.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
 
 class ChooseUserActivity : MvpActivity<ChooseUserPresenter>(), ChooseUserContract.View, UsersAdapter.OnUserChosenListener {

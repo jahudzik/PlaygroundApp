@@ -1,7 +1,7 @@
 package com.jahu.playground.features.adduser
 
 import com.jahu.playground.dao.User
-import com.jahu.playground.usecases.AddUserUseCase
+import com.jahu.playground.usecases.users.AddUserUseCase
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify

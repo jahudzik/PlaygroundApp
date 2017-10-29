@@ -1,4 +1,4 @@
-package com.jahu.playground.usecases
+package com.jahu.playground.usecases.users
 
 import com.jahu.playground.repositories.LocalDataRepository
 import com.nhaarman.mockito_kotlin.verify

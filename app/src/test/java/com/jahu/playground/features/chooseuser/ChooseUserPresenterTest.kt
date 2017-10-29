@@ -1,9 +1,9 @@
 package com.jahu.playground.features.chooseuser
 
 import com.jahu.playground.dao.User
-import com.jahu.playground.usecases.GetActualUserUseCase
-import com.jahu.playground.usecases.GetUsersUseCase
-import com.jahu.playground.usecases.SetActualUserUseCase
+import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.jahu.playground.usecases.users.GetUsersUseCase
+import com.jahu.playground.usecases.users.SetActualUserUseCase
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before

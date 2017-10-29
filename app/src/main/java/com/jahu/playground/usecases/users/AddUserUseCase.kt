@@ -1,4 +1,4 @@
-package com.jahu.playground.usecases
+package com.jahu.playground.usecases.users
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.adduser.AddUserContract.ErrorCode

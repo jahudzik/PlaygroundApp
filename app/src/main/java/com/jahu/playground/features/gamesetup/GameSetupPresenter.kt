@@ -4,7 +4,7 @@ import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion
-import com.jahu.playground.usecases.GetNewQuestionsUseCase
+import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
 
 class GameSetupPresenter(
         private val view: GameSetupContract.View,

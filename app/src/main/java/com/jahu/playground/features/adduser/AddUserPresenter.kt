@@ -2,7 +2,7 @@ package com.jahu.playground.features.adduser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.adduser.AddUserContract.ErrorCode
-import com.jahu.playground.usecases.AddUserUseCase
+import com.jahu.playground.usecases.users.AddUserUseCase
 
 class AddUserPresenter(
         private val view: AddUserContract.View,
