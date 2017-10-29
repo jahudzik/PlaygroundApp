@@ -9,16 +9,15 @@ class GetLeaderboardEntriesUseCase(
 
     fun execute(): List<LeaderboardEntry> {
         val allResults = localDataRepository.getGameResults()
-        if (allResults.isEmpty()) {
-            return emptyList()
-        }
         return localDataRepository.getAllUsers()
                 .map { user ->
                     val userGames = allResults.filter { it.nick == user.nick }
+                    val gamesCount = userGames.count()
+                    val averageScore = if (gamesCount > 0) userGames.sumBy { it.correctAnswersCount }.toDouble() / gamesCount else 0.0
                     LeaderboardEntry(
                             user.nick,
-                            userGames.sumBy { it.correctAnswersCount }.toDouble() / userGames.count(),
-                            userGames.count()
+                            averageScore,
+                            gamesCount
                     )
                 }
                 .sortedByDescending { it.averageScore }
