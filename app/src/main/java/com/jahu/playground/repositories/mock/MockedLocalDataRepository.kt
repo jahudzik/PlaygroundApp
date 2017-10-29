@@ -44,6 +44,10 @@ object MockedLocalDataRepository : LocalDataRepository {
         resultsList.add(gameResult)
     }
 
+    override fun getGameResults(): List<GameResult> {
+        return resultsList
+    }
+
     override fun getGameResultsByNick(nick: String): List<GameResult> {
         return resultsList.filter { it.nick == nick }
     }
