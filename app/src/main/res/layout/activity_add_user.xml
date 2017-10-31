@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     >
 
   <android.support.design.widget.TextInputLayout
@@ -61,9 +62,9 @@
   <Button
       android:id="@+id/confirmButton"
       android:layout_width="match_parent"
-      android:layout_height="100dp"
-      android:layout_below="@id/nickLayout"
-      android:layout_margin="10dp"
+      android:layout_height="60dp"
+      android:layout_alignParentBottom="true"
+      android:layout_margin="16dp"
       android:filterTouchesWhenObscured="true"
       android:text="@string/save"
       />
