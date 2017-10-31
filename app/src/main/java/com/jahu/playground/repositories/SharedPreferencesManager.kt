@@ -12,7 +12,7 @@ class SharedPreferencesManager(
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFS_NAME, 0)
 
-    fun setActualUserNick(nick: String) {
+    fun setActualUserNick(nick: String?) {
         sharedPreferences.edit().putString(ACTUAL_USER_KEY, nick).apply()
     }
 

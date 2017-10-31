@@ -6,7 +6,7 @@ class SetActualUserUseCase(
         private val preferencesManager: SharedPreferencesManager
 ) {
 
-    fun execute(nick: String) {
+    fun execute(nick: String?) {
         preferencesManager.setActualUserNick(nick)
     }
 
