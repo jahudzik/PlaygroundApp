@@ -10,7 +10,7 @@ import com.jahu.playground.R
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.AddUserUseCase
-import kotlinx.android.synthetic.main.activity_add_user.*
+import kotlinx.android.synthetic.main.activity_edit_user.*
 
 class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
 
@@ -37,7 +37,7 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_user)
+        setContentView(R.layout.activity_edit_user)
         val mode = intent.getSerializableExtra(MODE_EXTRA_KEY)
         presenter = EditUserPresenter(mode as EditUserContract.Mode, this, AddUserUseCase(MockedLocalDataRepository))
 
