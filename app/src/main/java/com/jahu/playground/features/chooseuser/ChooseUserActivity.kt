@@ -8,6 +8,7 @@ import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.dashboard.DashboardActivity
 import com.jahu.playground.features.edituser.EditUserActivity
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
@@ -41,7 +42,9 @@ class ChooseUserActivity : MvpActivity<ChooseUserPresenter>(), ChooseUserContrac
     }
 
     override fun navigateToAddUserScreen() {
-        startActivity(Intent(this, EditUserActivity::class.java))
+        val intent = Intent(this, EditUserActivity::class.java)
+        intent.putExtra(EditUserActivity.MODE_EXTRA_KEY, EditUserContract.Mode.ADD_USER)
+        startActivity(intent)
     }
 
     override fun onUserChosen(user: User) {

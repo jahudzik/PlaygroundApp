@@ -6,6 +6,10 @@ interface EditUserContract {
 
     interface View {
 
+        fun setAddButtonLabel()
+
+        fun setSaveButtonLabel()
+
         fun setConfirmButtonEnabled(enabled: Boolean)
 
         fun showErrorMessage(errorCode: ErrorCode)
@@ -20,6 +24,11 @@ interface EditUserContract {
 
         fun onConfirmButtonClicked(firstName: String, lastName: String, nick: String)
 
+    }
+
+    enum class Mode {
+        ADD_USER,
+        EDIT_USER
     }
 
     enum class ErrorCode {

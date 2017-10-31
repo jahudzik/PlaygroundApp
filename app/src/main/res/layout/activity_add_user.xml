@@ -65,7 +65,7 @@
       android:layout_below="@id/nickLayout"
       android:layout_margin="10dp"
       android:filterTouchesWhenObscured="true"
-      android:text="@string/add_user"
+      android:text="@string/save"
       />
 
 </RelativeLayout>

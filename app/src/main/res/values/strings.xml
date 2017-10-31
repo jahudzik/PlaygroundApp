@@ -6,6 +6,7 @@
   <string name="last_name">Last name</string>
   <string name="nick">Nick</string>
   <string name="add_user">Add user</string>
+  <string name="save">Save</string>
   <string name="error_nick_exists">Specified nick already exists</string>
   <string name="generic_welcome_message">Welcome</string>
   <string name="welcome_message">Welcome %1s</string>

@@ -12,6 +12,10 @@ import kotlinx.android.synthetic.main.activity_add_user.*
 
 class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
 
+    companion object {
+        const val MODE_EXTRA_KEY = "mode"
+    }
+
     private val fieldsValueWatcher: TextWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}
 
@@ -26,7 +30,8 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
-        presenter = EditUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
+        val mode = intent.getSerializableExtra(MODE_EXTRA_KEY)
+        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, AddUserUseCase(MockedLocalDataRepository))
 
         confirmButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
@@ -36,6 +41,14 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         firstNameEditText.addTextChangedListener(fieldsValueWatcher)
         lastNameEditText.addTextChangedListener(fieldsValueWatcher)
         nickEditText.addTextChangedListener(fieldsValueWatcher)
+    }
+
+    override fun setAddButtonLabel() {
+        confirmButton.text = getString(R.string.add_user)
+    }
+
+    override fun setSaveButtonLabel() {
+        confirmButton.text = getString(R.string.save)
     }
 
     override fun setConfirmButtonEnabled(enabled: Boolean) {

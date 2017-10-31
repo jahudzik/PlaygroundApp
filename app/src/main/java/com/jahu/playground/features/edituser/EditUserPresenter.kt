@@ -5,6 +5,7 @@ import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.usecases.users.AddUserUseCase
 
 class EditUserPresenter(
+        private val mode: EditUserContract.Mode,
         private val view: EditUserContract.View,
         private val addUserUseCase: AddUserUseCase
 ) : EditUserContract.Presenter, AddUserUseCase.ResultListener {
@@ -13,6 +14,10 @@ class EditUserPresenter(
 
     override fun resumeView() {
         view.setConfirmButtonEnabled(false)
+        when (mode) {
+            EditUserContract.Mode.ADD_USER -> view.setAddButtonLabel()
+            EditUserContract.Mode.EDIT_USER -> view.setSaveButtonLabel()
+        }
     }
 
     override fun onFieldValueChanged(firstName: String, lastName: String, nick: String) {

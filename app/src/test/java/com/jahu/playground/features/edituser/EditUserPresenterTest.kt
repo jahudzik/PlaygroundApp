@@ -23,14 +23,27 @@ class EditUserPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = EditUserPresenter(view, addUserUseCase)
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase)
     }
 
     @Test
-    fun resumeView_expected() {
+    fun resumeView_addMode() {
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase)
+
         presenter.resumeView()
 
         verify(view).setConfirmButtonEnabled(false)
+        verify(view).setAddButtonLabel()
+    }
+
+    @Test
+    fun resumeView_editMode() {
+        presenter = EditUserPresenter(EditUserContract.Mode.EDIT_USER, view, addUserUseCase)
+
+        presenter.resumeView()
+
+        verify(view).setConfirmButtonEnabled(false)
+        verify(view).setSaveButtonLabel()
     }
 
     @Test
