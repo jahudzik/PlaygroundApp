@@ -2,10 +2,8 @@ package com.jahu.playground.features.edituser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.usecases.users.AddUserUseCase
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.eq
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -20,15 +18,17 @@ class EditUserPresenterTest {
 
     @Mock private lateinit var addUserUseCase: AddUserUseCase
 
+    @Mock private lateinit var getActualUserUseCase: GetActualUserUseCase
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase)
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase)
     }
 
     @Test
     fun resumeView_addMode() {
-        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase)
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase)
 
         presenter.resumeView()
 
@@ -38,11 +38,15 @@ class EditUserPresenterTest {
 
     @Test
     fun resumeView_editMode() {
-        presenter = EditUserPresenter(EditUserContract.Mode.EDIT_USER, view, addUserUseCase)
+        val user = mock<User>()
+        whenever(getActualUserUseCase.execute()).thenReturn(user)
+        presenter = EditUserPresenter(EditUserContract.Mode.EDIT_USER, view, addUserUseCase, getActualUserUseCase)
 
         presenter.resumeView()
 
-        verify(view).setConfirmButtonEnabled(false)
+        verify(getActualUserUseCase).execute()
+        verify(view).fillUserData(user)
+        verify(view).setConfirmButtonEnabled(true)
         verify(view).setSaveButtonLabel()
     }
 
@@ -112,5 +116,6 @@ class EditUserPresenterTest {
     fun tearDown() {
         verifyNoMoreInteractions(view)
         verifyNoMoreInteractions(addUserUseCase)
+        verifyNoMoreInteractions(getActualUserUseCase)
     }
 }

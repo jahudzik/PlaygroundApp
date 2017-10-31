@@ -3,21 +3,35 @@ package com.jahu.playground.features.edituser
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.usecases.users.AddUserUseCase
+import com.jahu.playground.usecases.users.GetActualUserUseCase
 
 class EditUserPresenter(
         private val mode: EditUserContract.Mode,
         private val view: EditUserContract.View,
-        private val addUserUseCase: AddUserUseCase
+        private val addUserUseCase: AddUserUseCase,
+        private val getActualUserUseCase: GetActualUserUseCase
 ) : EditUserContract.Presenter, AddUserUseCase.ResultListener {
 
     override fun createView() {}
 
     override fun resumeView() {
-        view.setConfirmButtonEnabled(false)
         when (mode) {
-            EditUserContract.Mode.ADD_USER -> view.setAddButtonLabel()
-            EditUserContract.Mode.EDIT_USER -> view.setSaveButtonLabel()
+            EditUserContract.Mode.ADD_USER -> initAddUserMode()
+            EditUserContract.Mode.EDIT_USER -> initEditUserMode()
         }
+    }
+
+    private fun initAddUserMode() {
+        view.setAddButtonLabel()
+        view.setConfirmButtonEnabled(false)
+    }
+
+    private fun initEditUserMode() {
+        getActualUserUseCase.execute()?.let {
+            view.fillUserData(it)
+        }
+        view.setSaveButtonLabel()
+        view.setConfirmButtonEnabled(true)
     }
 
     override fun onFieldValueChanged(firstName: String, lastName: String, nick: String) {

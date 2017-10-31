@@ -7,9 +7,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.jahu.playground.R
+import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.MvpActivity
+import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.AddUserUseCase
+import com.jahu.playground.usecases.users.GetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_edit_user.*
 
 class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
@@ -39,7 +42,9 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_user)
         val mode = intent.getSerializableExtra(MODE_EXTRA_KEY)
-        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, AddUserUseCase(MockedLocalDataRepository))
+        val addUserUseCase = AddUserUseCase(MockedLocalDataRepository)
+        val getActUserUseCase = GetActualUserUseCase(SharedPreferencesManager(this), MockedLocalDataRepository)
+        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, addUserUseCase, getActUserUseCase)
 
         confirmButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
@@ -49,6 +54,12 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         firstNameEditText.addTextChangedListener(fieldsValueWatcher)
         lastNameEditText.addTextChangedListener(fieldsValueWatcher)
         nickEditText.addTextChangedListener(fieldsValueWatcher)
+    }
+
+    override fun fillUserData(user: User) {
+        firstNameEditText.setText(user.firstName)
+        lastNameEditText.setText(user.lastName)
+        nickEditText.setText(user.nick)
     }
 
     override fun setAddButtonLabel() {
