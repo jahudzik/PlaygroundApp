@@ -12,18 +12,18 @@ class EditUserPresenter(
     override fun createView() {}
 
     override fun resumeView() {
-        view.setAddButtonEnabled(false)
+        view.setConfirmButtonEnabled(false)
     }
 
     override fun onFieldValueChanged(firstName: String, lastName: String, nick: String) {
         if (firstName.isEmpty() || lastName.isEmpty() || nick.isEmpty()) {
-            view.setAddButtonEnabled(false)
+            view.setConfirmButtonEnabled(false)
         } else {
-            view.setAddButtonEnabled(true)
+            view.setConfirmButtonEnabled(true)
         }
     }
 
-    override fun onAddButtonClicked(firstName: String, lastName: String, nick: String) {
+    override fun onConfirmButtonClicked(firstName: String, lastName: String, nick: String) {
         addUserUseCase.execute(User(firstName, lastName, nick), this)
     }
 

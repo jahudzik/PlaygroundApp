@@ -30,51 +30,51 @@ class EditUserPresenterTest {
     fun resumeView_expected() {
         presenter.resumeView()
 
-        verify(view).setAddButtonEnabled(false)
+        verify(view).setConfirmButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_noEmptyValues() {
         presenter.onFieldValueChanged("John", "Smith", "j")
 
-        verify(view).setAddButtonEnabled(true)
+        verify(view).setConfirmButtonEnabled(true)
     }
 
     @Test
     fun onFieldValueChanged_firstNameEmpty() {
         presenter.onFieldValueChanged("", "Smith", "johnny")
 
-        verify(view).setAddButtonEnabled(false)
+        verify(view).setConfirmButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_lastNameEmpty() {
         presenter.onFieldValueChanged("John", "", "johnny")
 
-        verify(view).setAddButtonEnabled(false)
+        verify(view).setConfirmButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_nickEmpty() {
         presenter.onFieldValueChanged("John", "Smith", "")
 
-        verify(view).setAddButtonEnabled(false)
+        verify(view).setConfirmButtonEnabled(false)
     }
 
     @Test
     fun onFieldValueChanged_allValuesEmpty() {
         presenter.onFieldValueChanged("", "", "")
 
-        verify(view).setAddButtonEnabled(false)
+        verify(view).setConfirmButtonEnabled(false)
     }
 
     @Test
-    fun onAddButtonClicked_expected() {
+    fun onConfirmButtonClicked_expected() {
         val firstName = "John"
         val lastName = "Smith"
         val nick = "js"
 
-        presenter.onAddButtonClicked(firstName, lastName, nick)
+        presenter.onConfirmButtonClicked(firstName, lastName, nick)
 
         verify(addUserUseCase).execute(eq(User(firstName, lastName, nick)), any())
     }

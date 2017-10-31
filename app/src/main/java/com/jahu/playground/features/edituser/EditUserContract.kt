@@ -6,7 +6,7 @@ interface EditUserContract {
 
     interface View {
 
-        fun setAddButtonEnabled(enabled: Boolean)
+        fun setConfirmButtonEnabled(enabled: Boolean)
 
         fun showErrorMessage(errorCode: ErrorCode)
 
@@ -18,7 +18,7 @@ interface EditUserContract {
 
         fun onFieldValueChanged(firstName: String, lastName: String, nick: String)
 
-        fun onAddButtonClicked(firstName: String, lastName: String, nick: String)
+        fun onConfirmButtonClicked(firstName: String, lastName: String, nick: String)
 
     }
 

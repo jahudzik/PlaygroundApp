@@ -28,9 +28,9 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         setContentView(R.layout.activity_add_user)
         presenter = EditUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
 
-        confirmNewUserButton.setOnClickListener {
+        confirmButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
-            presenter.onAddButtonClicked(firstName, lastName, nick)
+            presenter.onConfirmButtonClicked(firstName, lastName, nick)
         }
 
         firstNameEditText.addTextChangedListener(fieldsValueWatcher)
@@ -38,8 +38,8 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         nickEditText.addTextChangedListener(fieldsValueWatcher)
     }
 
-    override fun setAddButtonEnabled(enabled: Boolean) {
-        confirmNewUserButton.isEnabled = enabled
+    override fun setConfirmButtonEnabled(enabled: Boolean) {
+        confirmButton.isEnabled = enabled
     }
 
     override fun showErrorMessage(errorCode: EditUserContract.ErrorCode) {
