@@ -1,4 +1,4 @@
-package com.jahu.playground.features.adduser
+package com.jahu.playground.features.edituser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.usecases.users.AddUserUseCase
@@ -12,18 +12,18 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class AddUserPresenterTest {
+class EditUserPresenterTest {
 
-    private lateinit var presenter: AddUserPresenter
+    private lateinit var presenter: EditUserPresenter
 
-    @Mock private lateinit var view: AddUserContract.View
+    @Mock private lateinit var view: EditUserContract.View
 
     @Mock private lateinit var addUserUseCase: AddUserUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = AddUserPresenter(view, addUserUseCase)
+        presenter = EditUserPresenter(view, addUserUseCase)
     }
 
     @Test
@@ -88,7 +88,7 @@ class AddUserPresenterTest {
 
     @Test
     fun onError_expected() {
-        val errorCode = AddUserContract.ErrorCode.USER_EXISTS
+        val errorCode = EditUserContract.ErrorCode.USER_EXISTS
 
         presenter.onFailure(errorCode)
 

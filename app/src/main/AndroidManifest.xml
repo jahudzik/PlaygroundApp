@@ -27,7 +27,7 @@
     </activity>
 
     <activity
-        android:name=".features.adduser.AddUserActivity"
+        android:name=".features.edituser.EditUserActivity"
         android:screenOrientation="portrait"
         />
 

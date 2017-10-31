@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.jahu.playground.R
 import com.jahu.playground.dao.User
-import com.jahu.playground.features.adduser.AddUserActivity
 import com.jahu.playground.features.dashboard.DashboardActivity
+import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.mock.MockedLocalDataRepository
@@ -41,7 +41,7 @@ class ChooseUserActivity : MvpActivity<ChooseUserPresenter>(), ChooseUserContrac
     }
 
     override fun navigateToAddUserScreen() {
-        startActivity(Intent(this, AddUserActivity::class.java))
+        startActivity(Intent(this, EditUserActivity::class.java))
     }
 
     override fun onUserChosen(user: User) {

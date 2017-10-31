@@ -1,4 +1,4 @@
-package com.jahu.playground.features.adduser
+package com.jahu.playground.features.edituser
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +10,7 @@ import com.jahu.playground.repositories.mock.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.AddUserUseCase
 import kotlinx.android.synthetic.main.activity_add_user.*
 
-class AddUserActivity : MvpActivity<AddUserPresenter>(), AddUserContract.View {
+class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
 
     private val fieldsValueWatcher: TextWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}
@@ -26,7 +26,7 @@ class AddUserActivity : MvpActivity<AddUserPresenter>(), AddUserContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
-        presenter = AddUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
+        presenter = EditUserPresenter(this, AddUserUseCase(MockedLocalDataRepository))
 
         confirmNewUserButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
@@ -42,7 +42,7 @@ class AddUserActivity : MvpActivity<AddUserPresenter>(), AddUserContract.View {
         confirmNewUserButton.isEnabled = enabled
     }
 
-    override fun showErrorMessage(errorCode: AddUserContract.ErrorCode) {
+    override fun showErrorMessage(errorCode: EditUserContract.ErrorCode) {
         Toast.makeText(this, getString(R.string.error_nick_exists), Toast.LENGTH_LONG).show()
     }
 

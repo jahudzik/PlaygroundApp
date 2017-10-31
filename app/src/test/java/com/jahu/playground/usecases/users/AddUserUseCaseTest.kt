@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases.users
 
 import com.jahu.playground.dao.User
-import com.jahu.playground.features.adduser.AddUserContract
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.repositories.LocalDataRepository
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
@@ -45,7 +45,7 @@ class AddUserUseCaseTest {
         useCase.execute(user, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
-        verify(resultListener).onFailure(AddUserContract.ErrorCode.USER_EXISTS)
+        verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_EXISTS)
     }
 
     @After

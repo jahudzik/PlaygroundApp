@@ -1,13 +1,13 @@
-package com.jahu.playground.features.adduser
+package com.jahu.playground.features.edituser
 
 import com.jahu.playground.dao.User
-import com.jahu.playground.features.adduser.AddUserContract.ErrorCode
+import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.usecases.users.AddUserUseCase
 
-class AddUserPresenter(
-        private val view: AddUserContract.View,
+class EditUserPresenter(
+        private val view: EditUserContract.View,
         private val addUserUseCase: AddUserUseCase
-) : AddUserContract.Presenter, AddUserUseCase.ResultListener {
+) : EditUserContract.Presenter, AddUserUseCase.ResultListener {
 
     override fun createView() {}
 

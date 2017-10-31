@@ -1,8 +1,8 @@
-package com.jahu.playground.features.adduser
+package com.jahu.playground.features.edituser
 
 import com.jahu.playground.mvp.BasePresenter
 
-interface AddUserContract {
+interface EditUserContract {
 
     interface View {
 
