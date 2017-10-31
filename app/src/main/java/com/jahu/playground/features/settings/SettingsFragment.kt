@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.jahu.playground.R
 import com.jahu.playground.features.chooseuser.ChooseUserActivity
+import com.jahu.playground.features.edituser.EditUserActivity
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.usecases.users.SetActualUserUseCase
@@ -29,7 +31,12 @@ class SettingsFragment : MvpFragment<SettingsPresenter>(), SettingsContract.View
 
     override fun onResume() {
         super.onResume()
+        editUserButton.setOnClickListener { presenter.onEditUserButtonClicked() }
         logoutButton.setOnClickListener { presenter.onLogoutButtonClicked() }
+    }
+
+    override fun navigateToEditUserScreen(mode: EditUserContract.Mode) {
+        startActivity(EditUserActivity.getIntent(activity, mode))
     }
 
     override fun logout() {

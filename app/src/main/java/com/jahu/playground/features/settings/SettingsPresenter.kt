@@ -1,5 +1,6 @@
 package com.jahu.playground.features.settings
 
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.usecases.users.SetActualUserUseCase
 
 class SettingsPresenter(
@@ -16,4 +17,7 @@ class SettingsPresenter(
         view.logout()
     }
 
+    override fun onEditUserButtonClicked() {
+        view.navigateToEditUserScreen(EditUserContract.Mode.EDIT_USER)
+    }
 }

@@ -1,5 +1,6 @@
 package com.jahu.playground.features.settings
 
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.usecases.users.SetActualUserUseCase
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
@@ -21,6 +22,13 @@ class SettingsPresenterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         presenter = SettingsPresenter(view, setActualUserUseCase)
+    }
+
+    @Test
+    fun onEditUserButtonClicked_expected() {
+        presenter.onEditUserButtonClicked()
+
+        verify(view).navigateToEditUserScreen(EditUserContract.Mode.EDIT_USER)
     }
 
     @Test
