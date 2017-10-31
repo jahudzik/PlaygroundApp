@@ -41,10 +41,8 @@ class ChooseUserActivity : MvpActivity<ChooseUserPresenter>(), ChooseUserContrac
         usersRecyclerView.adapter = UsersAdapter(users, this)
     }
 
-    override fun navigateToAddUserScreen() {
-        val intent = Intent(this, EditUserActivity::class.java)
-        intent.putExtra(EditUserActivity.MODE_EXTRA_KEY, EditUserContract.Mode.ADD_USER)
-        startActivity(intent)
+    override fun navigateToEditUserScreen(mode: EditUserContract.Mode) {
+        startActivity(EditUserActivity.getIntent(this, mode))
     }
 
     override fun onUserChosen(user: User) {

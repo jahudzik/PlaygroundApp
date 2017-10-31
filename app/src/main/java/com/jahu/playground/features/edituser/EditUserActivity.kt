@@ -1,5 +1,7 @@
 package com.jahu.playground.features.edituser
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +16,12 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
 
     companion object {
         const val MODE_EXTRA_KEY = "mode"
+
+        fun getIntent(context: Context, mode: EditUserContract.Mode): Intent {
+            val intent = Intent(context, EditUserActivity::class.java)
+            intent.putExtra(EditUserActivity.MODE_EXTRA_KEY, mode)
+            return intent
+        }
     }
 
     private val fieldsValueWatcher: TextWatcher = object : TextWatcher {

@@ -1,6 +1,7 @@
 package com.jahu.playground.features.chooseuser
 
 import com.jahu.playground.dao.User
+import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.GetUsersUseCase
 import com.jahu.playground.usecases.users.SetActualUserUseCase
@@ -82,7 +83,7 @@ class ChooseUserPresenterTest {
     fun onAddUserButtonClicked_expected() {
         presenter.onAddUserButtonClicked()
 
-        verify(view).navigateToAddUserScreen()
+        verify(view).navigateToEditUserScreen(EditUserContract.Mode.ADD_USER)
     }
 
     @After
