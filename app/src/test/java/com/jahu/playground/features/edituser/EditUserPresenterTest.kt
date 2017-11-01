@@ -93,7 +93,7 @@ class EditUserPresenterTest {
 
         presenter.onConfirmButtonClicked(firstName, lastName, nick)
 
-        verify(addUserUseCase).execute(eq(User(firstName, lastName, nick)), any())
+        verify(addUserUseCase).execute(eq(firstName), eq(lastName), eq(nick), any())
     }
 
     @Test

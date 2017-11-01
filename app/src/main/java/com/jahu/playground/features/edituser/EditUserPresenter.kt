@@ -1,6 +1,5 @@
 package com.jahu.playground.features.edituser
 
-import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
@@ -43,7 +42,7 @@ class EditUserPresenter(
     }
 
     override fun onConfirmButtonClicked(firstName: String, lastName: String, nick: String) {
-        addUserUseCase.execute(User(firstName, lastName, nick), this)
+        addUserUseCase.execute(firstName, lastName, nick, this)
     }
 
     override fun onSuccess() {

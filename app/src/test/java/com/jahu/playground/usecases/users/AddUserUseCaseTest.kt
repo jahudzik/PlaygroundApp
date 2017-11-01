@@ -31,7 +31,7 @@ class AddUserUseCaseTest {
     fun execute_noUser() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(null)
 
-        useCase.execute(user, resultListener)
+        useCase.execute(user.firstName, user.lastName, user.nick, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
         verify(dataRepository).addUser(eq(user))
@@ -42,7 +42,7 @@ class AddUserUseCaseTest {
     fun execute_userExists() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
 
-        useCase.execute(user, resultListener)
+        useCase.execute(user.firstName, user.lastName, user.nick, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
         verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_EXISTS)
