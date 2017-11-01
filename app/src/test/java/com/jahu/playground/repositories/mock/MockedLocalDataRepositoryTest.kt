@@ -43,7 +43,7 @@ class MockedLocalDataRepositoryTest {
 
     @Test
     fun addUser_expected() {
-        val newUser = User("newby", "Adam", "Smith")
+        val newUser = User(1, "newby", "Adam", "Smith")
         val expectedItems = setOf(
                 MockedLocalDataRepository.user1,
                 MockedLocalDataRepository.user2,

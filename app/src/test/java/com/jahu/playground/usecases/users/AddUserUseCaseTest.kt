@@ -19,7 +19,7 @@ class AddUserUseCaseTest {
     @Mock private lateinit var resultListener: AddUserUseCase.ResultListener
 
     private val nick = "josh"
-    private val user = User("Josh", "Bosh", nick)
+    private val user = User(1, "Josh", "Bosh", nick)
 
     @Before
     fun setUp() {

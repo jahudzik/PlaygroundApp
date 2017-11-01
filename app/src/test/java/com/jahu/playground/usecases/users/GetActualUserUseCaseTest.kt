@@ -42,7 +42,7 @@ class GetActualUserUseCaseTest {
     @Test
     fun execute_actualUserFound() {
         val nick = "someNick"
-        val user = User("Some", "User", nick)
+        val user = User(1, "Some", "User", nick)
         whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
         whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
 

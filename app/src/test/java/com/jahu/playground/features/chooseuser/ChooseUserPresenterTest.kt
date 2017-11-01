@@ -54,9 +54,9 @@ class ChooseUserPresenterTest {
 
     @Test
     fun resumeView_someUsers() {
-        val user1 = User("user1", "Amy", "Adam")
-        val user2 = User("user2", "Eva", "Black")
-        val user3 = User("user3", "Mike", "Close")
+        val user1 = User(1, "user1", "Amy", "Adam")
+        val user2 = User(2, "user2", "Eva", "Black")
+        val user3 = User(3, "user3", "Mike", "Close")
         val usersSet = setOf(user3, user1, user2)
         val expectedUsersList = listOf(user1, user2, user3)
         whenever(getActualUserUseCase.execute()).thenReturn(null)
@@ -73,7 +73,7 @@ class ChooseUserPresenterTest {
     fun onUserChosen_expected() {
         val nick = "test"
 
-        presenter.onUserChosen(User("First", "Last", nick))
+        presenter.onUserChosen(User(1, "First", "Last", nick))
 
         verify(setActualUserUseCase).execute(eq(nick))
         verify(view).navigateToApp()

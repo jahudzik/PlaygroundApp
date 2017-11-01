@@ -11,7 +11,7 @@ class AddUserUseCase(
     fun execute(firstName: String, lastName: String, nick: String, resultListener: ResultListener) {
         val existingUser = dataRepository.getUserByNick(nick)
         if (existingUser == null) {
-            dataRepository.addUser(User(firstName, lastName, nick))
+            dataRepository.addUser(User(1, firstName, lastName, nick))
             resultListener.onSuccess()
         } else {
             resultListener.onFailure(ErrorCode.USER_EXISTS)

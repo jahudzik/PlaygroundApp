@@ -21,10 +21,10 @@ class GetLeaderboardEntriesUseCaseTest {
     @Mock private lateinit var localDataRepository: LocalDataRepository
 
     private val testUsers = listOf(
-            User("John", "Smith", "smithy"),
-            User("Anna", "Brown", "anna"),
-            User("Eric", "Newman", "eric"),
-            User("Maria", "McDonald", "mary")
+            User(1, "John", "Smith", "smithy"),
+            User(2, "Anna", "Brown", "anna"),
+            User(3, "Eric", "Newman", "eric"),
+            User(4, "Maria", "McDonald", "mary")
     )
 
     @Before

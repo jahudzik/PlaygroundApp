@@ -65,7 +65,7 @@ class GameSetupPresenterTest {
     @Test
     fun resumeView_expected() {
         val nick = "someNick"
-        val user = User("John", "Smith", nick)
+        val user = User(1, "John", "Smith", nick)
         whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
         whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
 

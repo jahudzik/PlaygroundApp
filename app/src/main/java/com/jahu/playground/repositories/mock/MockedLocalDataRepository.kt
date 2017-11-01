@@ -4,14 +4,15 @@ import com.jahu.playground.dao.GameResult
 import com.jahu.playground.dao.User
 import com.jahu.playground.repositories.LocalDataRepository
 
+@SuppressWarnings("MagicNumber")
 object MockedLocalDataRepository : LocalDataRepository {
 
     private val usersMap: MutableMap<String, User> = mutableMapOf()
     private val resultsList: MutableList<GameResult> = mutableListOf()
 
-    val user1 = User("Mike", "Jones", "mike66")
-    val user2 = User("Alice", "McMaster", "hippo")
-    val user3 = User("Barbara", "Summers", "barb")
+    val user1 = User(1, "Mike", "Jones", "mike66")
+    val user2 = User(2, "Alice", "McMaster", "hippo")
+    val user3 = User(3, "Barbara", "Summers", "barb")
 
     init {
         fillMockData()
