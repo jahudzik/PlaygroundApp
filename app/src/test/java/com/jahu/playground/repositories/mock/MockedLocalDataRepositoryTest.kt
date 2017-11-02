@@ -58,6 +58,31 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
+    fun getHighestUserId_initialState() {
+        val id = MockedLocalDataRepository.getHighestUserId()
+
+        assertEquals(3L, id)
+    }
+
+    @Test
+    fun getHighestUserId_extraUserWithLowerId() {
+        MockedLocalDataRepository.addUser(User(0, "test", "test", "test"))
+
+        val id = MockedLocalDataRepository.getHighestUserId()
+
+        assertEquals(3L, id)
+    }
+
+    @Test
+    fun getHighestUserId_extraUserWithHigherId() {
+        MockedLocalDataRepository.addUser(User(5, "test", "test", "test"))
+
+        val id = MockedLocalDataRepository.getHighestUserId()
+
+        assertEquals(5L, id)
+    }
+
+    @Test
     fun getGameResultsByNick_initialEmpty() {
         val results = MockedLocalDataRepository.getGameResultsByNick("someNick")
 

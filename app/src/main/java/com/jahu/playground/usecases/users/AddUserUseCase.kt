@@ -11,10 +11,20 @@ class AddUserUseCase(
     fun execute(firstName: String, lastName: String, nick: String, resultListener: ResultListener) {
         val existingUser = dataRepository.getUserByNick(nick)
         if (existingUser == null) {
-            dataRepository.addUser(User(1, firstName, lastName, nick))
+            val userId = generateUserId()
+            dataRepository.addUser(User(userId, firstName, lastName, nick))
             resultListener.onSuccess()
         } else {
             resultListener.onFailure(ErrorCode.USER_EXISTS)
+        }
+    }
+
+    private fun generateUserId(): Long {
+        val highestUserId = dataRepository.getHighestUserId()
+        return if (highestUserId != null) {
+            highestUserId + 1
+        } else {
+            1
         }
     }
 

@@ -33,6 +33,14 @@ object MockedLocalDataRepository : LocalDataRepository {
         return usersMap.values.toSet()
     }
 
+    override fun getHighestUserId(): Long? {
+        return if (usersMap.isNotEmpty()) {
+            usersMap.values.map { it.id }.sorted().last()
+        } else {
+            null
+        }
+    }
+
     override fun getUserByNick(nick: String): User? {
         return usersMap[nick]
     }

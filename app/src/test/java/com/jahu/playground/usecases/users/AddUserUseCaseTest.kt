@@ -19,7 +19,8 @@ class AddUserUseCaseTest {
     @Mock private lateinit var resultListener: AddUserUseCase.ResultListener
 
     private val nick = "josh"
-    private val user = User(1, "Josh", "Bosh", nick)
+    private val firstName = "Josh"
+    private val lastName = "Bosh"
 
     @Before
     fun setUp() {
@@ -30,19 +31,22 @@ class AddUserUseCaseTest {
     @Test
     fun execute_noUser() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(null)
+        whenever(dataRepository.getHighestUserId()).thenReturn(1)
 
-        useCase.execute(user.firstName, user.lastName, user.nick, resultListener)
+        useCase.execute(firstName, lastName, nick, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
-        verify(dataRepository).addUser(eq(user))
+        verify(dataRepository).getHighestUserId()
+        verify(dataRepository).addUser(eq(User(2, firstName, lastName, nick)))
         verify(resultListener).onSuccess()
     }
 
     @Test
     fun execute_userExists() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
+        whenever(dataRepository.getHighestUserId()).thenReturn(1)
 
-        useCase.execute(user.firstName, user.lastName, user.nick, resultListener)
+        useCase.execute(firstName, lastName, nick, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
         verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_EXISTS)

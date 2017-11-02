@@ -9,6 +9,8 @@ interface LocalDataRepository {
 
     fun getUserByNick(nick: String): User?
 
+    fun getHighestUserId(): Long?
+
     fun addUser(user: User)
 
     fun addGameResult(gameResult: GameResult)
