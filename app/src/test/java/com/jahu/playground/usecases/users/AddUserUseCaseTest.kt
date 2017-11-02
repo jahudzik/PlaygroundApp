@@ -29,7 +29,20 @@ class AddUserUseCaseTest {
     }
 
     @Test
-    fun execute_noUser() {
+    fun execute_noUsers() {
+        whenever(dataRepository.getUserByNick(any())).thenReturn(null)
+        whenever(dataRepository.getHighestUserId()).thenReturn(null)
+
+        useCase.execute(firstName, lastName, nick, resultListener)
+
+        verify(dataRepository).getUserByNick(eq(nick))
+        verify(dataRepository).getHighestUserId()
+        verify(dataRepository).addUser(eq(User(1, firstName, lastName, nick)))
+        verify(resultListener).onSuccess()
+    }
+
+    @Test
+    fun execute_noSuchUser() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(null)
         whenever(dataRepository.getHighestUserId()).thenReturn(1)
 
@@ -42,7 +55,7 @@ class AddUserUseCaseTest {
     }
 
     @Test
-    fun execute_userExists() {
+    fun execute_suchUserExists() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
         whenever(dataRepository.getHighestUserId()).thenReturn(1)
 
