@@ -27,6 +27,21 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
+    fun getUserById_existing() {
+        val user = MockedLocalDataRepository.getUserById(3)
+
+        assertNotNull(user)
+        assertEquals(MockedLocalDataRepository.user3, user)
+    }
+
+    @Test
+    fun getUserById_notExisting() {
+        val user = MockedLocalDataRepository.getUserById(4)
+
+        assertNull(user)
+    }
+
+    @Test
     fun getUserByNick_existing() {
         val user = MockedLocalDataRepository.getUserByNick("hippo")
 
@@ -35,7 +50,7 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
-    fun getUserByNick_unknown() {
+    fun getUserByNick_notExisting() {
         val user = MockedLocalDataRepository.getUserByNick("unknown")
 
         assertNull(user)
@@ -43,7 +58,7 @@ class MockedLocalDataRepositoryTest {
 
     @Test
     fun addUser_expected() {
-        val newUser = User(1, "newby", "Adam", "Smith")
+        val newUser = User(4, "newby", "Adam", "Smith")
         val expectedItems = setOf(
                 MockedLocalDataRepository.user1,
                 MockedLocalDataRepository.user2,

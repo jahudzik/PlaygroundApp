@@ -7,7 +7,7 @@ import com.jahu.playground.repositories.LocalDataRepository
 @SuppressWarnings("MagicNumber")
 object MockedLocalDataRepository : LocalDataRepository {
 
-    private val usersMap: MutableMap<String, User> = mutableMapOf()
+    private val usersMap: MutableMap<Long, User> = mutableMapOf()
     private val resultsList: MutableList<GameResult> = mutableListOf()
 
     val user1 = User(1, "Mike", "Jones", "mike66")
@@ -41,12 +41,17 @@ object MockedLocalDataRepository : LocalDataRepository {
         }
     }
 
+    override fun getUserById(id: Long): User? {
+        return usersMap[id]
+    }
+
     override fun getUserByNick(nick: String): User? {
-        return usersMap[nick]
+        val users = usersMap.values.filter { it.nick == nick }
+        return if (users.isNotEmpty()) users.first() else null
     }
 
     override fun addUser(user: User) {
-        usersMap.put(user.nick, user)
+        usersMap.put(user.id, user)
     }
 
     override fun addGameResult(gameResult: GameResult) {

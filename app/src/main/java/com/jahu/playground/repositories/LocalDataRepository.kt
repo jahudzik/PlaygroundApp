@@ -7,6 +7,8 @@ interface LocalDataRepository {
 
     fun getAllUsers(): Set<User>
 
+    fun getUserById(id: Long): User?
+
     fun getUserByNick(nick: String): User?
 
     fun getHighestUserId(): Long?
