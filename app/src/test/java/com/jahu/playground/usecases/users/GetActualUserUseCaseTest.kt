@@ -31,26 +31,26 @@ class GetActualUserUseCaseTest {
 
     @Test
     fun execute_noActualUser() {
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(-1)
 
         val result = useCase.execute()
 
         assertNull(result)
-        verify(sharedPreferencesManager).getActualUserNick()
+        verify(sharedPreferencesManager).getActualUserId()
     }
 
     @Test
     fun execute_actualUserFound() {
-        val nick = "someNick"
-        val user = User(1, "Some", "User", nick)
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
+        val userId = 1L
+        val user = User(userId, "Some", "User", "nick")
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
+        whenever(dataRepository.getUserById(userId)).thenReturn(user)
 
         val result = useCase.execute()
 
         assertEquals(user, result)
-        verify(sharedPreferencesManager).getActualUserNick()
-        verify(dataRepository).getUserByNick(eq(nick))
+        verify(sharedPreferencesManager).getActualUserId()
+        verify(dataRepository).getUserById(eq(userId))
     }
 
     @After

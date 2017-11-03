@@ -26,6 +26,7 @@ object MockedLocalDataRepository : LocalDataRepository {
 
     fun reset() {
         usersMap.clear()
+        resultsList.clear()
         fillMockData()
     }
 
@@ -62,7 +63,7 @@ object MockedLocalDataRepository : LocalDataRepository {
         return resultsList
     }
 
-    override fun getGameResultsByNick(nick: String): List<GameResult> {
-        return resultsList.filter { it.nick == nick }
+    override fun getGameResultsById(userId: Long): List<GameResult> {
+        return resultsList.filter { it.userId == userId }
     }
 }

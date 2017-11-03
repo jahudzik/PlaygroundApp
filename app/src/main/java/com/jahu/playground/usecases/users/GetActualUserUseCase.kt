@@ -10,8 +10,8 @@ class GetActualUserUseCase(
 ) {
 
     fun execute() : User? {
-        val nick = sharedPreferencesManager.getActualUserNick()
-        return if (nick != null) localDataRepository.getUserByNick(nick) else null
+        val userId = sharedPreferencesManager.getActualUserId()
+        return if (userId != -1L) localDataRepository.getUserById(userId) else null
     }
 
 }

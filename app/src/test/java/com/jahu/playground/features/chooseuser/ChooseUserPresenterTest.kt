@@ -71,11 +71,9 @@ class ChooseUserPresenterTest {
 
     @Test
     fun onUserChosen_expected() {
-        val nick = "test"
+        presenter.onUserChosen(User(1, "First", "Last", "test"))
 
-        presenter.onUserChosen(User(1, "First", "Last", nick))
-
-        verify(setActualUserUseCase).execute(eq(nick))
+        verify(setActualUserUseCase).execute(eq(1))
         verify(view).navigateToApp()
     }
 

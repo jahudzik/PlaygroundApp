@@ -12,7 +12,7 @@ class GetLeaderboardEntriesUseCase(
         val allResults = localDataRepository.getGameResults()
         return localDataRepository.getAllUsers()
                 .map { user ->
-                    val userGames = allResults.filter { it.nick == user.nick }
+                    val userGames = allResults.filter { it.userId == user.id }
                     val gamesCount = userGames.count()
                     val averageScore = if (gamesCount > 0) userGames.sumBy { it.correctAnswersCount }.toDouble() / gamesCount else 0.0
                     LeaderboardEntry(

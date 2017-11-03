@@ -13,7 +13,7 @@ class SettingsPresenter(
     override fun resumeView() {}
 
     override fun onLogoutButtonClicked() {
-        setActualUserUseCase.execute(null)
+        setActualUserUseCase.execute(-1)
         view.logout()
     }
 

@@ -39,7 +39,7 @@ class ChooseUserPresenter(
     }
 
     override fun onUserChosen(user: User) {
-        setActualUserUseCase.execute(user.nick)
+        setActualUserUseCase.execute(user.id)
         view.navigateToApp()
     }
 

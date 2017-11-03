@@ -13,9 +13,9 @@ class AddGameResultUseCase(
 ) {
 
     fun execute(correctAnswersCount: Int) {
-        val userNick = sharedPreferencesManager.getActualUserNick()
-        if (userNick != null) {
-            val gameResult = GameResult(userNick, correctAnswersCount, timeProvider.getCurrentTimestamp())
+        val userId = sharedPreferencesManager.getActualUserId()
+        if (userId != -1L) {
+            val gameResult = GameResult(userId, correctAnswersCount, timeProvider.getCurrentTimestamp())
             localDataRepository.addGameResult(gameResult)
         } else {
             Timber.e("Failed to add game result - null user nick")

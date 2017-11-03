@@ -19,6 +19,6 @@ interface LocalDataRepository {
 
     fun getGameResults(): List<GameResult>
 
-    fun getGameResultsByNick(nick: String): List<GameResult>
+    fun getGameResultsById(userId: Long): List<GameResult>
 
 }

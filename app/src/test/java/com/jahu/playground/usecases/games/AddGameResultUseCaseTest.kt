@@ -31,18 +31,18 @@ class AddGameResultUseCaseTest {
 
     @Test
     fun execute_expected() {
-        val nick = "someNick"
+        val userId = 1L
         val correctAnswersCount = 9
         val currentTimestamp = 777L
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
         whenever(timeProvider.getCurrentTimestamp()).thenReturn(currentTimestamp)
 
         useCase.execute(correctAnswersCount)
 
-        verify(sharedPreferencesManager).getActualUserNick()
+        verify(sharedPreferencesManager).getActualUserId()
         verify(timeProvider).getCurrentTimestamp()
         verify(dataRepository).addGameResult(com.nhaarman.mockito_kotlin.check {
-            assertEquals(nick, it.nick)
+            assertEquals(userId, it.userId)
             assertEquals(correctAnswersCount, it.correctAnswersCount)
             assertEquals(currentTimestamp, it.timestamp)
         })
@@ -50,11 +50,11 @@ class AddGameResultUseCaseTest {
 
     @Test
     fun execute_nullNick() {
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(-1L)
 
         useCase.execute(4)
 
-        verify(sharedPreferencesManager).getActualUserNick()
+        verify(sharedPreferencesManager).getActualUserId()
         // nothing else happens
     }
 

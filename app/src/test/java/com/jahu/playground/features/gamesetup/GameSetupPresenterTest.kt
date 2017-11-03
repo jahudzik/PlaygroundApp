@@ -33,46 +33,46 @@ class GameSetupPresenterTest {
 
     @Test
     fun resumeView_noUserNick() {
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(null)
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(-1)
 
         var exceptionThrown = false
         try {
             presenter.resumeView()
         } catch (e: IllegalStateException) {
             exceptionThrown = true
-            verify(sharedPreferencesManager).getActualUserNick()
+            verify(sharedPreferencesManager).getActualUserId()
         }
         assertTrue(exceptionThrown)
     }
 
     @Test
     fun resumeView_noUserData() {
-        val nick = "someNick"
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepository.getUserByNick(nick)).thenReturn(null)
+        val userId = 1L
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
+        whenever(dataRepository.getUserById(userId)).thenReturn(null)
 
         var exceptionThrown = false
         try {
             presenter.resumeView()
         } catch (e: IllegalStateException) {
             exceptionThrown = true
-            verify(sharedPreferencesManager).getActualUserNick()
-            verify(dataRepository).getUserByNick(eq(nick))
+            verify(sharedPreferencesManager).getActualUserId()
+            verify(dataRepository).getUserById(eq(userId))
         }
         assertTrue(exceptionThrown)
     }
 
     @Test
     fun resumeView_expected() {
-        val nick = "someNick"
-        val user = User(1, "John", "Smith", nick)
-        whenever(sharedPreferencesManager.getActualUserNick()).thenReturn(nick)
-        whenever(dataRepository.getUserByNick(nick)).thenReturn(user)
+        val userId = 1L
+        val user = User(userId, "John", "Smith", "someNick")
+        whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
+        whenever(dataRepository.getUserById(userId)).thenReturn(user)
 
         presenter.resumeView()
 
-        verify(sharedPreferencesManager).getActualUserNick()
-        verify(dataRepository).getUserByNick(eq(nick))
+        verify(sharedPreferencesManager).getActualUserId()
+        verify(dataRepository).getUserById(eq(userId))
         verify(view).showUserName(eq(user.firstName))
     }
 

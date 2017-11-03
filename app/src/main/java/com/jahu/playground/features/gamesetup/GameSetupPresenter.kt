@@ -39,9 +39,11 @@ class GameSetupPresenter(
     }
 
     private fun getActualUser(): User {
-        val nick = sharedPreferencesManager.getActualUserNick() ?:
-                throw IllegalStateException("No information about current user (nick)")
-        return dataRepository.getUserByNick(nick) ?:
+        val userId = sharedPreferencesManager.getActualUserId()
+        if (userId == -1L) {
+            throw IllegalStateException("No information about current user (user id)")
+        }
+        return dataRepository.getUserById(userId) ?:
                 throw IllegalStateException("No information about current user (user data)")
     }
 

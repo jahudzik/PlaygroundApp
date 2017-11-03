@@ -98,45 +98,42 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
-    fun getGameResultsByNick_initialEmpty() {
-        val results = MockedLocalDataRepository.getGameResultsByNick("someNick")
+    fun getGameResultsById_initialEmpty() {
+        val results = MockedLocalDataRepository.getGameResultsById(1)
 
         assertEquals(emptyList<GameResult>(), results)
     }
 
     @Test
-    fun getGameResultsByNick_singleUser() {
-        val nick = "me"
+    fun getGameResultsById_singleUser() {
+        val userId = 3L
         val inputResults = listOf(
-                GameResult(nick, 5, 300),
-                GameResult(nick, 7, 304),
-                GameResult(nick, 4, 444))
+                GameResult(userId, 5, 300),
+                GameResult(userId, 7, 304),
+                GameResult(userId, 4, 444))
         inputResults.map { MockedLocalDataRepository.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsByNick(nick)
+        val outputResults = MockedLocalDataRepository.getGameResultsById(userId)
 
         assertEquals(inputResults, outputResults)
     }
 
     @Test
-    fun getGameResultsByNick_multipleUsers() {
-        val nick1 = "first"
-        val nick2 = "second"
-        val nick3 = "third"
+    fun getGameResultsById_multipleUsers() {
         val inputResults = listOf(
-                GameResult(nick1, 5, 10),
-                GameResult(nick1, 7, 20),
-                GameResult(nick3, 2, 30),
-                GameResult(nick1, 10, 33),
-                GameResult(nick3, 4, 45),
-                GameResult(nick2, 9, 50))
+                GameResult(1, 5, 10),
+                GameResult(1, 7, 20),
+                GameResult(3, 2, 30),
+                GameResult(1, 10, 33),
+                GameResult(3, 4, 45),
+                GameResult(2, 9, 50))
         val expectedResults = listOf(
-                GameResult(nick3, 2, 30),
-                GameResult(nick3, 4, 45)
+                GameResult(3, 2, 30),
+                GameResult(3, 4, 45)
         )
         inputResults.map { MockedLocalDataRepository.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsByNick(nick3)
+        val outputResults = MockedLocalDataRepository.getGameResultsById(3)
 
         assertEquals(expectedResults, outputResults)
     }

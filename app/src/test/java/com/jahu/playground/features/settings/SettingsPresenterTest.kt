@@ -35,7 +35,7 @@ class SettingsPresenterTest {
     fun onLogoutButtonClicked_expected() {
         presenter.onLogoutButtonClicked()
 
-        verify(setActualUserUseCase).execute(null)
+        verify(setActualUserUseCase).execute(-1)
         verify(view).logout()
     }
 

@@ -6,8 +6,8 @@ class SetActualUserUseCase(
         private val preferencesManager: SharedPreferencesManager
 ) {
 
-    fun execute(nick: String?) {
-        preferencesManager.setActualUserNick(nick)
+    fun execute(userId: Long) {
+        preferencesManager.setActualUserId(userId)
     }
 
 }

@@ -23,10 +23,9 @@ class SetActualUserUseCaseTest {
 
     @Test
     fun execute_expected() {
-        val nick = "jahu"
-        useCase.execute(nick)
+        useCase.execute(14)
 
-        verify(preferencesManager).setActualUserNick(nick)
+        verify(preferencesManager).setActualUserId(14)
     }
 
     @After

@@ -35,7 +35,7 @@ class GetLeaderboardEntriesUseCaseTest {
 
     @Test
     fun execute_singleUser_coupleGamesPlayed() {
-        val userGames = buildGameResultsList(testUsers[0].nick, 8, 6, 7, 4)
+        val userGames = buildGameResultsList(testUsers[0].id, 8, 6, 7, 4)
         whenever(localDataRepository.getAllUsers()).thenReturn(setOf(testUsers[0]))
         whenever(localDataRepository.getGameResults()).thenReturn(userGames)
 
@@ -49,7 +49,7 @@ class GetLeaderboardEntriesUseCaseTest {
 
     @Test
     fun execute_roundAverageScore() {
-        val userGames = buildGameResultsList(testUsers[0].nick, 2, 2, 2, 2, 2, 3)
+        val userGames = buildGameResultsList(testUsers[0].id, 2, 2, 2, 2, 2, 3)
         whenever(localDataRepository.getAllUsers()).thenReturn(setOf(testUsers[0]))
         whenever(localDataRepository.getGameResults()).thenReturn(userGames)
 
@@ -76,10 +76,10 @@ class GetLeaderboardEntriesUseCaseTest {
 
     @Test
     fun execute_multipleUsers() {
-        val userGames = buildGameResultsList(testUsers[0].nick, 7, 6, 1, 4, 5)
-                .plus(buildGameResultsList(testUsers[1].nick, 1, 4, 5, 2, 1, 2))
-                .plus(buildGameResultsList(testUsers[2].nick))
-                .plus(buildGameResultsList(testUsers[3].nick, 10, 9, 8, 9))
+        val userGames = buildGameResultsList(testUsers[0].id, 7, 6, 1, 4, 5)
+                .plus(buildGameResultsList(testUsers[1].id, 1, 4, 5, 2, 1, 2))
+                .plus(buildGameResultsList(testUsers[2].id))
+                .plus(buildGameResultsList(testUsers[3].id, 10, 9, 8, 9))
         whenever(localDataRepository.getAllUsers()).thenReturn(testUsers.toSet())
         whenever(localDataRepository.getGameResults()).thenReturn(userGames)
 
@@ -96,8 +96,8 @@ class GetLeaderboardEntriesUseCaseTest {
         assertEquals(expectedResult, resultList)
     }
 
-    private fun buildGameResultsList(userNick: String, vararg results: Int): List<GameResult> {
-        return if (results.isNotEmpty()) results.map { GameResult(userNick, it, 100) } else emptyList()
+    private fun buildGameResultsList(userId: Long, vararg results: Int): List<GameResult> {
+        return if (results.isNotEmpty()) results.map { GameResult(userId, it, 100) } else emptyList()
     }
 
     @After

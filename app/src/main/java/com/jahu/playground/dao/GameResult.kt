@@ -1,7 +1,7 @@
 package com.jahu.playground.dao
 
 data class GameResult(
-        val nick: String,
+        val userId: Long,
         val correctAnswersCount: Int,
         val timestamp: Long
 )
