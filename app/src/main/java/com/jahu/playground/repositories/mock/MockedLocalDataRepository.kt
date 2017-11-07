@@ -60,6 +60,15 @@ object MockedLocalDataRepository : LocalDataRepository {
         }
     }
 
+    override fun updateUser(user: User): LocalDataRepository.OperationResult {
+        if (!usersMap.containsKey(user.id)) {
+            return LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS
+        } else {
+            usersMap.put(user.id, user)
+            return LocalDataRepository.OperationResult.SUCCESS
+        }
+    }
+
     override fun addGameResult(gameResult: GameResult) {
         resultsList.add(gameResult)
     }

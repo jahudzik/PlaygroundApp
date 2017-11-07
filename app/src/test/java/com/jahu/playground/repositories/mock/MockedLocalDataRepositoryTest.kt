@@ -82,6 +82,29 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
+    fun updateUser_expected() {
+        val newUser2 = MockedLocalDataRepository.user2.copy(nick = "newby")
+        val expectedItems = setOf(
+                MockedLocalDataRepository.user1,
+                newUser2,
+                MockedLocalDataRepository.user3
+        )
+
+        val result = MockedLocalDataRepository.updateUser(newUser2)
+        val users = MockedLocalDataRepository.getAllUsers()
+
+        assertEquals(expectedItems, users)
+        assertEquals(LocalDataRepository.OperationResult.SUCCESS, result)
+    }
+
+    @Test
+    fun updateUser_userNotExists() {
+        val result = MockedLocalDataRepository.updateUser(User(5, "Fake", "Fake", "fake"))
+
+        assertEquals(LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS, result)
+    }
+
+    @Test
     fun getHighestUserId_initialState() {
         val id = MockedLocalDataRepository.getHighestUserId()
 
