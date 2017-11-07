@@ -35,7 +35,8 @@ interface EditUserContract {
     }
 
     enum class ErrorCode {
-        NICK_EXISTS
+        NICK_EXISTS,
+        USER_NOT_EXISTS
     }
 
 }
