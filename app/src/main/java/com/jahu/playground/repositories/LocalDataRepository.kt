@@ -13,12 +13,17 @@ interface LocalDataRepository {
 
     fun getHighestUserId(): Long?
 
-    fun addUser(user: User)
+    fun addUser(user: User): OperationResult
 
     fun addGameResult(gameResult: GameResult)
 
     fun getGameResults(): List<GameResult>
 
     fun getGameResultsById(userId: Long): List<GameResult>
+
+    enum class OperationResult {
+        SUCCESS,
+        FAILURE_USER_EXISTS
+    }
 
 }
