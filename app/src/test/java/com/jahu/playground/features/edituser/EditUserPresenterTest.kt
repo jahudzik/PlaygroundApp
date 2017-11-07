@@ -105,7 +105,7 @@ class EditUserPresenterTest {
 
     @Test
     fun onError_expected() {
-        val errorCode = EditUserContract.ErrorCode.USER_EXISTS
+        val errorCode = EditUserContract.ErrorCode.NICK_EXISTS
 
         presenter.onFailure(errorCode)
 

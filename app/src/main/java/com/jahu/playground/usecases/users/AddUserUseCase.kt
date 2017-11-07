@@ -15,7 +15,7 @@ class AddUserUseCase(
             dataRepository.addUser(User(userId, firstName, lastName, nick))
             resultListener.onSuccess()
         } else {
-            resultListener.onFailure(ErrorCode.USER_EXISTS)
+            resultListener.onFailure(ErrorCode.NICK_EXISTS)
         }
     }
 

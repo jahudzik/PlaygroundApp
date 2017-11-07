@@ -55,14 +55,14 @@ class AddUserUseCaseTest {
     }
 
     @Test
-    fun execute_suchUserExists() {
+    fun execute_suchNickExists() {
         whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
         whenever(dataRepository.getHighestUserId()).thenReturn(1)
 
         useCase.execute(firstName, lastName, nick, resultListener)
 
         verify(dataRepository).getUserByNick(eq(nick))
-        verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_EXISTS)
+        verify(resultListener).onFailure(EditUserContract.ErrorCode.NICK_EXISTS)
     }
 
     @After
