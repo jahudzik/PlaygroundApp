@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.jahu.playground.R
 import com.jahu.playground.dao.LeaderboardEntry
 import com.jahu.playground.mvp.MvpFragment
-import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.usecases.games.GetLeaderboardEntriesUseCase
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
 

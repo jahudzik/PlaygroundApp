@@ -11,7 +11,7 @@ import com.jahu.playground.R
 import com.jahu.playground.features.game.GameActivity
 import com.jahu.playground.mvp.MvpFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
 import kotlinx.android.synthetic.main.fragment_game_setup.*

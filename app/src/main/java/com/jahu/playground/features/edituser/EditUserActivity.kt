@@ -10,7 +10,7 @@ import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_edit_user.*

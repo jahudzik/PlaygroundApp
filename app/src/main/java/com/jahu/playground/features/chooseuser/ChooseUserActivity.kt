@@ -11,7 +11,7 @@ import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.mock.MockedLocalDataRepository
+import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.GetUsersUseCase
 import com.jahu.playground.usecases.users.SetActualUserUseCase

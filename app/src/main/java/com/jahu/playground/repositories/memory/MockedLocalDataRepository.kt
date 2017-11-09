@@ -1,4 +1,4 @@
-package com.jahu.playground.repositories.mock
+package com.jahu.playground.repositories.memory
 
 import com.jahu.playground.dao.User
 
