@@ -23,6 +23,8 @@ interface LocalDataRepository {
 
     fun getGameResultsById(userId: Long): List<GameResult>
 
+    fun reset()
+
     enum class OperationResult {
         SUCCESS,
         FAILURE_USER_EXISTS,
