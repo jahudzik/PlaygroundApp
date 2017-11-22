@@ -89,15 +89,37 @@ class EditUserPresenterTest {
     }
 
     @Test
-    fun onConfirmButtonClicked_addMode_expected() {
+    fun onConfirmButtonClicked_addMode_success() {
         val firstName = "John"
         val lastName = "Smith"
         val nick = "js"
+        whenever(addUserUseCase.execute(any(), any(), any(), any())).thenAnswer { invocation ->
+            val resultListener = invocation.getArgument<AddUserUseCase.ResultListener>(3)
+            resultListener.onSuccess()
+        }
         initAddMode()
 
         presenter.onConfirmButtonClicked(firstName, lastName, nick)
 
         verify(addUserUseCase).execute(eq(firstName), eq(lastName), eq(nick), any())
+        verify(view).close()
+    }
+
+    @Test
+    fun onConfirmButtonClicked_addMode_failure() {
+        val firstName = "John"
+        val lastName = "Smith"
+        val nick = "js"
+        whenever(addUserUseCase.execute(any(), any(), any(), any())).thenAnswer { invocation ->
+            val resultListener = invocation.getArgument<AddUserUseCase.ResultListener>(3)
+            resultListener.onFailure(EditUserContract.ErrorCode.NICK_EXISTS)
+        }
+        initAddMode()
+
+        presenter.onConfirmButtonClicked(firstName, lastName, nick)
+
+        verify(addUserUseCase).execute(eq(firstName), eq(lastName), eq(nick), any())
+        verify(view).showErrorMessage(EditUserContract.ErrorCode.NICK_EXISTS)
     }
 
     @Test
