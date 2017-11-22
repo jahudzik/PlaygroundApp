@@ -40,7 +40,7 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
 
     override fun getGameResults() = resultsList
 
-    override fun getGameResultsById(userId: Long) = resultsList.filter { it.userId == userId }
+    override fun getGameResultsByUserId(userId: Long) = resultsList.filter { it.userId == userId }
 
     override fun reset() {
         usersMap.clear()

@@ -113,14 +113,14 @@ class MockedLocalDataRepositoryTest {
     }
 
     @Test
-    fun getGameResultsById_initialEmpty() {
-        val results = MockedLocalDataRepository.getGameResultsById(1)
+    fun getGameResultsByUserId_initialEmpty() {
+        val results = MockedLocalDataRepository.getGameResultsByUserId(1)
 
         assertEquals(emptyList<GameResult>(), results)
     }
 
     @Test
-    fun getGameResultsById_singleUser() {
+    fun getGameResultsByUserId_singleUser() {
         val userId = 3L
         val inputResults = listOf(
                 GameResult(userId, 5, 300),
@@ -128,13 +128,13 @@ class MockedLocalDataRepositoryTest {
                 GameResult(userId, 4, 444))
         inputResults.map { MockedLocalDataRepository.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsById(userId)
+        val outputResults = MockedLocalDataRepository.getGameResultsByUserId(userId)
 
         assertEquals(inputResults, outputResults)
     }
 
     @Test
-    fun getGameResultsById_multipleUsers() {
+    fun getGameResultsByUserId_multipleUsers() {
         val inputResults = listOf(
                 GameResult(1, 5, 10),
                 GameResult(1, 7, 20),
@@ -148,7 +148,7 @@ class MockedLocalDataRepositoryTest {
         )
         inputResults.map { MockedLocalDataRepository.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsById(3)
+        val outputResults = MockedLocalDataRepository.getGameResultsByUserId(3)
 
         assertEquals(expectedResults, outputResults)
     }

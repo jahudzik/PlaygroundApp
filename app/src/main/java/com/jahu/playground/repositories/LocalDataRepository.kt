@@ -21,7 +21,7 @@ interface LocalDataRepository {
 
     fun getGameResults(): List<GameResult>
 
-    fun getGameResultsById(userId: Long): List<GameResult>
+    fun getGameResultsByUserId(userId: Long): List<GameResult>
 
     fun reset()
 
