@@ -9,12 +9,14 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
     private val usersMap: MutableMap<Long, User> = mutableMapOf()
     private val resultsList: MutableList<GameResult> = mutableListOf()
 
-    override fun reset() {
-        usersMap.clear()
-        resultsList.clear()
-    }
-
     override fun getAllUsers() = usersMap.values.toSet()
+
+    override fun getUserById(id: Long) = usersMap[id]
+
+    override fun getUserByNick(nick: String): User? {
+        val users = usersMap.values.filter { it.nick == nick }
+        return if (users.isNotEmpty()) users.first() else null
+    }
 
     override fun getHighestUserId(): Long? {
         return if (usersMap.isNotEmpty()) {
@@ -22,13 +24,6 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
         } else {
             null
         }
-    }
-
-    override fun getUserById(id: Long) = usersMap[id]
-
-    override fun getUserByNick(nick: String): User? {
-        val users = usersMap.values.filter { it.nick == nick }
-        return if (users.isNotEmpty()) users.first() else null
     }
 
     override fun addUser(user: User) {
@@ -46,5 +41,10 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
     override fun getGameResults() = resultsList
 
     override fun getGameResultsById(userId: Long) = resultsList.filter { it.userId == userId }
+
+    override fun reset() {
+        usersMap.clear()
+        resultsList.clear()
+    }
 
 }
