@@ -35,22 +35,12 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
         return if (users.isNotEmpty()) users.first() else null
     }
 
-    override fun addUser(user: User): LocalDataRepository.OperationResult {
-        if (usersMap.containsKey(user.id)) {
-            return LocalDataRepository.OperationResult.FAILURE_USER_EXISTS
-        } else {
-            usersMap.put(user.id, user)
-            return LocalDataRepository.OperationResult.SUCCESS
-        }
+    override fun addUser(user: User) {
+        usersMap.put(user.id, user)
     }
 
-    override fun updateUser(user: User): LocalDataRepository.OperationResult {
-        if (!usersMap.containsKey(user.id)) {
-            return LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS
-        } else {
-            usersMap.put(user.id, user)
-            return LocalDataRepository.OperationResult.SUCCESS
-        }
+    override fun updateUser(user: User) {
+        usersMap.put(user.id, user)
     }
 
     override fun addGameResult(gameResult: GameResult) {

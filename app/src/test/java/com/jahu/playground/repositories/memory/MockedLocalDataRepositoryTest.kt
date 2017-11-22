@@ -2,7 +2,6 @@ package com.jahu.playground.repositories.memory
 
 import com.jahu.playground.dao.GameResult
 import com.jahu.playground.dao.User
-import com.jahu.playground.repositories.LocalDataRepository
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -67,18 +66,10 @@ class MockedLocalDataRepositoryTest {
                 newUser
         )
 
-        val result = MockedLocalDataRepository.addUser(newUser)
+        MockedLocalDataRepository.addUser(newUser)
         val users = MockedLocalDataRepository.getAllUsers()
 
         assertEquals(expectedItems, users)
-        assertEquals(LocalDataRepository.OperationResult.SUCCESS, result)
-    }
-
-    @Test
-    fun addUser_userExists() {
-        val result = MockedLocalDataRepository.addUser(MockedLocalDataRepository.user1)
-
-        assertEquals(LocalDataRepository.OperationResult.FAILURE_USER_EXISTS, result)
     }
 
     @Test
@@ -90,18 +81,10 @@ class MockedLocalDataRepositoryTest {
                 MockedLocalDataRepository.user3
         )
 
-        val result = MockedLocalDataRepository.updateUser(newUser2)
+        MockedLocalDataRepository.updateUser(newUser2)
         val users = MockedLocalDataRepository.getAllUsers()
 
         assertEquals(expectedItems, users)
-        assertEquals(LocalDataRepository.OperationResult.SUCCESS, result)
-    }
-
-    @Test
-    fun updateUser_userNotExists() {
-        val result = MockedLocalDataRepository.updateUser(User(5, "Fake", "Fake", "fake"))
-
-        assertEquals(LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS, result)
     }
 
     @Test
