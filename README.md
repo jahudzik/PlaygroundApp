@@ -62,9 +62,9 @@ Side project for playing around with different Android libraries, approaches and
     * InOrder ([reference](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying#inorder))
         * [Testing invocations order with Mockito.inOrder()](https://github.com/jahudzik/playground-app/commit/b76d8d22a47665540242ae0d63a601173ddf81ed)
         * [Using Mockito.inOrder() with higher-order function parameter](https://github.com/jahudzik/playground-app/commit/7a2c55efbd485d233fc171f8c3aca87278ecbe91)
-    * Testing asynchronous callbacks with Mockito.doAnswer()
+    * Testing asynchronous callbacks with Mockito.thenAnswer()
         * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
-        * [Example 2](https://github.com/jahudzik/playground-app/commit/94114633db2432b2ad2e4b8db1a919b8a585474a#diff-3ffc222822565a8f64d7a4f732a977e5)
+        * [Example 2](https://github.com/jahudzik/playground-app/commit/026e3ee0e87ede7d90138389929d28b7bfb4fb18)
 
 ### Continuous integration
  
