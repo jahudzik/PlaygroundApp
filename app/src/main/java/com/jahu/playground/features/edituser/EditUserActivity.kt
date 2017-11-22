@@ -13,6 +13,7 @@ import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.jahu.playground.usecases.users.UpdateUserUserCase
 import kotlinx.android.synthetic.main.activity_edit_user.*
 
 class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
@@ -44,7 +45,8 @@ class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View
         val mode = intent.getSerializableExtra(MODE_EXTRA_KEY)
         val addUserUseCase = AddUserUseCase(MockedLocalDataRepository)
         val getActUserUseCase = GetActualUserUseCase(SharedPreferencesManager(this), MockedLocalDataRepository)
-        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, addUserUseCase, getActUserUseCase)
+        val updateUserUseCase = UpdateUserUserCase(MockedLocalDataRepository)
+        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, addUserUseCase, getActUserUseCase, updateUserUseCase)
 
         confirmButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()

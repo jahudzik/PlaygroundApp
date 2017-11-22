@@ -3,6 +3,7 @@ package com.jahu.playground.features.edituser
 import com.jahu.playground.dao.User
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.jahu.playground.usecases.users.UpdateUserUserCase
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
@@ -20,15 +21,17 @@ class EditUserPresenterTest {
 
     @Mock private lateinit var getActualUserUseCase: GetActualUserUseCase
 
+    @Mock private lateinit var updateUserUseCase: UpdateUserUserCase
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase)
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase, updateUserUseCase)
     }
 
     @Test
     fun resumeView_addMode() {
-        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase)
+        initAddMode()
 
         presenter.resumeView()
 
@@ -40,7 +43,7 @@ class EditUserPresenterTest {
     fun resumeView_editMode() {
         val user = mock<User>()
         whenever(getActualUserUseCase.execute()).thenReturn(user)
-        presenter = EditUserPresenter(EditUserContract.Mode.EDIT_USER, view, addUserUseCase, getActualUserUseCase)
+        initEditMode()
 
         presenter.resumeView()
 
@@ -86,10 +89,11 @@ class EditUserPresenterTest {
     }
 
     @Test
-    fun onConfirmButtonClicked_expected() {
+    fun onConfirmButtonClicked_addMode_expected() {
         val firstName = "John"
         val lastName = "Smith"
         val nick = "js"
+        initAddMode()
 
         presenter.onConfirmButtonClicked(firstName, lastName, nick)
 
@@ -97,19 +101,45 @@ class EditUserPresenterTest {
     }
 
     @Test
-    fun onSuccess_expected() {
-        presenter.onSuccess()
+    fun onConfirmButtonClicked_editMode_success() {
+        val id = 3L
+        val firstName = "John"
+        val lastName = "Smith"
+        val nick = "js"
+        val actualUser = User(id, "Johnny", "Jones", "js")
+        whenever(getActualUserUseCase.execute()).thenReturn(actualUser)
+        whenever(updateUserUseCase.execute(any(), any())).thenAnswer { invocation ->
+            val resultListener = invocation.getArgument<UpdateUserUserCase.ResultListener>(1)
+            resultListener.onSuccess()
+        }
+        initEditMode()
 
+        presenter.onConfirmButtonClicked(firstName, lastName, nick)
+
+        verify(getActualUserUseCase).execute()
+        verify(updateUserUseCase).execute(eq(User(id, firstName, lastName, nick)), any())
         verify(view).close()
     }
 
     @Test
-    fun onError_expected() {
-        val errorCode = EditUserContract.ErrorCode.NICK_EXISTS
+    fun onConfirmButtonClicked_editMode_failure() {
+        val id = 3L
+        val firstName = "John"
+        val lastName = "Smith"
+        val nick = "js"
+        val actualUser = User(id, "Johnny", "Jones", "js")
+        whenever(getActualUserUseCase.execute()).thenReturn(actualUser)
+        whenever(updateUserUseCase.execute(any(), any())).thenAnswer { invocation ->
+            val resultListener = invocation.getArgument<UpdateUserUserCase.ResultListener>(1)
+            resultListener.onFailure(EditUserContract.ErrorCode.USER_NOT_EXISTS)
+        }
+        initEditMode()
 
-        presenter.onFailure(errorCode)
+        presenter.onConfirmButtonClicked(firstName, lastName, nick)
 
-        verify(view).showErrorMessage(errorCode)
+        verify(getActualUserUseCase).execute()
+        verify(updateUserUseCase).execute(eq(User(id, firstName, lastName, nick)), any())
+        verify(view).showErrorMessage(EditUserContract.ErrorCode.USER_NOT_EXISTS)
     }
 
     @After
@@ -117,5 +147,14 @@ class EditUserPresenterTest {
         verifyNoMoreInteractions(view)
         verifyNoMoreInteractions(addUserUseCase)
         verifyNoMoreInteractions(getActualUserUseCase)
+        verifyNoMoreInteractions(updateUserUseCase)
+    }
+
+    private fun initAddMode() {
+        presenter = EditUserPresenter(EditUserContract.Mode.ADD_USER, view, addUserUseCase, getActualUserUseCase, updateUserUseCase)
+    }
+
+    private fun initEditMode() {
+        presenter = EditUserPresenter(EditUserContract.Mode.EDIT_USER, view, addUserUseCase, getActualUserUseCase, updateUserUseCase)
     }
 }

@@ -1,15 +1,18 @@
 package com.jahu.playground.features.edituser
 
+import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
+import com.jahu.playground.usecases.users.UpdateUserUserCase
 
 class EditUserPresenter(
         private val mode: EditUserContract.Mode,
         private val view: EditUserContract.View,
         private val addUserUseCase: AddUserUseCase,
-        private val getActualUserUseCase: GetActualUserUseCase
-) : EditUserContract.Presenter, AddUserUseCase.ResultListener {
+        private val getActualUserUseCase: GetActualUserUseCase,
+        private val updateUserUserCase: UpdateUserUserCase
+) : EditUserContract.Presenter {
 
     override fun createView() {}
 
@@ -42,14 +45,39 @@ class EditUserPresenter(
     }
 
     override fun onConfirmButtonClicked(firstName: String, lastName: String, nick: String) {
-        addUserUseCase.execute(firstName, lastName, nick, this)
+        if (mode == EditUserContract.Mode.ADD_USER) {
+            addUser(firstName, lastName, nick)
+        } else if (mode == EditUserContract.Mode.EDIT_USER) {
+            updateUser(firstName, lastName, nick)
+        }
+
     }
 
-    override fun onSuccess() {
-        view.close()
+    private fun addUser(firstName: String, lastName: String, nick: String) {
+        addUserUseCase.execute(firstName, lastName, nick, object : AddUserUseCase.ResultListener {
+            override fun onSuccess() {
+                view.close()
+            }
+
+            override fun onFailure(errorCode: ErrorCode) {
+                view.showErrorMessage(errorCode)
+            }
+        })
     }
 
-    override fun onFailure(errorCode: ErrorCode) {
-        view.showErrorMessage(errorCode)
+    private fun updateUser(firstName: String, lastName: String, nick: String) {
+        getActualUserUseCase.execute()?.let {
+            updateUserUserCase.execute(User(it.id, firstName, lastName, nick), object : UpdateUserUserCase.ResultListener {
+                override fun onSuccess() {
+                    view.close()
+                }
+
+                override fun onFailure(errorCode: ErrorCode) {
+                    view.showErrorMessage(errorCode)
+                }
+
+            })
+        }
     }
+
 }
