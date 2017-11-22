@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jahu.playground"
     >
 
@@ -14,6 +15,7 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
+      tools:replace="android:allowBackup,android:icon"
       >
 
     <activity
@@ -40,6 +42,11 @@
         android:name=".features.game.GameActivity"
         android:screenOrientation="portrait"
         />
+
+    <meta-data android:name="DATABASE" android:value="playground.db" />
+    <meta-data android:name="VERSION" android:value="1" />
+    <meta-data android:name="QUERY_LOG" android:value="true" />
+    <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.jahu.playground" />
 
   </application>
 

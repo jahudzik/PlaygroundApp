@@ -50,6 +50,7 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.github.satyan:sugar:$sugarOrmVersion"
 
     implementation "com.jakewharton.timber:timber:$timberVersion"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"

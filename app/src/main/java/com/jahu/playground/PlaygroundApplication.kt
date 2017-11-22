@@ -1,17 +1,17 @@
 package com.jahu.playground
 
-import android.app.Application
 import android.content.Context
 import android.os.StrictMode
 import com.facebook.stetho.Stetho
 import com.jahu.playground.di.AppComponent
 import com.jahu.playground.di.AppModule
 import com.jahu.playground.di.DaggerAppComponent
+import com.orm.SugarApp
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import timber.log.Timber
 
-class PlaygroundApplication : Application() {
+class PlaygroundApplication : SugarApp() {
 
     companion object {
         fun getRefWatcher(context: Context) = (context.applicationContext as PlaygroundApplication).refWatcher
