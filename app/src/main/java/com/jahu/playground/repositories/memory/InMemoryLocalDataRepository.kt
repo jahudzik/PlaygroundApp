@@ -14,9 +14,7 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
         resultsList.clear()
     }
 
-    override fun getAllUsers(): Set<User> {
-        return usersMap.values.toSet()
-    }
+    override fun getAllUsers() = usersMap.values.toSet()
 
     override fun getHighestUserId(): Long? {
         return if (usersMap.isNotEmpty()) {
@@ -26,9 +24,7 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
         }
     }
 
-    override fun getUserById(id: Long): User? {
-        return usersMap[id]
-    }
+    override fun getUserById(id: Long) = usersMap[id]
 
     override fun getUserByNick(nick: String): User? {
         val users = usersMap.values.filter { it.nick == nick }
@@ -47,12 +43,8 @@ open class InMemoryLocalDataRepository : LocalDataRepository {
         resultsList.add(gameResult)
     }
 
-    override fun getGameResults(): List<GameResult> {
-        return resultsList
-    }
+    override fun getGameResults() = resultsList
 
-    override fun getGameResultsById(userId: Long): List<GameResult> {
-        return resultsList.filter { it.userId == userId }
-    }
+    override fun getGameResultsById(userId: Long) = resultsList.filter { it.userId == userId }
 
 }
