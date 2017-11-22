@@ -10,7 +10,7 @@ class UpdateUserUserCase(
 
     fun execute(user: User, resultListener: ResultListener) {
         val existingUser = dataRepository.getUserByNick(user.nick)
-        if (existingUser == null) {
+        if (existingUser == null || existingUser.id == user.id) {
             val result = dataRepository.updateUser(user)
             if (result == LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS) {
                 resultListener.onFailure(EditUserContract.ErrorCode.USER_NOT_EXISTS)

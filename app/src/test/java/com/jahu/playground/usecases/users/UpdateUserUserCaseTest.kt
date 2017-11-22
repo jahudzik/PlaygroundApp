@@ -3,7 +3,10 @@ package com.jahu.playground.usecases.users
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.repositories.LocalDataRepository
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -25,28 +28,40 @@ class UpdateUserUserCaseTest {
     }
 
     @Test
-    fun execute_success() {
-        val user = mock<User>()
+    fun execute_noNickUpdate() {
         val nick = "nick"
-        whenever(user.nick).thenReturn(nick)
+        val updatedUser = User(1, "John", "Smith", nick)
+        whenever(dataRepository.getUserByNick(any())).thenReturn(User(1, "Tom", "Smith", nick))
+        whenever(dataRepository.updateUser(any())).thenReturn(LocalDataRepository.OperationResult.SUCCESS)
+
+        useCase.execute(updatedUser, resultListener)
+
+        verify(dataRepository).getUserByNick(nick)
+        verify(dataRepository).updateUser(updatedUser)
+        verify(resultListener).onSuccess()
+    }
+
+    @Test
+    fun execute_newNick() {
+        val nick = "nick"
+        val updatedUser = User(1, "John", "Smith", nick)
         whenever(dataRepository.getUserByNick(any())).thenReturn(null)
         whenever(dataRepository.updateUser(any())).thenReturn(LocalDataRepository.OperationResult.SUCCESS)
         
-        useCase.execute(user, resultListener)
+        useCase.execute(updatedUser, resultListener)
 
         verify(dataRepository).getUserByNick(nick)
-        verify(dataRepository).updateUser(user)
+        verify(dataRepository).updateUser(updatedUser)
         verify(resultListener).onSuccess()
     }
 
     @Test
     fun execute_nickExists() {
-        val user = mock<User>()
         val nick = "nick"
-        whenever(user.nick).thenReturn(nick)
-        whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
+        val updatedUser = User(1, "John", "Smith", nick)
+        whenever(dataRepository.getUserByNick(any())).thenReturn(User(2, "Ted", "Honor", nick))
 
-        useCase.execute(user, resultListener)
+        useCase.execute(updatedUser, resultListener)
 
         verify(dataRepository).getUserByNick(nick)
         verify(resultListener).onFailure(EditUserContract.ErrorCode.NICK_EXISTS)
@@ -54,16 +69,15 @@ class UpdateUserUserCaseTest {
 
     @Test
     fun execute_userDoesNotExist() {
-        val user = mock<User>()
         val nick = "nick"
-        whenever(user.nick).thenReturn(nick)
+        val updatedUser = User(1, "John", "Smith", nick)
         whenever(dataRepository.getUserByNick(any())).thenReturn(null)
         whenever(dataRepository.updateUser(any())).thenReturn(LocalDataRepository.OperationResult.FAILURE_USER_NOT_EXISTS)
 
-        useCase.execute(user, resultListener)
+        useCase.execute(updatedUser, resultListener)
 
         verify(dataRepository).getUserByNick(nick)
-        verify(dataRepository).updateUser(user)
+        verify(dataRepository).updateUser(updatedUser)
         verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_NOT_EXISTS)
     }
 
