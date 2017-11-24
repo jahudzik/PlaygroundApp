@@ -1,6 +1,7 @@
 package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.dao.User
+import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion
@@ -11,9 +12,7 @@ class GameSetupPresenter(
         private val sharedPreferencesManager: SharedPreferencesManager,
         private val dataRepository: LocalDataRepository,
         private val getNewQuestionsUseCase: GetNewQuestionsUseCase
-) : GameSetupContract.Presenter {
-
-    override fun createView() {}
+) : GameSetupContract.Presenter, BasePresenter<GameSetupContract.View>() {
 
     override fun resumeView() {
         val user = getActualUser()

@@ -1,6 +1,7 @@
 package com.jahu.playground.features.game
 
 import com.jahu.playground.features.game.random.RandomSequenceGenerator
+import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.AddGameResultUseCase
 
@@ -11,15 +12,13 @@ class GamePresenter(
         private val questions: List<TriviaQuestion>,
         private val sequenceGenerator: RandomSequenceGenerator,
         private val addGameResultUseCase: AddGameResultUseCase
-) : GameContract.Presenter {
+) : GameContract.Presenter, BasePresenter<GameContract.View>() {
 
     private val questionsCount = questions.size
 
     private var currentQuestionIndex = 0
     private var correctAnswerIndex = 0
     private var correctAnswersCount = 0
-
-    override fun createView() {}
 
     override fun resumeView() {
         showNextQuestion()

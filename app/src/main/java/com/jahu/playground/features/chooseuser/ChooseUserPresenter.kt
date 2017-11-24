@@ -2,6 +2,7 @@ package com.jahu.playground.features.chooseuser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract
+import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.GetUsersUseCase
 import com.jahu.playground.usecases.users.SetActualUserUseCase
@@ -11,9 +12,7 @@ class ChooseUserPresenter(
         private val getActualUserUseCase: GetActualUserUseCase,
         private val getUsersUseCase: GetUsersUseCase,
         private val setActualUserUseCase: SetActualUserUseCase
-) : ChooseUserContract.Presenter {
-
-    override fun createView() {}
+) : ChooseUserContract.Presenter, BasePresenter<ChooseUserContract.View>() {
 
     override fun resumeView() {
         val user = getActualUserUseCase.execute()

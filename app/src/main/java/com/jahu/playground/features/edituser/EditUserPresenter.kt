@@ -2,6 +2,7 @@ package com.jahu.playground.features.edituser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
+import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.UpdateUserUserCase
@@ -12,9 +13,7 @@ class EditUserPresenter(
         private val addUserUseCase: AddUserUseCase,
         private val getActualUserUseCase: GetActualUserUseCase,
         private val updateUserUserCase: UpdateUserUserCase
-) : EditUserContract.Presenter {
-
-    override fun createView() {}
+) : EditUserContract.Presenter, BasePresenter<EditUserContract.View>() {
 
     override fun resumeView() {
         when (mode) {

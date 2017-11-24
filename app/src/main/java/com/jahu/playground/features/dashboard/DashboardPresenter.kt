@@ -1,8 +1,10 @@
 package com.jahu.playground.features.dashboard
 
+import com.jahu.playground.mvp.BasePresenter
+
 class DashboardPresenter(
         private val view: DashboardContract.View
-) : DashboardContract.Presenter {
+) : DashboardContract.Presenter, BasePresenter<DashboardContract.View>() {
 
     override fun createView() {
         view.showBottomNavigationBar(listOf(
@@ -12,8 +14,6 @@ class DashboardPresenter(
         ))
         view.showQuizSetup()
     }
-
-    override fun resumeView() {}
 
     override fun onNavigationItemSelected(itemId: Int): Boolean {
         when (itemId) {
