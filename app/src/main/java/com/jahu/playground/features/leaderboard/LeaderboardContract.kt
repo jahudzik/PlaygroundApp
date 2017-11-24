@@ -2,10 +2,11 @@ package com.jahu.playground.features.leaderboard
 
 import com.jahu.playground.dao.LeaderboardEntry
 import com.jahu.playground.mvp.MvpPresenter
+import com.jahu.playground.mvp.MvpView
 
 interface LeaderboardContract {
 
-    interface View {
+    interface View : MvpView {
 
         fun showLeaderboardEntries(entries: List<LeaderboardEntry>)
 

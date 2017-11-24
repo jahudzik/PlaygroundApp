@@ -1,10 +1,11 @@
 package com.jahu.playground.features.game
 
 import com.jahu.playground.mvp.MvpPresenter
+import com.jahu.playground.mvp.MvpView
 
 interface GameContract {
 
-    interface View {
+    interface View : MvpView {
 
         fun showQuestion(question: String, answers: List<String>)
 

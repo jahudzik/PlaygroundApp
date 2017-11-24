@@ -1,11 +1,12 @@
 package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.mvp.MvpPresenter
+import com.jahu.playground.mvp.MvpView
 import com.jahu.playground.trivia.TriviaQuestion
 
 interface GameSetupContract {
 
-    interface View {
+    interface View : MvpView {
 
         fun showUserName(userName: String)
 

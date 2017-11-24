@@ -2,10 +2,11 @@ package com.jahu.playground.features.edituser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.MvpPresenter
+import com.jahu.playground.mvp.MvpView
 
 interface EditUserContract {
 
-    interface View {
+    interface View : MvpView {
 
         fun fillUserData(user: User)
 

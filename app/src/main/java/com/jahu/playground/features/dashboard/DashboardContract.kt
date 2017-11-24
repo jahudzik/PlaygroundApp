@@ -1,10 +1,11 @@
 package com.jahu.playground.features.dashboard
 
 import com.jahu.playground.mvp.MvpPresenter
+import com.jahu.playground.mvp.MvpView
 
 interface DashboardContract {
 
-    interface View {
+    interface View : MvpView {
 
         fun showBottomNavigationBar(items: List<BottomNavigationItem>)
 
