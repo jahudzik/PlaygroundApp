@@ -1,7 +1,7 @@
 package com.jahu.playground.features.leaderboard
 
 import com.jahu.playground.dao.LeaderboardEntry
-import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.mvp.MvpPresenter
 
 interface LeaderboardContract {
 
@@ -11,6 +11,6 @@ interface LeaderboardContract {
 
     }
 
-    interface Presenter : BasePresenter
+    interface Presenter : MvpPresenter
 
 }

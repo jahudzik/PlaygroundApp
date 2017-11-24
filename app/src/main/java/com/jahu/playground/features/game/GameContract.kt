@@ -1,6 +1,6 @@
 package com.jahu.playground.features.game
 
-import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.mvp.MvpPresenter
 
 interface GameContract {
 
@@ -14,7 +14,7 @@ interface GameContract {
 
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter : MvpPresenter {
 
         fun onAnswerChosen(answerIndex: Int)
 

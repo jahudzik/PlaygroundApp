@@ -1,7 +1,7 @@
 package com.jahu.playground.features.settings
 
 import com.jahu.playground.features.edituser.EditUserContract
-import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.mvp.MvpPresenter
 
 interface SettingsContract {
 
@@ -13,7 +13,7 @@ interface SettingsContract {
 
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter : MvpPresenter {
 
         fun onEditUserButtonClicked()
 

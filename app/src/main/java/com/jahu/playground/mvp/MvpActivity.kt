@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 
 @SuppressWarnings("UnnecessaryAbstractClass")
-abstract class MvpActivity<P : BasePresenter> : Activity() {
+abstract class MvpActivity<P : MvpPresenter> : Activity() {
 
     protected lateinit var presenter: P
 

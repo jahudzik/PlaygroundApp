@@ -1,7 +1,7 @@
 package com.jahu.playground.mvp
 
 @SuppressWarnings("UnnecessaryAbstractClass")
-abstract class MvpFragment<P : BasePresenter> : BaseFragment() {
+abstract class MvpFragment<P : MvpPresenter> : BaseFragment() {
 
     protected lateinit var presenter: P
 

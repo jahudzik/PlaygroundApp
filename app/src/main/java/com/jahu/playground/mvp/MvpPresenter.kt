@@ -1,6 +1,6 @@
 package com.jahu.playground.mvp
 
-interface BasePresenter {
+interface MvpPresenter {
 
     fun createView()
 

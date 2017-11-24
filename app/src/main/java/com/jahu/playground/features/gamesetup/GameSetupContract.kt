@@ -1,6 +1,6 @@
 package com.jahu.playground.features.gamesetup
 
-import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.mvp.MvpPresenter
 import com.jahu.playground.trivia.TriviaQuestion
 
 interface GameSetupContract {
@@ -23,7 +23,7 @@ interface GameSetupContract {
 
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter : MvpPresenter {
 
         fun onPlayButtonClicked()
 

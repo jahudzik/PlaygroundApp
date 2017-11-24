@@ -2,7 +2,7 @@ package com.jahu.playground.features.chooseuser
 
 import com.jahu.playground.dao.User
 import com.jahu.playground.features.edituser.EditUserContract
-import com.jahu.playground.mvp.BasePresenter
+import com.jahu.playground.mvp.MvpPresenter
 
 interface ChooseUserContract {
 
@@ -18,7 +18,7 @@ interface ChooseUserContract {
 
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter : MvpPresenter {
 
         fun onUserChosen(user: User)
 
