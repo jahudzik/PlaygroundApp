@@ -1,5 +1,6 @@
 package com.jahu.playground.mvp
 
+@SuppressWarnings("UnnecessaryAbstractClass")
 abstract class BasePresenter<T : MvpView> : MvpPresenter {
 
     override fun createView() {
