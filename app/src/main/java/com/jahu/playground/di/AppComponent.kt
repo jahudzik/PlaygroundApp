@@ -1,6 +1,13 @@
 package com.jahu.playground.di
 
+import com.jahu.playground.features.gamesetup.GameSetupFragment
 import dagger.Component
+import javax.inject.Singleton
 
-@Component(modules = [(AppModule::class)])
-interface AppComponent
+@Singleton
+@Component(modules = [AppModule::class, DataModule::class])
+interface AppComponent {
+
+    fun inject(fragment: GameSetupFragment)
+
+}

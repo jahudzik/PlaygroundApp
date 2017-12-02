@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.jahu.playground.PlaygroundApplication
 import com.jahu.playground.R
 import com.jahu.playground.features.game.GameActivity
 import com.jahu.playground.mvp.MvpFragment
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
+import com.jahu.playground.trivia.TriviaService
 import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
 import kotlinx.android.synthetic.main.fragment_game_setup.*
+import javax.inject.Inject
 
 class GameSetupFragment : MvpFragment<GameSetupContract.Presenter>(), GameSetupContract.View {
+
+    @Inject lateinit var triviaService: TriviaService
 
     companion object {
         fun newInstance() = GameSetupFragment()
@@ -24,8 +27,8 @@ class GameSetupFragment : MvpFragment<GameSetupContract.Presenter>(), GameSetupC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getAppComponent().inject(this)
         val preferencesManager = SharedPreferencesManager(activity)
-        val triviaService = (activity.application as PlaygroundApplication).getTriviaService()
         val getNewQuestionsUseCase = GetNewQuestionsUseCase(triviaService)
         presenter = GameSetupPresenter(this, preferencesManager, MockedLocalDataRepository, getNewQuestionsUseCase)
     }

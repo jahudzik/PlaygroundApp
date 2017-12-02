@@ -7,14 +7,9 @@ import com.facebook.stetho.Stetho
 import com.jahu.playground.di.AppComponent
 import com.jahu.playground.di.AppModule
 import com.jahu.playground.di.DaggerAppComponent
-import com.jahu.playground.trivia.TriviaService
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
-
-private const val TRIVIA_API_BASE_URL = "https://opentdb.com"
 
 class PlaygroundApplication : Application() {
 
@@ -22,7 +17,6 @@ class PlaygroundApplication : Application() {
         fun getRefWatcher(context: Context) = (context.applicationContext as PlaygroundApplication).refWatcher
     }
 
-    private lateinit var triviaService: TriviaService
     private lateinit var refWatcher: RefWatcher
     private lateinit var appComponent: AppComponent
 
@@ -38,7 +32,6 @@ class PlaygroundApplication : Application() {
         setupTimber()
         setupStetho()
         setupStrictMode()
-        setupTriviaService()
     }
 
     private fun initDagger() {
@@ -73,16 +66,6 @@ class PlaygroundApplication : Application() {
         }
     }
 
-    private fun setupTriviaService() {
-        val retrofit = Retrofit.Builder()
-                .baseUrl(TRIVIA_API_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        triviaService = retrofit.create(TriviaService::class.java)
-    }
-
     fun getAppComponent() = appComponent
-
-    fun getTriviaService(): TriviaService = triviaService
 
 }
