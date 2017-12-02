@@ -4,6 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.os.StrictMode
 import com.facebook.stetho.Stetho
+import com.jahu.playground.di.AppComponent
+import com.jahu.playground.di.AppModule
+import com.jahu.playground.di.DaggerAppComponent
 import com.jahu.playground.trivia.TriviaService
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
@@ -21,6 +24,7 @@ class PlaygroundApplication : Application() {
 
     private lateinit var triviaService: TriviaService
     private lateinit var refWatcher: RefWatcher
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -30,10 +34,17 @@ class PlaygroundApplication : Application() {
             return
         }
         refWatcher = LeakCanary.install(this)
+        initDagger()
         setupTimber()
         setupStetho()
         setupStrictMode()
         setupTriviaService()
+    }
+
+    private fun initDagger() {
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
     }
 
     private fun setupTimber() {
@@ -69,6 +80,8 @@ class PlaygroundApplication : Application() {
                 .build()
         triviaService = retrofit.create(TriviaService::class.java)
     }
+
+    fun getAppComponent() = appComponent
 
     fun getTriviaService(): TriviaService = triviaService
 
