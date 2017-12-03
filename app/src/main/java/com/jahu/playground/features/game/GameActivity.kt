@@ -5,12 +5,9 @@ import android.os.Bundle
 import com.jahu.playground.R
 import com.jahu.playground.mvp.MvpActivity
 import com.jahu.playground.trivia.TriviaQuestion
-import javax.inject.Inject
 
 class GameActivity : MvpActivity<GameContract.Presenter>(), GameContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
-
-    @Inject override lateinit var presenter: GameContract.Presenter
 
     companion object {
         const val BUNDLE_QUESTIONS_KEY = "questions"

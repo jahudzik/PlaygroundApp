@@ -11,11 +11,8 @@ import com.jahu.playground.features.game.GameActivity
 import com.jahu.playground.mvp.MvpFragment
 import com.jahu.playground.trivia.TriviaQuestion
 import kotlinx.android.synthetic.main.fragment_game_setup.*
-import javax.inject.Inject
 
 class GameSetupFragment : MvpFragment<GameSetupContract.Presenter>(), GameSetupContract.View {
-
-    @Inject override lateinit var presenter: GameSetupContract.Presenter
 
     companion object {
         fun newInstance() = GameSetupFragment()

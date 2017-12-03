@@ -11,11 +11,8 @@ import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
-import javax.inject.Inject
 
 class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsContract.View {
-
-    @Inject override lateinit var presenter: SettingsContract.Presenter
 
     companion object {
         fun newInstance() = SettingsFragment()

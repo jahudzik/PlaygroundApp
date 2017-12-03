@@ -10,11 +10,8 @@ import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_edit_user.*
-import javax.inject.Inject
 
 class EditUserActivity : MvpActivity<EditUserContract.Presenter>(), EditUserContract.View {
-
-    @Inject override lateinit var presenter: EditUserContract.Presenter
 
     companion object {
         const val MODE_EXTRA_KEY = "mode"

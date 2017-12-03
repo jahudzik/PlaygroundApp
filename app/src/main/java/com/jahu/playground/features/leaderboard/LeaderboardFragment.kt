@@ -9,11 +9,8 @@ import com.jahu.playground.R
 import com.jahu.playground.dao.LeaderboardEntry
 import com.jahu.playground.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
-import javax.inject.Inject
 
 class LeaderboardFragment : MvpFragment<LeaderboardContract.Presenter>(), LeaderboardContract.View {
-
-    @Inject override lateinit var presenter: LeaderboardContract.Presenter
 
     companion object {
         fun newInstance() = LeaderboardFragment()

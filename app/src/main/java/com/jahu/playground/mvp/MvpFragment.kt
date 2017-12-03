@@ -1,9 +1,11 @@
 package com.jahu.playground.mvp
 
+import javax.inject.Inject
+
 @SuppressWarnings("UnnecessaryAbstractClass")
 abstract class MvpFragment<P : MvpPresenter> : BaseFragment() {
 
-    protected open lateinit var presenter: P
+    @Inject protected lateinit var presenter: P
 
     override fun onResume() {
         super.onResume()

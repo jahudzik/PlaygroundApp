@@ -11,11 +11,8 @@ import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_choose_user.*
-import javax.inject.Inject
 
 class ChooseUserActivity : MvpActivity<ChooseUserContract.Presenter>(), ChooseUserContract.View, UsersAdapter.OnUserChosenListener {
-
-    @Inject override lateinit var presenter: ChooseUserContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
