@@ -9,14 +9,12 @@ import android.widget.Toast
 import com.jahu.playground.R
 import com.jahu.playground.dao.User
 import com.jahu.playground.mvp.MvpActivity
-import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.MockedLocalDataRepository
-import com.jahu.playground.usecases.users.AddUserUseCase
-import com.jahu.playground.usecases.users.GetActualUserUseCase
-import com.jahu.playground.usecases.users.UpdateUserUserCase
 import kotlinx.android.synthetic.main.activity_edit_user.*
+import javax.inject.Inject
 
 class EditUserActivity : MvpActivity<EditUserContract.Presenter>(), EditUserContract.View {
+
+    @Inject override lateinit var presenter: EditUserContract.Presenter
 
     companion object {
         const val MODE_EXTRA_KEY = "mode"
@@ -42,11 +40,10 @@ class EditUserActivity : MvpActivity<EditUserContract.Presenter>(), EditUserCont
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_user)
-        val mode = intent.getSerializableExtra(MODE_EXTRA_KEY)
-        val addUserUseCase = AddUserUseCase(MockedLocalDataRepository)
-        val getActUserUseCase = GetActualUserUseCase(SharedPreferencesManager(this), MockedLocalDataRepository)
-        val updateUserUseCase = UpdateUserUserCase(MockedLocalDataRepository)
-        presenter = EditUserPresenter(mode as EditUserContract.Mode, this, addUserUseCase, getActUserUseCase, updateUserUseCase)
+        val mode = intent.getSerializableExtra(MODE_EXTRA_KEY) as EditUserContract.Mode
+        getAppComponent()
+                .plus(EditUserModule(this, mode))
+                .inject(this)
 
         confirmButton.setOnClickListener {
             val (firstName, lastName, nick) = getFieldValues()
