@@ -3,17 +3,14 @@ package com.jahu.playground.features.game
 import android.app.Fragment
 import android.os.Bundle
 import com.jahu.playground.R
-import com.jahu.playground.features.game.random.RandomNumberGenerator
-import com.jahu.playground.features.game.random.RandomSequenceGenerator
-import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.mvp.MvpActivity
-import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
-import com.jahu.playground.usecases.games.AddGameResultUseCase
+import javax.inject.Inject
 
 class GameActivity : MvpActivity<GameContract.Presenter>(), GameContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
+
+    @Inject override lateinit var presenter: GameContract.Presenter
 
     companion object {
         const val BUNDLE_QUESTIONS_KEY = "questions"
@@ -22,9 +19,9 @@ class GameActivity : MvpActivity<GameContract.Presenter>(), GameContract.View,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        val sharedPreferencesManager = SharedPreferencesManager(this)
-        val addGameResultUseCase = AddGameResultUseCase(sharedPreferencesManager, MockedLocalDataRepository, TimeProvider())
-        presenter = GamePresenter(this, getQuestionsList(), RandomSequenceGenerator(RandomNumberGenerator()), addGameResultUseCase)
+        getAppComponent()
+                .plus(GameModule(this, getQuestionsList()))
+                .inject(this)
     }
 
     private fun getQuestionsList(): List<TriviaQuestion> {

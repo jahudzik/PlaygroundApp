@@ -1,6 +1,8 @@
 package com.jahu.playground.di
 
 import android.content.Context
+import com.jahu.playground.features.game.random.RandomNumberGenerator
+import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
@@ -36,4 +38,13 @@ class DataModule {
     @Singleton
     @Provides
     fun provideTimeProvider() = TimeProvider()
+
+    @Singleton
+    @Provides
+    fun provideRandomNumberGenerator() = RandomNumberGenerator()
+
+    @Singleton
+    @Provides
+    fun provideSequenceGenerator(numberGenerator: RandomNumberGenerator) = RandomSequenceGenerator(numberGenerator)
+
 }
