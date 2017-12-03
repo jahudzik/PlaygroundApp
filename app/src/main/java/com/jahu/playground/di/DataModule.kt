@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
+@SuppressWarnings("FunctionMaxLength")
 class DataModule {
 
     @Singleton
