@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import com.jahu.playground.R
 import com.jahu.playground.dao.LeaderboardEntry
 import com.jahu.playground.mvp.MvpFragment
-import com.jahu.playground.repositories.memory.MockedLocalDataRepository
-import com.jahu.playground.usecases.games.GetLeaderboardEntriesUseCase
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
+import javax.inject.Inject
 
 class LeaderboardFragment : MvpFragment<LeaderboardContract.Presenter>(), LeaderboardContract.View {
+
+    @Inject override lateinit var presenter: LeaderboardContract.Presenter
 
     companion object {
         fun newInstance() = LeaderboardFragment()
@@ -20,8 +21,9 @@ class LeaderboardFragment : MvpFragment<LeaderboardContract.Presenter>(), Leader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val getLeaderboardEntriesUseCase = GetLeaderboardEntriesUseCase(MockedLocalDataRepository)
-        presenter = LeaderboardPresenter(this, getLeaderboardEntriesUseCase)
+        getAppComponent()
+                .plus(LeaderboardModule(this))
+                .inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
