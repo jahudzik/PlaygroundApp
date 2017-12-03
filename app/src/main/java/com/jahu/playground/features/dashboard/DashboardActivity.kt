@@ -8,13 +8,18 @@ import com.jahu.playground.features.leaderboard.LeaderboardFragment
 import com.jahu.playground.features.settings.SettingsFragment
 import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import javax.inject.Inject
 
 class DashboardActivity : MvpActivity<DashboardContract.Presenter>(), DashboardContract.View {
+
+    @Inject override lateinit var presenter: DashboardContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        presenter = DashboardPresenter(this)
+        getAppComponent()
+                .plus(DashboardModule(this))
+                .inject(this)
     }
 
     override fun showBottomNavigationBar(items: List<BottomNavigationItem>) {
