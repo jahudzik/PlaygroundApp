@@ -12,6 +12,8 @@ import com.jahu.playground.features.gamesetup.GameSetupComponent
 import com.jahu.playground.features.gamesetup.GameSetupModule
 import com.jahu.playground.features.leaderboard.LeaderboardComponent
 import com.jahu.playground.features.leaderboard.LeaderboardModule
+import com.jahu.playground.features.settings.SettingsComponent
+import com.jahu.playground.features.settings.SettingsModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -30,5 +32,7 @@ interface AppComponent {
     fun plus(module: GameSetupModule): GameSetupComponent
 
     fun plus(module: LeaderboardModule): LeaderboardComponent
+
+    fun plus(module: SettingsModule): SettingsComponent
 
 }

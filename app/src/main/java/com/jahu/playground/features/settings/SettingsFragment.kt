@@ -10,11 +10,12 @@ import com.jahu.playground.features.chooseuser.ChooseUserActivity
 import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpFragment
-import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.usecases.users.SetActualUserUseCase
 import kotlinx.android.synthetic.main.fragment_settings.*
+import javax.inject.Inject
 
 class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsContract.View {
+
+    @Inject override lateinit var presenter: SettingsContract.Presenter
 
     companion object {
         fun newInstance() = SettingsFragment()
@@ -22,7 +23,9 @@ class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsCont
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = SettingsPresenter(this, SetActualUserUseCase(SharedPreferencesManager(activity)))
+        getAppComponent()
+                .plus(SettingsModule(this))
+                .inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
