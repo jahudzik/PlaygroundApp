@@ -12,7 +12,7 @@ import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.AddGameResultUseCase
 
-class GameActivity : MvpActivity<GamePresenter>(), GameContract.View,
+class GameActivity : MvpActivity<GameContract.Presenter>(), GameContract.View,
         QuestionFragment.EventListener, SummaryFragment.EventListener {
 
     companion object {

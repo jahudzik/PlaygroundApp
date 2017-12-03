@@ -16,7 +16,7 @@ import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.UpdateUserUserCase
 import kotlinx.android.synthetic.main.activity_edit_user.*
 
-class EditUserActivity : MvpActivity<EditUserPresenter>(), EditUserContract.View {
+class EditUserActivity : MvpActivity<EditUserContract.Presenter>(), EditUserContract.View {
 
     companion object {
         const val MODE_EXTRA_KEY = "mode"

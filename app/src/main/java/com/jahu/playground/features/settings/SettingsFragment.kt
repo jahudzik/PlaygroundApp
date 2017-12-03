@@ -14,7 +14,7 @@ import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.usecases.users.SetActualUserUseCase
 import kotlinx.android.synthetic.main.fragment_settings.*
 
-class SettingsFragment : MvpFragment<SettingsPresenter>(), SettingsContract.View {
+class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsContract.View {
 
     companion object {
         fun newInstance() = SettingsFragment()

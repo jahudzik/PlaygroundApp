@@ -12,7 +12,7 @@ import com.jahu.playground.repositories.memory.MockedLocalDataRepository
 import com.jahu.playground.usecases.games.GetLeaderboardEntriesUseCase
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
 
-class LeaderboardFragment : MvpFragment<LeaderboardPresenter>(), LeaderboardContract.View {
+class LeaderboardFragment : MvpFragment<LeaderboardContract.Presenter>(), LeaderboardContract.View {
 
     companion object {
         fun newInstance() = LeaderboardFragment()
