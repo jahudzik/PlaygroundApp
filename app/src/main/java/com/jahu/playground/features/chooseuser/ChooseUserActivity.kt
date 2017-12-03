@@ -10,24 +10,19 @@ import com.jahu.playground.features.dashboard.DashboardActivity
 import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.mvp.MvpActivity
-import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.MockedLocalDataRepository
-import com.jahu.playground.usecases.users.GetActualUserUseCase
-import com.jahu.playground.usecases.users.GetUsersUseCase
-import com.jahu.playground.usecases.users.SetActualUserUseCase
 import kotlinx.android.synthetic.main.activity_choose_user.*
+import javax.inject.Inject
 
-class ChooseUserActivity : MvpActivity<ChooseUserPresenter>(), ChooseUserContract.View, UsersAdapter.OnUserChosenListener {
+class ChooseUserActivity : MvpActivity<ChooseUserContract.Presenter>(), ChooseUserContract.View, UsersAdapter.OnUserChosenListener {
+
+    @Inject override lateinit var presenter: ChooseUserContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_user)
-        val preferencesManager = SharedPreferencesManager(this)
-        presenter = ChooseUserPresenter(this,
-                GetActualUserUseCase(preferencesManager, MockedLocalDataRepository),
-                GetUsersUseCase(MockedLocalDataRepository),
-                SetActualUserUseCase(preferencesManager))
-
+        getAppComponent()
+                .plus(ChooseUserModule(this))
+                .inject(this)
         addUserButton.setOnClickListener { presenter.onAddUserButtonClicked() }
     }
 
