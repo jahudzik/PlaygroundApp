@@ -6,7 +6,7 @@ import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.MockedLocalDataRepository
+import com.jahu.playground.repositories.database.SugarOrmLocalDataRepository
 import com.jahu.playground.trivia.TriviaService
 import dagger.Module
 import dagger.Provides
@@ -34,7 +34,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideLocalDataRepository(): LocalDataRepository = MockedLocalDataRepository
+    fun provideLocalDataRepository(): LocalDataRepository = SugarOrmLocalDataRepository()
 
     @Singleton
     @Provides
