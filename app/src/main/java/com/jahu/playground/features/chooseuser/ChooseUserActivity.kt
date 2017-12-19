@@ -25,12 +25,14 @@ class ChooseUserActivity : MvpActivity<ChooseUserContract.Presenter>(), ChooseUs
 
     override fun showNoUsersMessage() {
         usersRecyclerView.visibility = View.GONE
+        noUsersMessage.visibility = View.VISIBLE
     }
 
     override fun showUsersList(users: List<User>) {
         usersRecyclerView.visibility = View.VISIBLE
         usersRecyclerView.layoutManager = LinearLayoutManager(this)
         usersRecyclerView.adapter = UsersAdapter(users, this)
+        noUsersMessage.visibility = View.GONE
     }
 
     override fun navigateToEditUserScreen(mode: EditUserContract.Mode) {

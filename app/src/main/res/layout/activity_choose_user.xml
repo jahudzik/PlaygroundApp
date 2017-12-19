@@ -23,6 +23,16 @@
       android:layout_below="@id/chooseUserTextView"
       />
 
+  <TextView
+      android:id="@+id/noUsersMessage"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/chooseUserTextView"
+      android:layout_marginTop="100dp"
+      android:gravity="center"
+      android:text="@string/no_users"
+      />
+
   <android.support.design.widget.FloatingActionButton
       android:id="@+id/addUserButton"
       android:layout_width="wrap_content"
