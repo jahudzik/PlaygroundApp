@@ -24,6 +24,13 @@ Side project for playing around with different Android libraries, approaches and
 * Retrofit [(docs)](http://square.github.io/retrofit/)
     * [Setup](https://github.com/jahudzik/playground-app/commit/9fab27130c0beda4ae7f6fbc639b718fc965a602)
 
+### Data persistence
+* Sugar ORM [(docs)](http://satyan.github.io/sugar/)
+    * [BRANCH: db/sugar_orm](https://github.com/jahudzik/playground-app/commits/db/sugar_orm)
+    * [Basic configuration](https://github.com/jahudzik/playground-app/commit/41f8b59aa05779a4e1c26c3a384792d7bb43da0d)
+    * [Marking data classes as SugarRecords](https://github.com/jahudzik/playground-app/commit/fe2f6db4296c8cbf7def121123bb9aaf8736da2c)
+    * [Repository implementation](https://github.com/jahudzik/playground-app/commit/a6db1884e0c1016f2644a40e6ef97fff848bd613)
+
 ### Static code analysis
 
 * Detekt [(docs)](https://github.com/arturbosch/detekt)
