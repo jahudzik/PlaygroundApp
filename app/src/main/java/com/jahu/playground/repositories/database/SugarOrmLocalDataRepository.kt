@@ -27,7 +27,7 @@ class SugarOrmLocalDataRepository : LocalDataRepository {
     }
 
     override fun updateUser(user: User) {
-        user.setId(user.id)  // Setting SugarORM internal identifier - otherwise save() will insert instead of updating
+        user.setId(user.id) // Setting SugarORM internal identifier - otherwise save() will insert instead of updating
         user.save()
     }
 
