@@ -10,6 +10,14 @@ Side project for playing around with different Android libraries, approaches and
 * Model-View-Presenter
     * [Base MVP classes](https://github.com/jahudzik/playground-app/tree/develop/app/src/main/java/com/jahu/playground/mvp)
     * [Example feature package](https://github.com/jahudzik/playground-app/tree/develop/app/src/main/java/com/jahu/playground/features/chooseuser)
+
+### Dependency Injection
+* Dagger [(docs)](https://google.github.io/dagger/)
+    * [BRANCH: di/dagger](https://github.com/jahudzik/playground-app/tree/di/dagger)
+    * [Basic configuration with a single AppComponent providing Context](https://github.com/jahudzik/playground-app/commit/e1778cc03347b71b97c6e47f7faf220aea50c0ab)
+    * [Moved Retrofit initialization to the Dagger's DataModule and injecting it](https://github.com/jahudzik/playground-app/commit/e3364d1d20a1ece870fbd360fe3f757cb899ceda)
+    * [Added Dagger module providing all the UseCase classes and their dependencies](https://github.com/jahudzik/playground-app/commit/7e014689f0c425ea6eac937bbbc135c0b2f773f2)
+    * [Example of a separate subcomponent definition for the single feature](https://github.com/jahudzik/playground-app/commit/f7e85d428fc437b784aa2c3809176f4dc331c0fc)
     
 ### Network
 
