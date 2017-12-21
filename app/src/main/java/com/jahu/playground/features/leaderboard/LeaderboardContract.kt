@@ -1,6 +1,6 @@
 package com.jahu.playground.features.leaderboard
 
-import com.jahu.playground.dao.LeaderboardEntry
+import com.jahu.playground.data.LeaderboardEntry
 import com.jahu.playground.mvp.MvpPresenter
 import com.jahu.playground.mvp.MvpView
 

@@ -1,7 +1,7 @@
 package com.jahu.playground.repositories
 
-import com.jahu.playground.dao.GameResult
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.GameResult
+import com.jahu.playground.data.User
 
 interface LocalDataRepository {
 

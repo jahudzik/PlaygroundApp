@@ -1,6 +1,6 @@
 package com.jahu.playground.features.gamesetup
 
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion

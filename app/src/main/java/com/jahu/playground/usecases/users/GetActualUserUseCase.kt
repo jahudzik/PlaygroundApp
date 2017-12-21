@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases.users
 
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager
 

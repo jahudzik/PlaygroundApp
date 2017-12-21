@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jahu.playground.R
-import com.jahu.playground.dao.LeaderboardEntry
+import com.jahu.playground.data.LeaderboardEntry
 import kotlinx.android.synthetic.main.item_leaderboard.view.*
 
 class LeaderboardAdapter(

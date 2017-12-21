@@ -1,8 +1,8 @@
 package com.jahu.playground.usecases.games
 
-import com.jahu.playground.dao.GameResult
-import com.jahu.playground.dao.LeaderboardEntry
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.GameResult
+import com.jahu.playground.data.LeaderboardEntry
+import com.jahu.playground.data.User
 import com.jahu.playground.repositories.LocalDataRepository
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions

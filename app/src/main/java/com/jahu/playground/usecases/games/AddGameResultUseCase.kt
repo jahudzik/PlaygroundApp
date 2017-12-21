@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases.games
 
-import com.jahu.playground.dao.GameResult
+import com.jahu.playground.data.GameResult
 import com.jahu.playground.features.game.time.TimeProvider
 import com.jahu.playground.repositories.LocalDataRepository
 import com.jahu.playground.repositories.SharedPreferencesManager

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.jahu.playground.R
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.User
 import com.jahu.playground.features.dashboard.DashboardActivity
 import com.jahu.playground.features.edituser.EditUserActivity
 import com.jahu.playground.features.edituser.EditUserContract

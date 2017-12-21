@@ -1,6 +1,6 @@
 package com.jahu.playground.features.edituser
 
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 import com.jahu.playground.mvp.BasePresenter
 import com.jahu.playground.usecases.users.AddUserUseCase

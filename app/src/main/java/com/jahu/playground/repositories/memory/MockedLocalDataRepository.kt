@@ -1,6 +1,6 @@
 package com.jahu.playground.repositories.memory
 
-import com.jahu.playground.dao.User
+import com.jahu.playground.data.User
 
 @SuppressWarnings("MagicNumber")
 object MockedLocalDataRepository : InMemoryLocalDataRepository() {

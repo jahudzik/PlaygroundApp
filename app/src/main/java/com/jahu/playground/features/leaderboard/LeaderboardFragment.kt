@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jahu.playground.R
-import com.jahu.playground.dao.LeaderboardEntry
+import com.jahu.playground.data.LeaderboardEntry
 import com.jahu.playground.mvp.MvpFragment
 import kotlinx.android.synthetic.main.fragment_leaderboard.*
 

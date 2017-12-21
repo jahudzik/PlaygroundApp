@@ -1,4 +1,4 @@
-package com.jahu.playground.dao
+package com.jahu.playground.data
 
 data class LeaderboardEntry(
         val userNick: String,
