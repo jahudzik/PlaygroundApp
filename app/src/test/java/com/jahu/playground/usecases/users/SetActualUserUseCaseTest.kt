@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases.users
 
-import com.jahu.playground.repositories.SharedPreferencesManager
+import com.jahu.playground.data.SharedPreferencesManager
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import org.junit.After

@@ -1,4 +1,4 @@
-package com.jahu.playground.repositories.memory
+package com.jahu.playground.data.memory
 
 import com.jahu.playground.data.GameResult
 import com.jahu.playground.data.User

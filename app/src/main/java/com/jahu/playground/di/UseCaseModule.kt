@@ -1,8 +1,8 @@
 package com.jahu.playground.di
 
+import com.jahu.playground.data.DataSource
+import com.jahu.playground.data.SharedPreferencesManager
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.DataSource
-import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaService
 import com.jahu.playground.usecases.games.AddGameResultUseCase
 import com.jahu.playground.usecases.games.GetLeaderboardEntriesUseCase

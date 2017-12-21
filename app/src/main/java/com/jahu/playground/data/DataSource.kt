@@ -1,7 +1,4 @@
-package com.jahu.playground.repositories
-
-import com.jahu.playground.data.GameResult
-import com.jahu.playground.data.User
+package com.jahu.playground.data
 
 interface DataSource {
 

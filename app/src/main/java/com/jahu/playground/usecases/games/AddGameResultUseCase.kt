@@ -1,9 +1,9 @@
 package com.jahu.playground.usecases.games
 
+import com.jahu.playground.data.DataSource
 import com.jahu.playground.data.GameResult
+import com.jahu.playground.data.SharedPreferencesManager
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.DataSource
-import com.jahu.playground.repositories.SharedPreferencesManager
 import timber.log.Timber
 
 class AddGameResultUseCase(

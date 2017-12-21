@@ -1,8 +1,8 @@
 package com.jahu.playground.usecases.games
 
+import com.jahu.playground.data.DataSource
 import com.jahu.playground.data.LeaderboardEntry
 import com.jahu.playground.extensions.roundTo2DecimalPlaces
-import com.jahu.playground.repositories.DataSource
 
 class GetLeaderboardEntriesUseCase(
         private val dataSource: DataSource

@@ -1,12 +1,12 @@
 package com.jahu.playground.di
 
 import android.content.Context
+import com.jahu.playground.data.DataSource
+import com.jahu.playground.data.SharedPreferencesManager
+import com.jahu.playground.data.memory.InMemoryDataSource
 import com.jahu.playground.features.game.random.RandomNumberGenerator
 import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.DataSource
-import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.InMemoryDataSource
 import com.jahu.playground.trivia.TriviaService
 import dagger.Module
 import dagger.Provides

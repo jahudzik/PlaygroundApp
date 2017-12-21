@@ -1,8 +1,8 @@
 package com.jahu.playground.usecases.games
 
+import com.jahu.playground.data.DataSource
+import com.jahu.playground.data.SharedPreferencesManager
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.DataSource
-import com.jahu.playground.repositories.SharedPreferencesManager
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import com.nhaarman.mockito_kotlin.whenever

@@ -1,4 +1,4 @@
-package com.jahu.playground.repositories
+package com.jahu.playground.data
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases.users
 
-import com.jahu.playground.repositories.DataSource
+import com.jahu.playground.data.DataSource
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import org.junit.After

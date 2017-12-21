@@ -1,8 +1,8 @@
 package com.jahu.playground.features.gamesetup
 
+import com.jahu.playground.data.DataSource
+import com.jahu.playground.data.SharedPreferencesManager
 import com.jahu.playground.data.User
-import com.jahu.playground.repositories.DataSource
-import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
 import com.nhaarman.mockito_kotlin.*
