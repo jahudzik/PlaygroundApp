@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.User
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify
@@ -21,12 +21,12 @@ class GetActualUserUseCaseTest {
 
     @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = GetActualUserUseCase(sharedPreferencesManager, dataRepository)
+        useCase = GetActualUserUseCase(sharedPreferencesManager, dataSource)
     }
 
     @Test
@@ -44,19 +44,19 @@ class GetActualUserUseCaseTest {
         val userId = 1L
         val user = User(userId, "Some", "User", "nick")
         whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
-        whenever(dataRepository.getUserById(userId)).thenReturn(user)
+        whenever(dataSource.getUserById(userId)).thenReturn(user)
 
         val result = useCase.execute()
 
         assertEquals(user, result)
         verify(sharedPreferencesManager).getActualUserId()
-        verify(dataRepository).getUserById(eq(userId))
+        verify(dataSource).getUserById(eq(userId))
     }
 
     @After
     fun tearDown() {
         verifyNoMoreInteractions(sharedPreferencesManager)
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
     }
 
 }

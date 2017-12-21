@@ -1,7 +1,7 @@
 package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.data.User
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
@@ -21,14 +21,14 @@ class GameSetupPresenterTest {
 
     @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Mock private lateinit var getNewQuestionsUseCase: GetNewQuestionsUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = GameSetupPresenter(view, sharedPreferencesManager, dataRepository, getNewQuestionsUseCase)
+        presenter = GameSetupPresenter(view, sharedPreferencesManager, dataSource, getNewQuestionsUseCase)
     }
 
     @Test
@@ -49,7 +49,7 @@ class GameSetupPresenterTest {
     fun resumeView_noUserData() {
         val userId = 1L
         whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
-        whenever(dataRepository.getUserById(userId)).thenReturn(null)
+        whenever(dataSource.getUserById(userId)).thenReturn(null)
 
         var exceptionThrown = false
         try {
@@ -57,7 +57,7 @@ class GameSetupPresenterTest {
         } catch (e: IllegalStateException) {
             exceptionThrown = true
             verify(sharedPreferencesManager).getActualUserId()
-            verify(dataRepository).getUserById(eq(userId))
+            verify(dataSource).getUserById(eq(userId))
         }
         assertTrue(exceptionThrown)
     }
@@ -67,12 +67,12 @@ class GameSetupPresenterTest {
         val userId = 1L
         val user = User(userId, "John", "Smith", "someNick")
         whenever(sharedPreferencesManager.getActualUserId()).thenReturn(userId)
-        whenever(dataRepository.getUserById(userId)).thenReturn(user)
+        whenever(dataSource.getUserById(userId)).thenReturn(user)
 
         presenter.resumeView()
 
         verify(sharedPreferencesManager).getActualUserId()
-        verify(dataRepository).getUserById(eq(userId))
+        verify(dataSource).getUserById(eq(userId))
         verify(view).showUserName(eq(user.firstName))
     }
 
@@ -114,7 +114,7 @@ class GameSetupPresenterTest {
     @After
     fun tearDown() {
         verifyNoMoreInteractions(sharedPreferencesManager)
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
         verifyNoMoreInteractions(view)
         verifyNoMoreInteractions(getNewQuestionsUseCase)
     }

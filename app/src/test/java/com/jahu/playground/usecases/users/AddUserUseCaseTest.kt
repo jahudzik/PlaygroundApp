@@ -2,7 +2,7 @@ package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.User
 import com.jahu.playground.features.edituser.EditUserContract
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
@@ -14,7 +14,7 @@ class AddUserUseCaseTest {
 
     private lateinit var useCase: AddUserUseCase
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Mock private lateinit var resultListener: AddUserUseCase.ResultListener
 
@@ -25,49 +25,49 @@ class AddUserUseCaseTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = AddUserUseCase(dataRepository)
+        useCase = AddUserUseCase(dataSource)
     }
 
     @Test
     fun execute_noUsers() {
-        whenever(dataRepository.getUserByNick(any())).thenReturn(null)
-        whenever(dataRepository.getHighestUserId()).thenReturn(null)
+        whenever(dataSource.getUserByNick(any())).thenReturn(null)
+        whenever(dataSource.getHighestUserId()).thenReturn(null)
 
         useCase.execute(firstName, lastName, nick, resultListener)
 
-        verify(dataRepository).getUserByNick(eq(nick))
-        verify(dataRepository).getHighestUserId()
-        verify(dataRepository).addUser(eq(User(1, firstName, lastName, nick)))
+        verify(dataSource).getUserByNick(eq(nick))
+        verify(dataSource).getHighestUserId()
+        verify(dataSource).addUser(eq(User(1, firstName, lastName, nick)))
         verify(resultListener).onSuccess()
     }
 
     @Test
     fun execute_noSuchUser() {
-        whenever(dataRepository.getUserByNick(any())).thenReturn(null)
-        whenever(dataRepository.getHighestUserId()).thenReturn(1)
+        whenever(dataSource.getUserByNick(any())).thenReturn(null)
+        whenever(dataSource.getHighestUserId()).thenReturn(1)
 
         useCase.execute(firstName, lastName, nick, resultListener)
 
-        verify(dataRepository).getUserByNick(eq(nick))
-        verify(dataRepository).getHighestUserId()
-        verify(dataRepository).addUser(eq(User(2, firstName, lastName, nick)))
+        verify(dataSource).getUserByNick(eq(nick))
+        verify(dataSource).getHighestUserId()
+        verify(dataSource).addUser(eq(User(2, firstName, lastName, nick)))
         verify(resultListener).onSuccess()
     }
 
     @Test
     fun execute_suchNickExists() {
-        whenever(dataRepository.getUserByNick(any())).thenReturn(mock())
-        whenever(dataRepository.getHighestUserId()).thenReturn(1)
+        whenever(dataSource.getUserByNick(any())).thenReturn(mock())
+        whenever(dataSource.getHighestUserId()).thenReturn(1)
 
         useCase.execute(firstName, lastName, nick, resultListener)
 
-        verify(dataRepository).getUserByNick(eq(nick))
+        verify(dataSource).getUserByNick(eq(nick))
         verify(resultListener).onFailure(EditUserContract.ErrorCode.NICK_EXISTS)
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
         verifyNoMoreInteractions(resultListener)
     }
 

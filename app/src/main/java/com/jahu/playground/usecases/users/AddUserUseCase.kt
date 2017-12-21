@@ -2,17 +2,17 @@ package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 
 class AddUserUseCase(
-        private val dataRepository: LocalDataRepository
+        private val dataSource: DataSource
 ) {
 
     fun execute(firstName: String, lastName: String, nick: String, resultListener: ResultListener) {
-        val existingUser = dataRepository.getUserByNick(nick)
+        val existingUser = dataSource.getUserByNick(nick)
         if (existingUser == null) {
             val userId = generateUserId()
-            dataRepository.addUser(User(userId, firstName, lastName, nick))
+            dataSource.addUser(User(userId, firstName, lastName, nick))
             resultListener.onSuccess()
         } else {
             resultListener.onFailure(ErrorCode.NICK_EXISTS)
@@ -20,7 +20,7 @@ class AddUserUseCase(
     }
 
     private fun generateUserId(): Long {
-        val highestUserId = dataRepository.getHighestUserId()
+        val highestUserId = dataSource.getHighestUserId()
         return if (highestUserId != null) {
             highestUserId + 1
         } else {

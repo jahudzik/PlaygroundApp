@@ -2,7 +2,7 @@ package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.User
 import com.jahu.playground.features.edituser.EditUserContract
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
 import org.junit.Before
@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations
 
 class UpdateUserUserCaseTest {
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Mock private lateinit var resultListener: UpdateUserUserCase.ResultListener
 
@@ -21,18 +21,18 @@ class UpdateUserUserCaseTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = UpdateUserUserCase(dataRepository)
+        useCase = UpdateUserUserCase(dataSource)
     }
 
     @Test
     fun execute_failure_userDoesNotExist() {
         val id = 1L
         val updatedUser = User(id, "John", "Smith", "nick")
-        whenever(dataRepository.getUserById(any())).thenReturn(null)
+        whenever(dataSource.getUserById(any())).thenReturn(null)
 
         useCase.execute(updatedUser, resultListener)
 
-        verify(dataRepository).getUserById(id)
+        verify(dataSource).getUserById(id)
         verify(resultListener).onFailure(EditUserContract.ErrorCode.USER_NOT_EXISTS)
     }
 
@@ -40,13 +40,13 @@ class UpdateUserUserCaseTest {
     fun execute_failure_nickExists() {
         val nick = "nick"
         val updatedUser = User(1, "John", "Smith", nick)
-        whenever(dataRepository.getUserById(any())).thenReturn(mock())
-        whenever(dataRepository.getUserByNick(any())).thenReturn(User(2, "Ted", "Honor", nick))
+        whenever(dataSource.getUserById(any())).thenReturn(mock())
+        whenever(dataSource.getUserByNick(any())).thenReturn(User(2, "Ted", "Honor", nick))
 
         useCase.execute(updatedUser, resultListener)
 
-        verify(dataRepository).getUserById(1)
-        verify(dataRepository).getUserByNick(nick)
+        verify(dataSource).getUserById(1)
+        verify(dataSource).getUserByNick(nick)
         verify(resultListener).onFailure(EditUserContract.ErrorCode.NICK_EXISTS)
     }
 
@@ -54,14 +54,14 @@ class UpdateUserUserCaseTest {
     fun execute_success_newNick() {
         val nick = "nick"
         val updatedUser = User(1, "John", "Smith", nick)
-        whenever(dataRepository.getUserById(any())).thenReturn(mock())
-        whenever(dataRepository.getUserByNick(any())).thenReturn(null)
+        whenever(dataSource.getUserById(any())).thenReturn(mock())
+        whenever(dataSource.getUserByNick(any())).thenReturn(null)
 
         useCase.execute(updatedUser, resultListener)
 
-        verify(dataRepository).getUserById(1)
-        verify(dataRepository).getUserByNick(nick)
-        verify(dataRepository).updateUser(updatedUser)
+        verify(dataSource).getUserById(1)
+        verify(dataSource).getUserByNick(nick)
+        verify(dataSource).updateUser(updatedUser)
         verify(resultListener).onSuccess()
     }
 
@@ -69,20 +69,20 @@ class UpdateUserUserCaseTest {
     fun execute_success_noNickUpdate() {
         val nick = "nick"
         val updatedUser = User(1, "John", "Smith", nick)
-        whenever(dataRepository.getUserById(any())).thenReturn(mock())
-        whenever(dataRepository.getUserByNick(any())).thenReturn(User(1, "Tom", "Smith", nick))
+        whenever(dataSource.getUserById(any())).thenReturn(mock())
+        whenever(dataSource.getUserByNick(any())).thenReturn(User(1, "Tom", "Smith", nick))
 
         useCase.execute(updatedUser, resultListener)
 
-        verify(dataRepository).getUserById(1)
-        verify(dataRepository).getUserByNick(nick)
-        verify(dataRepository).updateUser(updatedUser)
+        verify(dataSource).getUserById(1)
+        verify(dataSource).getUserByNick(nick)
+        verify(dataSource).updateUser(updatedUser)
         verify(resultListener).onSuccess()
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
         verifyNoMoreInteractions(resultListener)
     }
 

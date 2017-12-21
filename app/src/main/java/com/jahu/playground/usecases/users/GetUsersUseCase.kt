@@ -1,14 +1,14 @@
 package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.User
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 
 class GetUsersUseCase(
-        private val dataRepository: LocalDataRepository
+        private val dataSource: DataSource
 ) {
 
     fun execute(): Set<User> {
-        return dataRepository.getAllUsers()
+        return dataSource.getAllUsers()
     }
 
 }

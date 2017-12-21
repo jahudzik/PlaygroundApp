@@ -3,7 +3,7 @@ package com.jahu.playground.repositories.memory
 import com.jahu.playground.data.User
 
 @SuppressWarnings("MagicNumber")
-object MockedLocalDataRepository : InMemoryLocalDataRepository() {
+object MockedDataSource : InMemoryDataSource() {
 
     val user1 = User(1, "Mike", "Jones", "mike66")
     val user2 = User(2, "Alice", "McMaster", "hippo")

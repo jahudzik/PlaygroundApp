@@ -2,7 +2,7 @@ package com.jahu.playground.features.gamesetup
 
 import com.jahu.playground.data.User
 import com.jahu.playground.mvp.BasePresenter
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaQuestion
 import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
@@ -10,7 +10,7 @@ import com.jahu.playground.usecases.games.GetNewQuestionsUseCase
 class GameSetupPresenter(
         private val view: GameSetupContract.View,
         private val sharedPreferencesManager: SharedPreferencesManager,
-        private val dataRepository: LocalDataRepository,
+        private val dataSource: DataSource,
         private val getNewQuestionsUseCase: GetNewQuestionsUseCase
 ) : GameSetupContract.Presenter, BasePresenter<GameSetupContract.View>() {
 
@@ -42,7 +42,7 @@ class GameSetupPresenter(
         if (userId == -1L) {
             throw IllegalStateException("No information about current user (user id)")
         }
-        return dataRepository.getUserById(userId) ?:
+        return dataSource.getUserById(userId) ?:
                 throw IllegalStateException("No information about current user (user data)")
     }
 

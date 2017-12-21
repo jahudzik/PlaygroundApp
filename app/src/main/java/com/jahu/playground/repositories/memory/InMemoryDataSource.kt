@@ -2,9 +2,9 @@ package com.jahu.playground.repositories.memory
 
 import com.jahu.playground.data.GameResult
 import com.jahu.playground.data.User
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 
-open class InMemoryLocalDataRepository : LocalDataRepository {
+open class InMemoryDataSource : DataSource {
 
     private val usersMap: MutableMap<Long, User> = mutableMapOf()
     private val resultsList: MutableList<GameResult> = mutableListOf()

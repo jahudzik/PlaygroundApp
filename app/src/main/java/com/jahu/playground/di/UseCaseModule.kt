@@ -1,7 +1,7 @@
 package com.jahu.playground.di
 
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.jahu.playground.trivia.TriviaService
 import com.jahu.playground.usecases.games.AddGameResultUseCase
@@ -18,19 +18,17 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideAddUserUseCase(localDataRepository: LocalDataRepository)
-            = AddUserUseCase(localDataRepository)
+    fun provideAddUserUseCase(dataSource: DataSource) = AddUserUseCase(dataSource)
 
     @Singleton
     @Provides
-    fun provideGetActualUserUseCase(localDataRepository: LocalDataRepository,
+    fun provideGetActualUserUseCase(dataSource: DataSource,
                                     sharedPreferencesManager: SharedPreferencesManager)
-            = GetActualUserUseCase(sharedPreferencesManager, localDataRepository)
+            = GetActualUserUseCase(sharedPreferencesManager, dataSource)
 
     @Singleton
     @Provides
-    fun provideGetUsersUseCase(localDataRepository: LocalDataRepository)
-            = GetUsersUseCase(localDataRepository)
+    fun provideGetUsersUseCase(dataSource: DataSource) = GetUsersUseCase(dataSource)
 
     @Singleton
     @Provides
@@ -39,24 +37,21 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideUpdateUserUseCase(localDataRepository: LocalDataRepository)
-            = UpdateUserUserCase(localDataRepository)
+    fun provideUpdateUserUseCase(dataSource: DataSource) = UpdateUserUserCase(dataSource)
 
     @Singleton
     @Provides
     fun provideAddGameResultUseCase(preferencesManager: SharedPreferencesManager,
-                                    localDataRepository: LocalDataRepository,
+                                    dataSource: DataSource,
                                     timeProvider: TimeProvider)
-            = AddGameResultUseCase(preferencesManager, localDataRepository, timeProvider)
+            = AddGameResultUseCase(preferencesManager, dataSource, timeProvider)
 
     @Singleton
     @Provides
-    fun provideGetLeaderboardEntriesUseCase(localDataRepository: LocalDataRepository)
-            = GetLeaderboardEntriesUseCase(localDataRepository)
+    fun provideGetLeaderboardEntriesUseCase(dataSource: DataSource) = GetLeaderboardEntriesUseCase(dataSource)
 
     @Singleton
     @Provides
-    fun provideGetNewQuestionsUseCase(triviaService: TriviaService)
-            = GetNewQuestionsUseCase(triviaService)
+    fun provideGetNewQuestionsUseCase(triviaService: TriviaService) = GetNewQuestionsUseCase(triviaService)
 
 }

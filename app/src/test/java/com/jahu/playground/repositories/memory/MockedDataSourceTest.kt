@@ -6,52 +6,52 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
-class MockedLocalDataRepositoryTest {
+class MockedDataSourceTest {
 
     @Before
     fun setUp() {
-        MockedLocalDataRepository.reset()
+        MockedDataSource.reset()
     }
 
     @Test
     fun getAllUsers_expected() {
         val expectedItems = setOf(
-                MockedLocalDataRepository.user1,
-                MockedLocalDataRepository.user2,
-                MockedLocalDataRepository.user3
+                MockedDataSource.user1,
+                MockedDataSource.user2,
+                MockedDataSource.user3
         )
 
-        val users = MockedLocalDataRepository.getAllUsers()
+        val users = MockedDataSource.getAllUsers()
 
         assertEquals(expectedItems, users)
     }
 
     @Test
     fun getUserById_existing() {
-        val user = MockedLocalDataRepository.getUserById(3)
+        val user = MockedDataSource.getUserById(3)
 
         assertNotNull(user)
-        assertEquals(MockedLocalDataRepository.user3, user)
+        assertEquals(MockedDataSource.user3, user)
     }
 
     @Test
     fun getUserById_notExisting() {
-        val user = MockedLocalDataRepository.getUserById(4)
+        val user = MockedDataSource.getUserById(4)
 
         assertNull(user)
     }
 
     @Test
     fun getUserByNick_existing() {
-        val user = MockedLocalDataRepository.getUserByNick("hippo")
+        val user = MockedDataSource.getUserByNick("hippo")
 
         assertNotNull(user)
-        assertEquals(MockedLocalDataRepository.user2, user)
+        assertEquals(MockedDataSource.user2, user)
     }
 
     @Test
     fun getUserByNick_notExisting() {
-        val user = MockedLocalDataRepository.getUserByNick("unknown")
+        val user = MockedDataSource.getUserByNick("unknown")
 
         assertNull(user)
     }
@@ -60,61 +60,61 @@ class MockedLocalDataRepositoryTest {
     fun addUser_expected() {
         val newUser = User(4, "newby", "Adam", "Smith")
         val expectedItems = setOf(
-                MockedLocalDataRepository.user1,
-                MockedLocalDataRepository.user2,
-                MockedLocalDataRepository.user3,
+                MockedDataSource.user1,
+                MockedDataSource.user2,
+                MockedDataSource.user3,
                 newUser
         )
 
-        MockedLocalDataRepository.addUser(newUser)
-        val users = MockedLocalDataRepository.getAllUsers()
+        MockedDataSource.addUser(newUser)
+        val users = MockedDataSource.getAllUsers()
 
         assertEquals(expectedItems, users)
     }
 
     @Test
     fun updateUser_expected() {
-        val newUser2 = MockedLocalDataRepository.user2.copy(nick = "newby")
+        val newUser2 = MockedDataSource.user2.copy(nick = "newby")
         val expectedItems = setOf(
-                MockedLocalDataRepository.user1,
+                MockedDataSource.user1,
                 newUser2,
-                MockedLocalDataRepository.user3
+                MockedDataSource.user3
         )
 
-        MockedLocalDataRepository.updateUser(newUser2)
-        val users = MockedLocalDataRepository.getAllUsers()
+        MockedDataSource.updateUser(newUser2)
+        val users = MockedDataSource.getAllUsers()
 
         assertEquals(expectedItems, users)
     }
 
     @Test
     fun getHighestUserId_initialState() {
-        val id = MockedLocalDataRepository.getHighestUserId()
+        val id = MockedDataSource.getHighestUserId()
 
         assertEquals(3L, id)
     }
 
     @Test
     fun getHighestUserId_extraUserWithLowerId() {
-        MockedLocalDataRepository.addUser(User(0, "test", "test", "test"))
+        MockedDataSource.addUser(User(0, "test", "test", "test"))
 
-        val id = MockedLocalDataRepository.getHighestUserId()
+        val id = MockedDataSource.getHighestUserId()
 
         assertEquals(3L, id)
     }
 
     @Test
     fun getHighestUserId_extraUserWithHigherId() {
-        MockedLocalDataRepository.addUser(User(5, "test", "test", "test"))
+        MockedDataSource.addUser(User(5, "test", "test", "test"))
 
-        val id = MockedLocalDataRepository.getHighestUserId()
+        val id = MockedDataSource.getHighestUserId()
 
         assertEquals(5L, id)
     }
 
     @Test
     fun getGameResultsByUserId_initialEmpty() {
-        val results = MockedLocalDataRepository.getGameResultsByUserId(1)
+        val results = MockedDataSource.getGameResultsByUserId(1)
 
         assertEquals(emptyList<GameResult>(), results)
     }
@@ -126,9 +126,9 @@ class MockedLocalDataRepositoryTest {
                 GameResult(userId, 5, 300),
                 GameResult(userId, 7, 304),
                 GameResult(userId, 4, 444))
-        inputResults.map { MockedLocalDataRepository.addGameResult(it) }
+        inputResults.map { MockedDataSource.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsByUserId(userId)
+        val outputResults = MockedDataSource.getGameResultsByUserId(userId)
 
         assertEquals(inputResults, outputResults)
     }
@@ -146,9 +146,9 @@ class MockedLocalDataRepositoryTest {
                 GameResult(3, 2, 30),
                 GameResult(3, 4, 45)
         )
-        inputResults.map { MockedLocalDataRepository.addGameResult(it) }
+        inputResults.map { MockedDataSource.addGameResult(it) }
 
-        val outputResults = MockedLocalDataRepository.getGameResultsByUserId(3)
+        val outputResults = MockedDataSource.getGameResultsByUserId(3)
 
         assertEquals(expectedResults, outputResults)
     }

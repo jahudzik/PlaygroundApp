@@ -4,9 +4,9 @@ import android.content.Context
 import com.jahu.playground.features.game.random.RandomNumberGenerator
 import com.jahu.playground.features.game.random.RandomSequenceGenerator
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
-import com.jahu.playground.repositories.memory.InMemoryLocalDataRepository
+import com.jahu.playground.repositories.memory.InMemoryDataSource
 import com.jahu.playground.trivia.TriviaService
 import dagger.Module
 import dagger.Provides
@@ -34,7 +34,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideLocalDataRepository(): LocalDataRepository = InMemoryLocalDataRepository()
+    fun provideLocalDataRepository(): DataSource = InMemoryDataSource()
 
     @Singleton
     @Provides

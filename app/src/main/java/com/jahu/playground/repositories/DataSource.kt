@@ -3,7 +3,7 @@ package com.jahu.playground.repositories
 import com.jahu.playground.data.GameResult
 import com.jahu.playground.data.User
 
-interface LocalDataRepository {
+interface DataSource {
 
     fun getAllUsers(): Set<User>
 

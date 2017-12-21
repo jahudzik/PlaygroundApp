@@ -1,6 +1,6 @@
 package com.jahu.playground.usecases.users
 
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import org.junit.After
@@ -13,23 +13,23 @@ class GetUsersUseCaseTest {
 
     private lateinit var useCase: GetUsersUseCase
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = GetUsersUseCase(dataRepository)
+        useCase = GetUsersUseCase(dataSource)
     }
 
     @Test
     fun execute_expected() {
         useCase.execute()
 
-        verify(dataRepository).getAllUsers()
+        verify(dataSource).getAllUsers()
     }
 
     @After
     fun tearDown() {
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
     }
 }

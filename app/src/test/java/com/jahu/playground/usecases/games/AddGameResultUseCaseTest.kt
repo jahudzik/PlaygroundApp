@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases.games
 
 import com.jahu.playground.features.game.time.TimeProvider
-import com.jahu.playground.repositories.LocalDataRepository
+import com.jahu.playground.repositories.DataSource
 import com.jahu.playground.repositories.SharedPreferencesManager
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
@@ -19,14 +19,14 @@ class AddGameResultUseCaseTest {
 
     @Mock private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    @Mock private lateinit var dataRepository: LocalDataRepository
+    @Mock private lateinit var dataSource: DataSource
 
     @Mock private lateinit var timeProvider: TimeProvider
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = AddGameResultUseCase(sharedPreferencesManager, dataRepository, timeProvider)
+        useCase = AddGameResultUseCase(sharedPreferencesManager, dataSource, timeProvider)
     }
 
     @Test
@@ -41,7 +41,7 @@ class AddGameResultUseCaseTest {
 
         verify(sharedPreferencesManager).getActualUserId()
         verify(timeProvider).getCurrentTimestamp()
-        verify(dataRepository).addGameResult(com.nhaarman.mockito_kotlin.check {
+        verify(dataSource).addGameResult(com.nhaarman.mockito_kotlin.check {
             assertEquals(userId, it.userId)
             assertEquals(correctAnswersCount, it.correctAnswersCount)
             assertEquals(currentTimestamp, it.timestamp)
@@ -61,7 +61,7 @@ class AddGameResultUseCaseTest {
     @After
     fun tearDown() {
         verifyNoMoreInteractions(sharedPreferencesManager)
-        verifyNoMoreInteractions(dataRepository)
+        verifyNoMoreInteractions(dataSource)
         verifyNoMoreInteractions(timeProvider)
     }
 }
