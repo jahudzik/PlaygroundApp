@@ -1,6 +1,6 @@
 package com.jahu.playground.features.chooseuser
 
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import com.jahu.playground.features.edituser.EditUserContract
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.GetUsersUseCase

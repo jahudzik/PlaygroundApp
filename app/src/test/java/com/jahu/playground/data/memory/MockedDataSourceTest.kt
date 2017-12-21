@@ -1,7 +1,7 @@
 package com.jahu.playground.data.memory
 
-import com.jahu.playground.data.GameResult
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.GameResult
+import com.jahu.playground.data.entities.User
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test

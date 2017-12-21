@@ -1,8 +1,8 @@
 package com.jahu.playground.usecases.games
 
 import com.jahu.playground.data.DataSource
-import com.jahu.playground.data.GameResult
 import com.jahu.playground.data.SharedPreferencesManager
+import com.jahu.playground.data.entities.GameResult
 import com.jahu.playground.features.game.time.TimeProvider
 import timber.log.Timber
 

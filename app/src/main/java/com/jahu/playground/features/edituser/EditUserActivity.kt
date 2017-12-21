@@ -7,7 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.jahu.playground.R
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import com.jahu.playground.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_edit_user.*
 

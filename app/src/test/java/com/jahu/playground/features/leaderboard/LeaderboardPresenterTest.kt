@@ -1,6 +1,6 @@
 package com.jahu.playground.features.leaderboard
 
-import com.jahu.playground.data.LeaderboardEntry
+import com.jahu.playground.data.entities.LeaderboardEntry
 import com.jahu.playground.usecases.games.GetLeaderboardEntriesUseCase
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify

@@ -1,8 +1,8 @@
 package com.jahu.playground.data.memory
 
 import com.jahu.playground.data.DataSource
-import com.jahu.playground.data.GameResult
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.GameResult
+import com.jahu.playground.data.entities.User
 
 open class InMemoryDataSource : DataSource {
 

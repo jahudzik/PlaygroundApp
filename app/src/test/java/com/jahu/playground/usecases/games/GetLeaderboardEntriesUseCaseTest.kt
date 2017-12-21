@@ -1,9 +1,9 @@
 package com.jahu.playground.usecases.games
 
 import com.jahu.playground.data.DataSource
-import com.jahu.playground.data.GameResult
-import com.jahu.playground.data.LeaderboardEntry
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.GameResult
+import com.jahu.playground.data.entities.LeaderboardEntry
+import com.jahu.playground.data.entities.User
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import com.nhaarman.mockito_kotlin.whenever

@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases.games
 
 import com.jahu.playground.data.DataSource
-import com.jahu.playground.data.LeaderboardEntry
+import com.jahu.playground.data.entities.LeaderboardEntry
 import com.jahu.playground.extensions.roundTo2DecimalPlaces
 
 class GetLeaderboardEntriesUseCase(

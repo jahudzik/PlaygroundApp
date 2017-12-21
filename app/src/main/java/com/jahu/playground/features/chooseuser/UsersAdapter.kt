@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jahu.playground.R
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import kotlinx.android.synthetic.main.item_user.view.*
 
 class UsersAdapter(

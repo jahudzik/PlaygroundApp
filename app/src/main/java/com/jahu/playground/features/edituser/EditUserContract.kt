@@ -1,6 +1,6 @@
 package com.jahu.playground.features.edituser
 
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import com.jahu.playground.mvp.MvpPresenter
 import com.jahu.playground.mvp.MvpView
 

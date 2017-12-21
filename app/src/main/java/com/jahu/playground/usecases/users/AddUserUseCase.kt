@@ -1,7 +1,7 @@
 package com.jahu.playground.usecases.users
 
 import com.jahu.playground.data.DataSource
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import com.jahu.playground.features.edituser.EditUserContract.ErrorCode
 
 class AddUserUseCase(

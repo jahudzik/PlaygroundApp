@@ -1,6 +1,6 @@
 package com.jahu.playground.data.memory
 
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 
 @SuppressWarnings("MagicNumber")
 object MockedDataSource : InMemoryDataSource() {

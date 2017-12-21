@@ -1,6 +1,6 @@
 package com.jahu.playground.features.edituser
 
-import com.jahu.playground.data.User
+import com.jahu.playground.data.entities.User
 import com.jahu.playground.usecases.users.AddUserUseCase
 import com.jahu.playground.usecases.users.GetActualUserUseCase
 import com.jahu.playground.usecases.users.UpdateUserUserCase

@@ -1,5 +1,8 @@
 package com.jahu.playground.data
 
+import com.jahu.playground.data.entities.GameResult
+import com.jahu.playground.data.entities.User
+
 interface DataSource {
 
     fun getAllUsers(): Set<User>

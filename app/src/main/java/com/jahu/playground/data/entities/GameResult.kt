@@ -1,4 +1,4 @@
-package com.jahu.playground.data
+package com.jahu.playground.data.entities
 
 data class GameResult(
         val userId: Long,
