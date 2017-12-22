@@ -13,7 +13,7 @@ Side project for playing around with different Android libraries, approaches and
 
 ### Dependency Injection
 * Dagger [(docs)](https://google.github.io/dagger/)
-    * [BRANCH: di/dagger](https://github.com/jahudzik/playground-app/tree/di/dagger)
+    * [BRANCH: di/dagger](https://github.com/jahudzik/playground-app/commits/di/dagger)
     * [Basic configuration with a single AppComponent providing Context](https://github.com/jahudzik/playground-app/commit/e1778cc03347b71b97c6e47f7faf220aea50c0ab)
     * [Moved Retrofit initialization to the Dagger's DataModule and injecting it](https://github.com/jahudzik/playground-app/commit/e3364d1d20a1ece870fbd360fe3f757cb899ceda)
     * [Added Dagger module providing all the UseCase classes and their dependencies](https://github.com/jahudzik/playground-app/commit/7e014689f0c425ea6eac937bbbc135c0b2f773f2)
@@ -78,6 +78,12 @@ Side project for playing around with different Android libraries, approaches and
     * Testing asynchronous callbacks with Mockito.thenAnswer()
         * [Example 1](https://github.com/jahudzik/playground-app/commit/a6f1b28ce48273f228319a6ce7ae048f5ed1158a)
         * [Example 2](https://github.com/jahudzik/playground-app/commit/026e3ee0e87ede7d90138389929d28b7bfb4fb18)
+* Espresso [(docs)](https://developer.android.com/training/testing/espresso/index.html)
+    * [BRANCH: test/espresso](https://github.com/jahudzik/playground-app/commits/test/espresso)
+    * [Helper class with common operations](https://github.com/jahudzik/playground-app/blob/test/espresso/app/src/androidTest/java/com/jahu/playground/BaseTest.kt)
+    * [Setup](https://github.com/jahudzik/playground-app/commit/027034a40113fafffe1d04caa7368b40f02d355f)
+    * [Simple test example](https://github.com/jahudzik/playground-app/commit/ffc5a3a9747066a13857edd902fab1bbcc70c57e)
+    * [Operations on RecyclerView items](https://github.com/jahudzik/playground-app/commit/588ff5a17335e84fd8216cf9f6aa86f1820b2ace)
 
 ### Continuous integration
  
