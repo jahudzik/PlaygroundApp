@@ -21,16 +21,22 @@ class FunctionalTest : BaseTest() {
     fun userCreation() {
         checkText(R.id.noUsersMessage, R.string.no_users)
 
-        // Add new user
-        performClick(R.id.addUserButton)
-        performTextReplace(R.id.firstNameEditText, "John")
-        performTextReplace(R.id.lastNameEditText, "Smith")
-        performTextReplace(R.id.nickEditText, "johnny")
-        performClick(R.id.confirmButton)
+        // Add some users
+        addNewUser("John", "Smith", "johnny")
+        addNewUser("Margaret", "Brown", "maggie")
+        addNewUser("Adam", "Jones", "cleo")
+        checkRecyclerViewItems(R.id.usersRecyclerView, "cleo", "johnny", "maggie")
 
-        checkRecyclerViewItem(R.id.usersRecyclerView, 0, "johnny")
-
+        // Choose user and navigate to the app
         performRecyclerViewItemClick(R.id.usersRecyclerView, "johnny")
+    }
+
+    private fun addNewUser(firstName: String, lastName: String, nick: String) {
+        performClick(R.id.addUserButton)
+        performTextReplace(R.id.firstNameEditText, firstName)
+        performTextReplace(R.id.lastNameEditText, lastName)
+        performTextReplace(R.id.nickEditText, nick)
+        performClick(R.id.confirmButton)
     }
 
 }

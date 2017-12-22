@@ -43,6 +43,12 @@ abstract class BaseTest {
                 .check(ViewAssertions.matches(ViewMatchers.withText(expectedResourceId)))
     }
 
+    protected fun checkRecyclerViewItems(viewId: Int, vararg expectedValues: String) {
+        expectedValues.forEachIndexed { index, expectedValue ->
+            checkRecyclerViewItem(viewId, index, expectedValue)
+        }
+    }
+
     protected fun checkRecyclerViewItem(viewId: Int, expectedPosition: Int, expectedValue: String) {
         Espresso.onView(Matchers.allOf(ViewMatchers.withId(viewId), ViewMatchers.isDisplayed()))
                 .check(ViewAssertions.matches(atPosition(expectedPosition, ViewMatchers.hasDescendant(ViewMatchers.withText(expectedValue)))))
