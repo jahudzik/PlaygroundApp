@@ -10,6 +10,7 @@ import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.jahu.playground.features.matchers.ChildViewMatcher
 import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -20,6 +21,15 @@ abstract class BaseTest {
 
     protected fun performClick(viewId: Int) {
         Espresso.onView(Matchers.allOf(ViewMatchers.withId(viewId), ViewMatchers.isDisplayed()))
+                .perform(ViewActions.click())
+    }
+
+    protected fun performClick(viewId: Int, vararg childPositions: Int) {
+        var viewMatcher = ViewMatchers.withId(viewId)
+        for (childPosition in childPositions) {
+            viewMatcher = ChildViewMatcher(viewMatcher, childPosition)
+        }
+        Espresso.onView(Matchers.allOf(viewMatcher, ViewMatchers.isDisplayed()))
                 .perform(ViewActions.click())
     }
 
