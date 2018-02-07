@@ -5,6 +5,7 @@ import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.jahu.playground.features.chooseuser.ChooseUserActivity
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +16,13 @@ import org.junit.runner.RunWith
 class FunctionalTest : BaseTest() {
 
     @get:Rule
-    var mActivityTestRule = ActivityTestRule(ChooseUserActivity::class.java)
+    var mActivityTestRule = ActivityTestRule(ChooseUserActivity::class.java, true, false)
+
+    @Before
+    fun setup() {
+        clearSharedPreferences()
+        mActivityTestRule.launchActivity(null)
+    }
 
     @Test
     fun userCreation() {

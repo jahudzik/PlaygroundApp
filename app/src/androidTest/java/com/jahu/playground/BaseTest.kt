@@ -1,5 +1,7 @@
 package com.jahu.playground
 
+import android.content.Context
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
@@ -12,6 +14,7 @@ import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
+import java.io.File
 
 abstract class BaseTest {
 
@@ -67,6 +70,17 @@ abstract class BaseTest {
                 val viewHolder = view.findViewHolderForAdapterPosition(position) ?: // has no item on such position
                         return false
                 return itemMatcher.matches(viewHolder.itemView)
+            }
+        }
+    }
+
+    // https://stackoverflow.com/a/37606822/8490964
+    protected fun clearSharedPreferences() {
+        val root = InstrumentationRegistry.getTargetContext().filesDir.parentFile
+        val sharedPreferencesFileNames = File(root, "shared_prefs").list()
+        sharedPreferencesFileNames?.let {
+            for (fileName in it) {
+                InstrumentationRegistry.getTargetContext().getSharedPreferences(fileName.replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit()
             }
         }
     }
