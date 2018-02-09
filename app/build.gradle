@@ -57,6 +57,9 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     implementation "com.facebook.stetho:stetho:$stethoVersion"
 
+    debugImplementation "com.android.support.test.espresso.idling:idling-concurrent:$espressoVersion"
+    debugImplementation "com.jakewharton.espresso:okhttp3-idling-resource:$okhttpIdlingResourcesVersion"
+
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
 

@@ -37,10 +37,15 @@ class FunctionalTest : BaseTest() {
         // Choose user and navigate to the app
         performRecyclerViewItemClick(R.id.usersRecyclerView, "johnny")
 
+        // Play a game
+        performClick(R.id.playButton)
+        for (i in 1..10) {
+            performClick(R.id.answer1Button)
+        }
+        performClick(R.id.returnButton)
+
         // Verify leaderboard
         performClick(R.id.bottomNavigationBar, 0, 1)
-
-
     }
 
     private fun addNewUser(firstName: String, lastName: String, nick: String) {
