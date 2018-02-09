@@ -56,7 +56,7 @@ abstract class BaseTest {
                 .check(ViewAssertions.matches(ViewMatchers.withText(expectedResourceId)))
     }
 
-    protected fun checkRecyclerViewItems(viewId: Int, vararg expectedValues: String) {
+    protected fun checkRecyclerViewItems(viewId: Int, expectedValues: Array<out String>) {
         expectedValues.forEachIndexed { index, expectedValue ->
             checkRecyclerViewItem(viewId, index, expectedValue)
         }
