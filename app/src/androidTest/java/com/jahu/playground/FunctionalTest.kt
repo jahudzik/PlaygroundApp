@@ -25,7 +25,7 @@ class FunctionalTest : BaseTest() {
     }
 
     @Test
-    fun userCreation() {
+    fun singleGame() {
         checkText(R.id.noUsersMessage, R.string.no_users)
 
         // Add some users
@@ -36,8 +36,14 @@ class FunctionalTest : BaseTest() {
 
         // Choose user and navigate to the app
         performRecyclerViewItemClick(R.id.usersRecyclerView, "johnny")
+        checkText(R.id.welcomeMessageTextView, "Welcome John")
+
+        // Verify leaderboard
+        performClick(R.id.bottomNavigationBar, 0, 1)
+        checkRecyclerViewItems(R.id.leaderboardRecyclerView, "(0)", "(0)", "(0)")
 
         // Play a game
+        performClick(R.id.bottomNavigationBar, 0, 0)
         performClick(R.id.playButton)
         for (i in 1..10) {
             performClick(R.id.answer1Button)
@@ -46,6 +52,7 @@ class FunctionalTest : BaseTest() {
 
         // Verify leaderboard
         performClick(R.id.bottomNavigationBar, 0, 1)
+        checkRecyclerViewItems(R.id.leaderboardRecyclerView, "(1)", "(0)", "(0)")
     }
 
     private fun addNewUser(firstName: String, lastName: String, nick: String) {
@@ -55,5 +62,6 @@ class FunctionalTest : BaseTest() {
         performTextReplace(R.id.nickEditText, nick)
         performClick(R.id.confirmButton)
     }
+
 
 }
