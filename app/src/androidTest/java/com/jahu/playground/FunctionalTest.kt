@@ -25,12 +25,30 @@ class FunctionalTest : BaseTest() {
     }
 
     @Test
-    fun singleGame() {
+    fun functionalTest() {
         initUsers()
-        chooseUser("johnny", "John")
+
+        // switching users
+        chooseUser("maggie", "Margaret")
+        logout()
+        chooseUser("cleo", "Adam")
+
+        // user edition
+        editUser("cleofas", "Adamama", "Jonnes")
+        logout()
+        checkRecyclerViewItems(R.id.usersRecyclerView, arrayOf("cleofas", "johnny", "maggie"))
+        chooseUser("cleofas", "Adamama")
+
+        // leaderboard updates
         verifyLeaderboard("(0)", "(0)", "(0)")
         playGame()
         verifyLeaderboard("(1)", "(0)", "(0)")
+        playGame()
+        verifyLeaderboard("(2)", "(0)", "(0)")
+        logout()
+        chooseUser("johnny", "John")
+        playGame()
+        verifyLeaderboard("(2)", "(1)", "(0)")
     }
 
     private fun initUsers() {
@@ -68,6 +86,21 @@ class FunctionalTest : BaseTest() {
     private fun verifyLeaderboard(vararg expectedValues: String) {
         performClick(R.id.bottomNavigationBar, 0, 1)
         checkRecyclerViewItems(R.id.leaderboardRecyclerView, expectedValues)
+    }
+
+    private fun logout() {
+        performClick(R.id.bottomNavigationBar, 0, 2)
+        performClick(R.id.logoutButton)
+    }
+
+    private fun editUser(nick: String, firstName: String, lastName: String) {
+        performClick(R.id.bottomNavigationBar, 0, 2)
+        performClick(R.id.editUserButton)
+        performTextReplace(R.id.firstNameEditText, firstName)
+        performTextReplace(R.id.lastNameEditText, lastName)
+        performTextReplace(R.id.nickEditText, nick)
+        performClick(R.id.confirmButton)
+
     }
 
 }
