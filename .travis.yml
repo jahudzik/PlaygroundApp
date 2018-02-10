@@ -42,7 +42,7 @@ before_script:
 script:
     - echo "Travis branch is $TRAVIS_BRANCH"                          #Print out which branch it is.
     - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"    #Print out pull request number.
-    - ./gradlew clean assemble verify --stacktrace
+#    - ./gradlew clean assemble verify --stacktrace
     - android-wait-for-emulator                                       #Run wait for the emulator script.
     - adb devices                                                     #Display list of devices
     - adb shell input keyevent 82 &
