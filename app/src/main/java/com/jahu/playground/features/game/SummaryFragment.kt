@@ -1,6 +1,8 @@
 package com.jahu.playground.features.game
 
+import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +36,14 @@ class SummaryFragment : BaseFragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         eventListener = context as EventListener
+    }
+
+    @SuppressWarnings("depreciation") // TODO Remove this method after switching to Fragments from support library
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            eventListener = activity as EventListener
+        }
     }
 
     override fun onResume() {
