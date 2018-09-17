@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jahu.playground.R
 import com.jahu.playground.features.chooseuser.ChooseUserActivity
 import com.jahu.playground.features.edituser.EditUserActivity
@@ -41,7 +42,7 @@ class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsCont
     }
 
     override fun navigateToLicensesScreen() {
-        TODO("not implemented")
+        startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
     }
 
     override fun logout() {
