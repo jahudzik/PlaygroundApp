@@ -16,6 +16,16 @@
       />
 
   <Button
+      android:id="@+id/licensesButton"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:layout_below="@id/editUserButton"
+      android:layout_marginLeft="36dp"
+      android:layout_marginRight="36dp"
+      android:text="@string/open_source_licenses"
+      />
+
+  <Button
       android:id="@+id/logoutButton"
       android:layout_width="match_parent"
       android:layout_height="60dp"

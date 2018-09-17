@@ -20,5 +20,6 @@
   <string name="rank_label">#%1$d</string>
   <string name="games_count_label">(%1$d)</string>
   <string name="logout">logout</string>
+  <string name="open_source_licenses">Open Source Licenses</string>
   <string name="edit_profile">Edit profile</string>
 </resources>

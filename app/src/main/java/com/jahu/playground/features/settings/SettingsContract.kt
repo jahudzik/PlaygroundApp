@@ -10,6 +10,8 @@ interface SettingsContract {
 
         fun navigateToEditUserScreen(mode: EditUserContract.Mode)
 
+        fun navigateToLicensesScreen()
+
         fun logout()
 
     }
@@ -17,6 +19,8 @@ interface SettingsContract {
     interface Presenter : MvpPresenter {
 
         fun onEditUserButtonClicked()
+
+        fun onLicensesButtonClicked()
 
         fun onLogoutButtonClicked()
 

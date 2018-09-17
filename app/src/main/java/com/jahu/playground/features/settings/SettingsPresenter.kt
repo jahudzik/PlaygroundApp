@@ -14,6 +14,10 @@ class SettingsPresenter(
         view.logout()
     }
 
+    override fun onLicensesButtonClicked() {
+        view.navigateToLicensesScreen()
+    }
+
     override fun onEditUserButtonClicked() {
         view.navigateToEditUserScreen(EditUserContract.Mode.EDIT_USER)
     }

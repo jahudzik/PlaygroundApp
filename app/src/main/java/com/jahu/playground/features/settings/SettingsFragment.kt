@@ -32,11 +32,16 @@ class SettingsFragment : MvpFragment<SettingsContract.Presenter>(), SettingsCont
     override fun onResume() {
         super.onResume()
         editUserButton.setOnClickListener { presenter.onEditUserButtonClicked() }
+        licensesButton.setOnClickListener { presenter.onLicensesButtonClicked() }
         logoutButton.setOnClickListener { presenter.onLogoutButtonClicked() }
     }
 
     override fun navigateToEditUserScreen(mode: EditUserContract.Mode) {
         startActivity(EditUserActivity.getIntent(activity, mode))
+    }
+
+    override fun navigateToLicensesScreen() {
+        TODO("not implemented")
     }
 
     override fun logout() {
